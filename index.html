@@ -162,26 +162,35 @@ var PEO={
  carina:{n:'Carina König',fn:'Carina',role:'Verwaltungsassistentin',type:['Mini-job','grey'],status:['On leave','amber'],email:'—',start:'2022',mgr:'Saju',loc:'Berlin'}
 };
 var PEO_ORDER=['austin','saju','zsolt','dipro','ana','anastasia','prachi','carina'];
+// REAL 1:1s — read from the Krisp/Gemini meeting corpus (one-off pull), not invented
 var O1={
- dipro:[{d:'2026-07-16',t:'Weekly 1:1',by:'Austin',s:'Schindler AI progress, AZ-305 study plan, workload balance.',obj:['Grow into a lead consultant role'],act:[['Complete AZ-305 study plan','Dipro','Aug 15'],['Book AZ-305 exam','Ana','Jul 30']]},
-  {d:'2026-07-09',t:'Weekly 1:1',by:'Austin',s:'Handbook walkthrough; Isar onboarding.',obj:[],act:[['Draft H2 performance goals','Dipro','Jul 31']]},
-  {d:'2026-07-02',t:'Weekly 1:1',by:'Austin',s:'Kicked off on the Isar finance dashboard.',obj:[],act:[]}],
- zsolt:[{d:'2026-07-10',t:'Coaching 1:1',by:'Saju',s:'DAX optimization; ZBI workload; client comms.',obj:['Deepen modeling expertise'],act:[['Send ZBI updated model','Zsolt','Jul 22']]}],
- ana:[{d:'2026-07-12',t:'Check-in',by:'Saju',s:'Ops & Buena offboarding coordination.',obj:[],act:[['Reconcile Buena offboarding','Ana','']]}],
- austin:[],saju:[],anastasia:[],prachi:[],carina:[]
+ dipro:[
+  {d:'2026-07-20',t:'Weekly 1:1 — strategic pivot, PL-300 focus',by:'Austin',s:'Strategic-pivot briefing: content / SEO / AEO work; PL-300 exam prep.',obj:['Own the SEO/AEO content pilot'],act:[['Start PL-300 prep — check org exam registration','Dipro',''],['Optimize existing blog posts','Dipro','']]},
+  {d:'2026-07-16',t:'Weekly Walkthrough — technical SEO / schema',by:'Austin + Saju',s:'Structured-metadata schema lifted site-health 74 → 80; prioritize schema on non-blog / landing pages.',obj:[],act:[['Re-audit pages after the audit resets on the 17th','Dipro',''],['Update backend schema for landing / contact pages','Dipro','']]},
+  {d:'2026-07-13',t:'Weekly 1:1 — AEO pilot scoped, PL-300 retake',by:'Austin',s:'Dipro scoped and owns an AEO pilot — optimize the 5 lowest-AEO blog articles.',obj:['Run the AEO optimization pilot'],act:[['Select 5 lowest-AEO articles and optimize','Dipro',''],['Run a demo presenting the results','Dipro','Jul 21']]}],
+ zsolt:[
+  {d:'2026-05-11',t:'Feedback on 11.05 client meeting with Juana (ZBI)',by:'Saju',s:'Coaching after observing Zsolt’s ZBI client call: set goal + agenda at the start; stop thinking aloud in-meeting.',obj:[],act:[]},
+  {d:'2026-05-04',t:'Calendar-events discipline',by:'Saju',s:'Accept/decline calendar invites so attendance is visible.',obj:[],act:[['Accept/decline calendar invites','Zsolt','']]},
+  {d:'2026-04-27',t:'Weekly 1:1 — scope ramp-down + Must coaching',by:'Saju',s:'ZBI project (client Juana) — raised a data-architecture question; daily-Must coaching.',obj:[],act:[['Send revised Must for Apr 27 via Slack','Zsolt','Apr 27'],['Enter May 14 vacation in the tracker','Zsolt','']]}],
+ saju:[
+  {d:'2026-02-06',t:'Founder sync — Schindler',by:'Austin',s:'Saju ~3 days/week on the TPE project ~6 months; hiring pressure while cash in bank.',obj:[],act:[]},
+  {d:'2023-03-09',t:'Sales Coaching: Qualification Meeting',by:'—',s:'Framework: Opening → Analyse → Show Pain → Future Plans → Closing; probe more.',obj:[],act:[]}],
+ ana:[{d:'2025-11-21',t:'Task: Clutch profile management',by:'Austin',s:'Ana made manager of CaseWhen’s paid Clutch account — unlocks verification + dedicated support.',obj:[],act:[['Set up Clutch verification features','Ana','']]}],
+ austin:[],anastasia:[],prachi:[],carina:[]
 };
 var ME='dipro';
 // master meetings log (Fathom + manual), linked to client/project or labeled internal/1:1
+// REAL meetings — read & routed from the Krisp/Gemini corpus (one-off pull)
 var MTG={
- m1:{t:'Schindler Shadow Session 5',d:'2026-05-21',ty:['Client call','blue'],cl:'schindler',proj:'sch_ai',src:'Fathom',sum:'Reviewed AI findings; agreed the PoC scope and next data pull.',act:4},
- m2:{t:'ZBI weekly sync',d:'2026-07-15',ty:['Client call','blue'],cl:'zbi',proj:'zbi_fonds',src:'Fathom',sum:'Fondsmanagement model progress; UAT plan.',act:3},
- m3:{t:'Isar dashboard review',d:'2026-07-14',ty:['Client call','blue'],cl:'isar',proj:'isar_fin',src:'Fathom',sum:'Finance dashboard v1 walkthrough; requested changes.',act:2},
- m4:{t:'Samba Phase B check-in',d:'2026-07-11',ty:['Client call','blue'],cl:'samba',proj:'samba_b',src:'Fathom',sum:'QA status and ongoing support scope.',act:1},
- m5:{t:'Founders Weekly',d:'2026-07-18',ty:['Internal team','grey'],cl:null,proj:null,src:'Fathom',sum:'Pipeline, hiring, Cerebro rollout.',act:5},
- m6:{t:'Team Weekly',d:'2026-07-14',ty:['Internal team','grey'],cl:null,proj:null,src:'Manual',sum:'Delivery standup across projects.',act:2},
- m7:{t:'Weekly 1:1 — Dipro',d:'2026-07-16',ty:['1:1','teal'],cl:null,proj:null,person:'dipro',src:'Fathom',sum:'Routed to Personnel → Dipro.',act:2},
- m8:{t:'Daily 15m — Dipro & Austin + Saju',d:'2026-06-30',ty:['Internal team','grey'],cl:null,proj:null,src:'Gemini',sum:'Daily delivery standup (real Gemini note).',act:1},
- m9:{t:'Mahmoud Diab / CaseWhen — candidate call',d:'2025-01-20',ty:['Candidate','purple'],cl:null,proj:null,src:'Gemini',sum:'Data-engineer interview → routes to Candidates, not a client (real Gemini note).',act:1}
+ m1:{t:'Linstol ⇄ BDO — Dashboard / Power BI',d:'2026-06-18',ty:['Client call','blue'],cl:'linstol',proj:'lin_inv',src:'Krisp',sum:'Dashboard / Power BI working session with Linstol + BDO.',act:2},
+ m2:{t:'Schindler / Ipsen — sales + delivery calls',d:'2026-07-07',ty:['Client call','blue'],cl:'schindler',proj:'sch_ai',src:'Krisp',sum:'Schindler AI initiative — first use case (Gabriel call) + Ipsen delivery.',act:3},
+ m3:{t:'ZBI — client meeting with Juana',d:'2026-05-11',ty:['Client call','blue'],cl:'zbi',proj:'zbi_all',src:'Krisp',sum:'Zsolt’s ZBI client call with Juana (later reviewed in his 1:1).',act:1},
+ m4:{t:'Christos / Austin — inbound project opportunity',d:'2026-07-09',ty:['Client call','blue'],cl:null,proj:null,src:'Krisp',sum:'Inbound project opportunity (new prospect → route to the pipeline).',act:1},
+ m5:{t:'Mahmoud Diab / CaseWhen — candidate call',d:'2025-01-20',ty:['Candidate','purple'],cl:null,proj:null,src:'Krisp',sum:'Data-engineer interview → routes to Candidates, not a client.',act:1},
+ m6:{t:'Ismail / CaseWhen — candidate screen',d:'2026-03-04',ty:['Candidate','purple'],cl:null,proj:null,src:'Krisp',sum:'Candidate screen → Candidates.',act:1},
+ m7:{t:'Invoicing / time-tracking workflow walkthrough',d:'2026-02-10',ty:['Internal team','grey'],cl:null,proj:null,src:'Krisp',sum:'Austin walking the team through the invoicing / time-tracking workflow.',act:2},
+ m8:{t:'Weekly 1:1 — Dipro (strategic pivot, PL-300)',d:'2026-07-20',ty:['1:1','teal'],cl:null,proj:null,person:'dipro',src:'Krisp',sum:'Routed to Personnel → Dipro.',act:2},
+ m9:{t:'Coaching — Zsolt (feedback on Juana meeting)',d:'2026-05-11',ty:['1:1','teal'],cl:null,proj:null,person:'zsolt',src:'Krisp',sum:'Routed to Personnel → Zsolt.',act:0}
 };
 function meetingRows(pred){var ids=Object.keys(MTG).filter(pred).sort(function(a,b){return MTG[a].d<MTG[b].d?1:-1;});return ids.length?ids.map(function(k){var m=MTG[k];return '<div class="drow" style="border-top:1px solid var(--line);cursor:pointer" data-open="meeting/'+k+'">'+pill(m.ty[0],m.ty[1])+' &nbsp;'+m.t+'<span class="dl">'+m.d+' · '+m.act+' actions</span></div>';}).join(''):'<div class="mut" style="font-size:13px">No meetings logged yet.</div>';}
 // entity / company & legal
@@ -269,7 +278,8 @@ var TBL={
   ['CaseWhen Financial Model','Internal',['Data model','purple'],'Drive ↗'],
   ['lido_weekly.sql','Linstol',['SQL','teal'],'Drive ↗']]},
  learning:{ic:'🎓',nm:'Learning & Certifications',sp:'team',desc:'Real study plans & enablement docs from the KB — the “learn from the best” culture.',cols:[['Track','title'],['Owner','person'],['Status','pill']],rows:[
-  ['AZ-305 Study Plan — 12 Weeks (Azure Solutions Architect)','Dipro',['In progress','amber']],
+  ['PL-300 (Power BI Data Analyst) — exam prep','Dipro',['In progress','amber']],
+  ['AZ-305 Study Plan — 12 Weeks (Azure Solutions Architect)','Dipro',['On hold','grey']],
   ['Data Engineer Interview Guide','Austin',['Reference','grey']],
   ['2-Year Growth Pillar: Power BI + Fabric Content Engine','Saju',['Strategy','purple']],
   ['Leveraging Mindset — Stop Doing, Start Delegating','Austin',['Culture','teal']]]}
@@ -469,7 +479,7 @@ function foldersPage(){
 // -------- Meetings (master log) --------
 function meetingsPage(){
  var ids=Object.keys(MTG).sort(function(a,b){return MTG[a].d<MTG[b].d?1:-1;});
- var h='<p class="pdesc">The single log of every meeting — Fathom-recorded or added manually. Each is linked to its Client + Project, or labeled Internal team / 1:1. Client meetings also surface on the client and project pages; 1:1s route to the person’s page.</p>';
+ var h='<p class="pdesc">The single log of every meeting — <b>read one-off from the real Krisp/Gemini corpus</b> (going forward, auto-logged). Each is linked to its Client + Project, or labeled Internal team / 1:1 / Candidate. Client meetings also surface on the client and project pages; 1:1s route to the person’s page.</p>';
  h+='<div class="tabs"><span class="tab on">▦ All</span><span class="rowcount">'+ids.length+' meetings</span></div>';
  h+='<table><thead><tr><th>Meeting</th><th>Date</th><th>Type</th><th>Client</th><th>Project</th><th>Source</th><th>Actions</th></tr></thead><tbody>';
  h+=ids.map(function(k){var m=MTG[k];return '<tr class="click" data-open="meeting/'+k+'"><td><span class="title-cell"><span class="di">🗓️</span>'+m.t+'</span></td><td>'+m.d+'</td><td>'+pill(m.ty[0],m.ty[1])+'</td><td>'+(m.cl?'<span class="rel" data-open="client/'+m.cl+'">'+CL[m.cl].n+'</span>':'<span class="mut">—</span>')+'</td><td>'+(m.proj?'<span class="rel" data-open="project/'+m.proj+'">'+PR[m.proj].n.split(' — ').slice(-1)[0]+'</span>':'<span class="mut">—</span>')+'</td><td class="mut">'+m.src+'</td><td>'+m.act+'</td></tr>';}).join('');
