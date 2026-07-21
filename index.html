@@ -241,14 +241,43 @@ var TBL={
  freelancers:{ic:'🧰',nm:'Freelancer Pool',sp:'admin',desc:'Sourcing bench — distinct from active freelancers.',cols:[['Name','title'],['Skills','pill'],['Rate','text']],rows:[['Thiago Fraletti Peixoto',['Power BI Dev','teal'],'$100/h'],['Joshua Stevenson',['Power BI PM','purple'],'$67/h']]},
  handbookadopt:{ic:'📈',nm:'Handbook Adoption',sp:'admin',desc:'Who is actively applying the handbook.',cols:[['Person','person'],['Status','pill'],['Working on','text']],rows:[['Saju',['Actively applying','green'],'Power BI Dev phase'],['Austin',['Exploring','amber'],'Salesforce migration updates']]},
  intake:{ic:'🚪',nm:'Client Intake',sp:'admin',desc:'Kick-off flow — intake form + secure credential request (secret stored in 1Password, never in the record).',cols:[['Prospect','title'],['Stage','pill'],['Owner','person']],rows:[['Pandata',['Form sent','amber'],'Saju'],['(new client)',['Intake kicked off','grey'],'Austin']]},
- finance:{ic:'🧾',nm:'Finance',sp:'admin',desc:'NOT in Notion — runs in lexoffice. Documents linked from the admin Drive folder only. Shown to mark the boundary.',cols:[['Item','title'],['Where','text']],rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']]]}
+ finance:{ic:'🧾',nm:'Finance',sp:'admin',desc:'NOT in Notion — runs in lexoffice. Documents linked from the admin Drive folder only. Shown to mark the boundary.',cols:[['Item','title'],['Where','text']],rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']]]},
+ // ---- NEW useful team sections (from real Drive/Krisp/Notion content) ----
+ runbooks:{ic:'📘',nm:'Playbooks & Runbooks',sp:'team',desc:'The living “how we deliver” — the real technical know-how the team uses daily. Replaces the stale Notion KB / Ideas / Open-Questions clutter.',cols:[['Runbook','title'],['Category','pill'],['Owner','person']],rows:[
+  ['Access & credential provisioning runbook',['Setup','amber'],'Ana'],
+  ['Data-source discovery checklist',['Delivery','teal'],'Dipro'],
+  ['DAX & RANKX time-intelligence patterns',['Power BI','teal'],'Zsolt'],
+  ['Power BI subscription report setup',['Power BI','teal'],'Zsolt'],
+  ['QA walkthrough & go-live checklist',['Delivery','amber'],'Zsolt'],
+  ['“PoC then automate” delivery method',['Method','purple'],'Austin'],
+  ['Client offboarding & access revocation',['Setup','amber'],'Ana']]},
+ templates:{ic:'🗂️',nm:'Templates & Assets',sp:'team',desc:'Reusable delivery assets + brand — so nobody rebuilds from scratch. Fed by the Drive templates folder.',cols:[['Asset','title'],['Type','pill']],rows:[
+  ['Client project skeleton (00-brief…04-handover)',['Structure','grey']],
+  ['PoC dashboard template',['Power BI','teal']],
+  ['Handover pack template',['Delivery','amber']],
+  ['Proposal / offer deck',['Sales','purple']],
+  ['DAX / SQL snippet library',['Code','teal']],
+  ['Brand & logos',['Brand','grey']]]},
+ deliverables:{ic:'📦',nm:'Deliverables Library',sp:'team',desc:'Every client deliverable — dashboards, data models, reports — indexed across projects with Drive links, so past work is findable and reusable.',cols:[['Deliverable','title'],['Client','text'],['Type','pill'],['Drive','text']],rows:[
+  ['Monthly reporting pack','ZBI',['Report','teal'],'link ↗'],
+  ['Fondsmanagement data model','ZBI',['Data model','purple'],'link ↗'],
+  ['BI reporting suite','Schindler',['Report','teal'],'link ↗'],
+  ['Finance dashboard v1','Isar Aerospace',['Dashboard','amber'],'link ↗'],
+  ['Inventory forecast model','Linstol',['Data model','purple'],'link ↗'],
+  ['Power BI Phase B build','Samba TV',['Dashboard','amber'],'link ↗']]},
+ learning:{ic:'🎓',nm:'Learning & Certifications',sp:'team',desc:'Skill development and the “learn from the best” culture — study plans, cert tracks, shadow sessions.',cols:[['Track','title'],['Owner','person'],['Status','pill']],rows:[
+  ['AZ-305 (Azure Solutions Architect) — 12-week plan','Dipro',['In progress','amber']],
+  ['Microsoft Fabric certification','Zsolt',['Planned','grey']],
+  ['Shadow sessions — Schindler delivery','Dipro',['Ongoing','green']],
+  ['Power BI best practices (internal)','Zsolt',['Maintained','green']]]}
 };
 // ===================== sidebar =====================
 var NAV=[
  {items:['home','folders']},
- {g:['🚀','DELIVERY','everyone'],items:['tasks','clients','projects','areas','meetings','brand']},
- {g:['📚','KNOWLEDGE & PROCESS','everyone'],items:['kb','handbook','roles','okrs','decisions','ideas','questions','risks']},
- {g:['🔒','ADMIN','Austin · Saju · Ana',1],items:['dash','adminboard','personnel','onboarding','deals','entity','contracts','advisors','compliance','calendar','candidates','freelancers','handbookadopt','intake','finance']},
+ {g:['🚀','DELIVERY','everyone'],items:['tasks','clients','projects','meetings']},
+ {g:['📘','HOW WE DELIVER','everyone'],items:['handbook','runbooks','templates','deliverables']},
+ {g:['🎓','GROW','everyone'],items:['learning']},
+ {g:['🔒','ADMIN','Austin · Saju · Ana',1],items:['dash','adminboard','personnel','onboarding','deals','entity','contracts','advisors','compliance','calendar','roles','okrs','decisions','risks','candidates','freelancers','intake','finance']},
  {g:['👤','MY SPACE','private'],items:['mytasks','my1on1']}
 ];
 var LABELS={home:['🏠','Home'],folders:['📁','Folder structure'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Board'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],deals:['💼','CRM · Deals'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s']};
