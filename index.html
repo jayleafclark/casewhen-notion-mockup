@@ -1,35 +1,32 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>CaseWhen — Notion workspace (mockup v2)</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>CaseWhen — Notion workspace (mockup v3)</title>
 <style>
 :root{--bg:#fff;--side:#f7f7f5;--ink:#37352f;--muted:#9b9a97;--faint:#c7c6c2;--line:#ededec;--line2:#e9e9e7;--hover:#efefee;--sel:#e8f2ef;--green:#1d967c;--green-d:#177e68}
 *{box-sizing:border-box}
-.app{font-family:ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0;display:grid;grid-template-columns:256px 1fr;height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
+.app{font-family:ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0;display:grid;grid-template-columns:262px 1fr;height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
 .side{background:var(--side);border-right:1px solid var(--line2);display:flex;flex-direction:column;overflow-y:auto;padding:8px 0}
-.ws{display:flex;align-items:center;gap:8px;padding:8px 12px;margin:0 6px;border-radius:6px;cursor:default}
+.ws{display:flex;align-items:center;gap:8px;padding:8px 12px;margin:0 6px}
 .wsico{width:22px;height:22px;border-radius:5px;background:var(--green);color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center;flex:none}
 .wsname{font-weight:600}
-.ghead{display:flex;align-items:center;gap:5px;padding:12px 14px 3px;color:var(--muted);font-size:11.5px;font-weight:600;user-select:none}
+.ghead{display:flex;align-items:center;gap:5px;padding:13px 14px 3px;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.02em}
 .ghead .lk{margin-left:auto;font-size:10px}
-.nav a{display:flex;align-items:center;gap:8px;padding:4px 14px 4px 20px;color:var(--ink);text-decoration:none;font-size:13.5px;cursor:pointer}
+.nav a{display:flex;align-items:center;gap:8px;padding:3.5px 14px 3.5px 20px;color:var(--ink);text-decoration:none;font-size:13.5px;cursor:pointer}
 .nav a:hover{background:var(--hover)}.nav a.on{background:var(--sel);font-weight:500}
 .nav a .ico{width:18px;text-align:center;flex:none;opacity:.9}
-.nav a .cnt{margin-left:auto;color:var(--faint);font-size:11px}
 .sfoot{margin-top:auto;padding:10px 16px;color:var(--faint);font-size:11px;border-top:1px solid var(--line2)}
 .main{overflow-y:auto}
 .topbar{display:flex;align-items:center;gap:6px;padding:9px 18px;color:var(--muted);font-size:13px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:3}
 .crumb a{color:var(--muted);text-decoration:none;cursor:pointer}.crumb a:hover{text-decoration:underline}
 .crumb b{color:var(--ink);font-weight:500}.crumb .sep{color:var(--faint);margin:0 5px}
 .lockb{margin-left:8px;font-size:11px;color:var(--muted);background:var(--side);border:1px solid var(--line2);border-radius:5px;padding:1px 7px}
-.page{padding:22px 44px 90px;max-width:1180px}
-.ptitle{display:flex;align-items:center;gap:11px;font-size:29px;font-weight:700;margin:0 0 6px}
-.ptitle .pico{font-size:29px}
-.pdesc{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:82ch;line-height:1.5}
+.page{padding:22px 44px 90px;max-width:1200px}
+.ptitle{display:flex;align-items:center;gap:11px;font-size:29px;font-weight:700;margin:0 0 6px}.ptitle .pico{font-size:29px}
+.pdesc{color:var(--muted);font-size:13px;margin:0 0 6px;max-width:84ch;line-height:1.5}
 .tabs{display:flex;gap:1px;border-bottom:1px solid var(--line);margin:14px 0 0;flex-wrap:wrap}
-.tab{font-size:13px;color:var(--muted);padding:6px 10px;border-bottom:2px solid transparent;cursor:pointer;display:flex;gap:5px;align-items:center}
+.tab{font-size:13px;color:var(--muted);padding:6px 10px;border-bottom:2px solid transparent;cursor:pointer}
 .tab:hover{color:var(--ink)}.tab.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
 .rowcount{color:var(--faint);font-size:12px;margin-left:6px}
 .btn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:0;border-radius:6px;padding:6px 12px;font-size:13px;font-weight:500;cursor:pointer;margin:12px 0 4px}
-.btn.sec{background:var(--side);color:var(--ink);border:1px solid var(--line2)}
 table{border-collapse:collapse;width:100%;margin-top:4px}
 th{text-align:left;font-weight:400;color:var(--muted);font-size:12.5px;padding:7px 10px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);white-space:nowrap}
 th .ti{opacity:.55;margin-right:4px;font-size:11px}
@@ -37,8 +34,7 @@ td{padding:7px 10px;border-bottom:1px solid var(--line);border-right:1px solid v
 td:first-child{font-weight:500}
 tr.click{cursor:pointer}tr.click:hover td{background:#f6faf9}
 .title-cell{display:flex;align-items:center;gap:7px}.title-cell .di{opacity:.8}
-.opener{color:var(--faint);font-size:11px;margin-left:6px;opacity:0}
-tr.click:hover .opener{opacity:1}
+.opener{color:var(--faint);font-size:11px;margin-left:6px;opacity:0}tr.click:hover .opener{opacity:1}
 .pill{display:inline-flex;align-items:center;border-radius:4px;padding:2px 8px;font-size:12px;white-space:nowrap}
 .p-green{background:#DBEEE9;color:#177e68}.p-amber{background:#FBEFD3;color:#95661a}.p-grey{background:#E9E9E7;color:#605c57}
 .p-teal{background:#D6E8EA;color:#2a6b72}.p-rose{background:#F4E2DB;color:#9a4b34}.p-blue{background:#DEE7EF;color:#3a5a78}.p-purple{background:#E8E2F0;color:#5b4a7a}
@@ -46,41 +42,35 @@ tr.click:hover .opener{opacity:1}
 .person{display:inline-flex;align-items:center;gap:6px}
 .av{width:20px;height:20px;border-radius:50%;color:#fff;font-size:10px;font-weight:600;display:grid;place-items:center;flex:none}
 .lnk{color:#3a5a78;text-decoration:none;border-bottom:1px solid #cdd8e2;cursor:pointer}
-.rel{background:#eef0f0;border-radius:4px;padding:1px 8px;font-size:12.5px;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-block}
-.rel:hover{background:#e2e6e6}
+.rel{background:#eef0f0;border-radius:4px;padding:1px 8px;font-size:12.5px;color:var(--ink);cursor:pointer;display:inline-block}.rel:hover{background:#e2e6e6}
 .mut{color:var(--muted)}.mask{letter-spacing:1px;color:var(--faint)}
 .newbadge{background:#DBEEE9;color:#177e68;font-size:9px;font-weight:700;border-radius:4px;padding:0 4px;margin-left:6px}
-/* board */
 .board{display:flex;gap:14px;overflow-x:auto;padding-top:12px}
-.bcol{min-width:236px;flex:1}
-.bch{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;padding:4px 4px 8px}
-.bch .bc{color:var(--faint);font-size:12px}.bch .dot{width:8px;height:8px;border-radius:50%}
-.card{background:#fbfbfa;border:1px solid var(--line2);border-radius:7px;padding:9px 11px;margin-bottom:8px;box-shadow:0 1px 1px rgba(0,0,0,.03);cursor:pointer}
-.card:hover{background:#f4f8f7}
-.card .ct{font-size:13.5px;font-weight:500;margin-bottom:7px}
-.card .cm{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-/* detail */
-.detail{max-width:900px}
+.bcol{min-width:230px;flex:1}
+.bch{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;padding:4px 4px 8px}.bch .bc{color:var(--faint);font-size:12px}.bch .dot{width:8px;height:8px;border-radius:50%}
+.card{background:#fbfbfa;border:1px solid var(--line2);border-radius:7px;padding:9px 11px;margin-bottom:8px;box-shadow:0 1px 1px rgba(0,0,0,.03);cursor:pointer}.card:hover{background:#f4f8f7}
+.card .ct{font-size:13.5px;font-weight:500;margin-bottom:7px}.card .cm{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.detail{max-width:920px}
 .dtitle{display:flex;align-items:center;gap:11px;font-size:30px;font-weight:700;margin:6px 0 14px}
 .props{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 0;margin-bottom:18px}
-.prow{display:grid;grid-template-columns:170px 1fr;gap:10px;padding:5px 2px;font-size:13.5px;align-items:center}
+.prow{display:grid;grid-template-columns:190px 1fr;gap:10px;padding:5px 2px;font-size:13.5px;align-items:center}
 .prow .pk{color:var(--muted);display:flex;align-items:center;gap:7px}.prow .pk .pi{opacity:.6;width:15px;text-align:center}
 .h3{font-size:15px;font-weight:600;margin:20px 0 8px;display:flex;align-items:center;gap:7px}
 .chk{list-style:none;padding:0;margin:0}
 .chk li{padding:5px 0;font-size:13.5px;display:flex;gap:9px;align-items:center;border-bottom:1px solid var(--line2)}
 .chk li .box{width:15px;height:15px;border:1.5px solid var(--faint);border-radius:3px;flex:none}
-.chk li.done .box{background:var(--green);border-color:var(--green)}.chk li.done span{color:var(--muted);text-decoration:line-through}
+.chk li.done .box{background:var(--green);border-color:var(--green)}.chk li.done>span{color:var(--muted);text-decoration:line-through}
 .callout{background:var(--side);border:1px solid var(--line2);border-radius:8px;padding:10px 13px;font-size:13px;margin:10px 0;display:flex;gap:9px;align-items:flex-start}
 .callout.g{background:#eef7f4;border-color:#cfe3dd}.callout.a{background:#fbf3e0;border-color:#f0dda6}
-.bodytext{font-size:13.5px;color:#4a4744;line-height:1.6;max-width:75ch}
-/* dashboard */
+.bodytext{font-size:13.5px;color:#4a4744;line-height:1.6;max-width:78ch}
 .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
 .dcard{border:1px solid var(--line2);border-radius:10px;padding:14px 16px}.dcard.full{grid-column:1/3}
 .dch{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-bottom:10px}.dch .cnt{margin-left:auto;font-size:11px;color:var(--muted);background:var(--side);border:1px solid var(--line2);border-radius:20px;padding:1px 9px}
 .drow{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}.drow:first-of-type{border-top:0}.drow .dl{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}
 .warn{background:#FBEFD3;color:#95661a;border:1px solid #f0dda6;border-radius:7px;padding:8px 11px;font-size:12.5px;margin-top:8px}
 .exclude{margin-top:18px;font-size:12.5px;color:var(--muted);background:var(--side);border:1px dashed var(--line2);border-radius:8px;padding:10px 14px}
-/* folders */
+.rail{border-top:1px solid var(--line)}
+.railh{font-size:12px;font-weight:600;color:var(--muted);padding:10px 2px 4px;text-transform:none}
 .mirror{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:8px 0 16px}
 .mirror .tool{background:var(--side);border:1px solid var(--line2);border-radius:6px;padding:3px 9px;color:var(--ink);font-weight:500}
 .fcols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -97,17 +87,8 @@ tr.click:hover .opener{opacity:1}
 </head><body><div class="app">
   <div class="side">
     <div class="ws"><span class="wsico">C</span><span class="wsname">CaseWhen</span></div>
-    <div class="nav" style="margin-top:4px">
-      <a data-go="home"><span class="ico">🏠</span>Home</a>
-      <a data-go="folders"><span class="ico">📁</span>Folder structure</a>
-    </div>
-    <div class="ghead">🚀 DELIVERY <span class="mut" style="font-weight:400">· everyone</span></div>
-    <div class="nav" id="nav-team"></div>
-    <div class="ghead">🔒 ADMIN <span class="mut" style="font-weight:400">· Austin · Saju · Ana</span><span class="lk">🔒</span></div>
-    <div class="nav" id="nav-admin"></div>
-    <div class="ghead">👤 MY SPACE <span class="mut" style="font-weight:400">· private</span></div>
-    <div class="nav" id="nav-my"></div>
-    <div class="sfoot">Mockup v2 · GTD + PARA, Notion-native · real data from the scan · nothing live</div>
+    <div id="sidebar"></div>
+    <div class="sfoot">Mockup v3 · full OS data model in Notion (minus finance/payroll) · real data · nothing live</div>
   </div>
   <div class="main">
     <div class="topbar"><span class="crumb" id="crumb"></span><span class="lockb" id="lockb"></span></div>
@@ -116,34 +97,32 @@ tr.click:hover .opener{opacity:1}
 </div>
 
 <script>
-// ============ data ============
-var AVC={A:'#c2814a',S:'#4a86c2',Z:'#7a5bc2',D:'#2a9d8f',N:'#c24a6b',C:'#c2a24a'};
-function av(n){var i=(n||'?').trim()[0].toUpperCase();return '<span class="person"><span class="av" style="background:'+(AVC[i]||'#9b9a97')+'">'+i+'</span>'+n+'</span>';}
+// ===================== helpers =====================
+var AVC={A:'#c2814a',S:'#4a86c2',Z:'#7a5bc2',D:'#2a9d8f',N:'#c24a6b',C:'#c2a24a',P:'#4aabc2'};
+function av(n){if(!n||n=='—')return '<span class="mut">—</span>';var i=n.trim()[0].toUpperCase();return '<span class="person"><span class="av" style="background:'+(AVC[i]||'#9b9a97')+'">'+i+'</span>'+n+'</span>';}
 function pill(t,c){return '<span class="pill p-'+(c||'grey')+'">'+t+'</span>';}
 function nb(){return '<span class="newbadge">NEW</span>';}
+// task status palette (their REAL Notion statuses)
+var TS={'Not started':'grey','In Progress':'amber','External Block':'rose','Done':'green'};
+var TSDOT={grey:'#9b9a97',amber:'#e0a94a',rose:'#c24a6b',green:'#1d967c',blue:'#4aabc2',teal:'#2a6b72',purple:'#7a5bc2'};
+var TASK_COLS=['Not started','In Progress','External Block','Done'];
 
+// ===================== data =====================
 var CL={
- zbi:{n:'ZBI',st:['Active','green'],ind:'Real Estate / Funds',dom:['zbi.de'],lead:'Saju',projs:['zbi_all','zbi_fonds'],
-   contacts:[['Peter Käbe','peter.kaebe@zbi.de'],['Henning Voss','henning.voss@zbi.de'],['Juana Lucke','juana.lucke@zbi.de']]},
- schindler:{n:'Schindler',st:['Active','green'],ind:'Manufacturing',dom:['schindler.com','de.schindler.com'],lead:'Austin',projs:['sch_bi','sch_ai'],
-   contacts:[['Peter Bacher','peter.bacher@schindler.com'],['Gabriel Werner','gabriel.werner@schindler.com'],['Linda Schäffus','linda.schaeffus@schindler.com']]},
- linstol:{n:'Linstol',st:['Active','green'],ind:'Logistics',dom:['linstol.com'],lead:'Austin',projs:['lin_inv'],
-   contacts:[['Bill Cowan','bill.cowan@linstol.com'],['Chris Mejias','chris.mejias@linstol.com']]},
- isar:{n:'Isar Aerospace',NEW:1,st:['Active','green'],ind:'Aerospace',dom:['isaraerospace.com'],lead:'Saju',projs:['isar_fin'],
-   contacts:[['Omar Demerdash','omar.demerdash@isaraerospace.com'],['Mikael Gunnarsson','mikael.gunnarsson@isaraerospace.com']]},
- samba:{n:'Samba TV',NEW:1,st:['Active','green'],ind:'Media / AdTech',dom:['samba.tv'],lead:'Austin',projs:['samba_b'],
-   contacts:[['Craig Maas','craig.maas@samba.tv'],['Stephen Park','stephen.park@samba.tv']]},
+ zbi:{n:'ZBI',st:['Active','green'],ind:'Real Estate / Funds',dom:['zbi.de'],lead:'Saju',projs:['zbi_all','zbi_fonds'],contacts:[['Peter Käbe','peter.kaebe@zbi.de'],['Leo Hiller','leopold.hiller@zbi.de'],['Juana Lucke','juana.lucke@zbi.de']]},
+ schindler:{n:'Schindler',st:['Active','green'],ind:'Manufacturing',dom:['schindler.com','de.schindler.com'],lead:'Austin',projs:['sch_bi','sch_ai'],contacts:[['Peter Bacher','peter.bacher@schindler.com'],['Gabriel Werner','gabriel.werner@schindler.com']]},
+ linstol:{n:'Linstol',st:['Active','green'],ind:'Logistics',dom:['linstol.com'],lead:'Austin',projs:['lin_inv'],contacts:[['Bill Cowan','bill.cowan@linstol.com']]},
+ isar:{n:'Isar Aerospace',NEW:1,st:['Active','green'],ind:'Aerospace',dom:['isaraerospace.com'],lead:'Saju',projs:['isar_fin'],contacts:[['Omar Demerdash','omar.demerdash@isaraerospace.com']]},
+ samba:{n:'Samba TV',NEW:1,st:['Active','green'],ind:'Media / AdTech',dom:['samba.tv'],lead:'Austin',projs:['samba_b'],contacts:[['Craig Maas','craig.maas@samba.tv']]},
  buena:{n:'Buena',st:['Winding down','amber'],ind:'PropTech',dom:['buena.com','home.ht'],lead:'Saju',projs:['buena_rep'],contacts:[['Moritz','moritz@buena.com']]},
- anyrm:{n:'anyRM / Tentamus',st:['Inactive','grey'],ind:'Lab / Testing',dom:['anyrm.de','tentamus.com'],lead:'Austin',projs:['anyrm_bi'],contacts:[]},
+ anyrm:{n:'anyRM / Tentamus',st:['Inactive','grey'],ind:'Lab / Testing',dom:['anyrm.de'],lead:'Austin',projs:['anyrm_bi'],contacts:[]},
  wellbeauty:{n:'WellBeauty',st:['Inactive','grey'],ind:'Beauty / DTC',dom:['wellbeauty.com','+3'],lead:'Saju',projs:['wb_acq'],contacts:[]},
  harren:{n:'Harren Group',NEW:1,st:['Past','grey'],ind:'Shipping',dom:['harren.com'],lead:'Austin',projs:[],contacts:[]},
- pandata:{n:'Pandata',st:['Lead','amber'],ind:'Data partner',dom:['pandata.de'],lead:'Saju',projs:[],contacts:[['Joana Miranda','joana.miranda@pandata.de']]}
+ pandata:{n:'Pandata',st:['Lead','amber'],ind:'Data partner',dom:['pandata.de'],lead:'Saju',projs:[],contacts:[]}
 };
 var PR={
- zbi_all:{n:'ZBI — All Reporting',cl:'zbi',type:'Client',stage:['Live','green'],lead:'Zsolt',start:'2023-03',end:'ongoing',
-   deliv:[['Monthly reporting pack',1],['Power BI subscription reports',1],['Q3 refresh',0]]},
- zbi_fonds:{n:'ZBI — Fondsmanagement',cl:'zbi',type:'Client',stage:['Build','amber'],lead:'Saju',start:'2026-05',end:'2026-09',
-   deliv:[['Data model',1],['PoC dashboard v1',0],['UAT + handover',0]]},
+ zbi_all:{n:'ZBI — All Reporting',cl:'zbi',type:'Client',stage:['Live','green'],lead:'Zsolt',start:'2023-03',end:'ongoing',deliv:[['Monthly reporting pack',1],['Power BI subscription',1],['Q3 refresh',0]]},
+ zbi_fonds:{n:'ZBI — Fondsmanagement',cl:'zbi',type:'Client',stage:['Build','amber'],lead:'Saju',start:'2026-05',end:'2026-09',deliv:[['Data model',1],['PoC dashboard v1',0],['UAT + handover',0]]},
  sch_bi:{n:'Schindler — BI Reporting',cl:'schindler',type:'Client',stage:['Live','green'],lead:'Zsolt',start:'2022-11',end:'ongoing',deliv:[['Recurring reports',1]]},
  sch_ai:{n:'Schindler — AI',cl:'schindler',type:'Client',stage:['Discovery','blue'],lead:'Dipro',start:'2026-06',end:'2026-10',deliv:[['AI findings doc',1],['PoC',0]]},
  lin_inv:{n:'Linstol — Inventory Forecast',cl:'linstol',type:'Client',stage:['Build','amber'],lead:'Austin',start:'2026-04',end:'2026-08',deliv:[['Forecast model',0],['ESG reporting',0]]},
@@ -152,410 +131,311 @@ var PR={
  buena_rep:{n:'Buena — Reporting',cl:'buena',type:'Client',stage:['Handover','grey'],lead:'Saju',start:'2024',end:'2026-08',deliv:[['Offboarding',0]]},
  wb_acq:{n:'WellBeauty — Acquisition Reporting',cl:'wellbeauty',type:'Client',stage:['Handover','grey'],lead:'Saju',start:'2023',end:'2026',deliv:[]},
  anyrm_bi:{n:'anyRM — BI',cl:'anyrm',type:'Client',stage:['Handover','grey'],lead:'Austin',start:'2022',end:'2024',deliv:[]},
- int_cerebro:{n:'Cerebro rollout',cl:null,type:'Internal',stage:['Build','amber'],lead:'Austin',start:'2026-07',end:'2026-09',deliv:[['Notion migration',0],['Attio + Fathom',0],['Cerebro worker',0]]},
+ int_cerebro:{n:'Cerebro rollout',cl:null,type:'Internal',stage:['Build','amber'],lead:'Austin',start:'2026-07',end:'2026-09',deliv:[['Notion migration',0],['Attio + Fathom',0]]},
  int_seo:{n:'Website SEO / GEO engine',cl:null,type:'Internal',stage:['Live','green'],lead:'Saju',start:'2026-06',end:'ongoing',deliv:[['Weekly loop',1]]}
 };
 var TK={
- tc1:{n:'Idea: package Schindler AI as a productised offer',s:['Inbox','grey'],a:null,dd:'',area:'Growth'},
- tc2:{n:'Ana to reconcile Buena offboarding',s:['Inbox','grey'],a:'Ana',dd:'',proj:'buena_rep'},
- tc3:{n:'Look into dbt Cloud for Isar pipeline',s:['Inbox','grey'],a:'Dipro',dd:'',proj:'isar_fin'},
- t_dax:{n:'ZBI Fondsmanagement — DAX rebuild',s:['In progress','amber'],a:'Zsolt',dd:'Jul 22',proj:'zbi_fonds'},
- t_disc:{n:'Schindler AI — data discovery',s:['Next','blue'],a:'Dipro',dd:'Jul 24',proj:'sch_ai'},
- t_qa:{n:'Samba Phase B — QA pass',s:['In progress','amber'],a:'Dipro',dd:'Jul 23',proj:'samba_b'},
- t_wait:{n:'Linstol — waiting on ERP access',s:['Waiting','rose'],a:'Austin',dd:'',proj:'lin_inv',wait:'Linstol IT'},
- t_model:{n:'Isar — finance model v2',s:['Next','blue'],a:'Dipro',dd:'Jul 26',proj:'isar_fin'},
- t_pack:{n:'ZBI — monthly reporting pack',s:['Next','blue'],a:'Zsolt',dd:'Jul 25',proj:'zbi_all'},
- tf1:{n:'Renew Databricks contract',s:['Next','blue'],a:'Saju',dd:'Aug 20',area:'Ops'},
- tf2:{n:'Q4 OKR planning',s:['Next','blue'],a:'Austin',dd:'Sep 15',area:'Growth'},
- tf3:{n:'Schindler AI — proposal follow-up',s:['Next','blue'],a:'Austin',dd:'Aug 5',proj:'sch_ai'},
- td1:{n:'Schindler shadow session notes',s:['Done','green'],a:'Zsolt',dd:'Jul 12',proj:'sch_bi'},
- td2:{n:'ZBI budget planning refresh',s:['Done','green'],a:'Zsolt',dd:'Jul 8',proj:'zbi_all'}
+ tc1:{n:'Package Schindler AI as a productised offer',s:'Not started',a:null,dd:'',area:'Growth',inbox:1},
+ tc2:{n:'Reconcile Buena offboarding',s:'Not started',a:'Ana',dd:'',proj:'buena_rep',inbox:1},
+ tc3:{n:'Look into dbt Cloud for Isar pipeline',s:'Not started',a:'Dipro',dd:'',proj:'isar_fin',inbox:1},
+ t_dax:{n:'ZBI Fondsmanagement — DAX rebuild',s:'In Progress',a:'Zsolt',dd:'Jul 22',proj:'zbi_fonds'},
+ t_disc:{n:'Schindler AI — data discovery',s:'Not started',a:'Dipro',dd:'Jul 24',proj:'sch_ai'},
+ t_qa:{n:'Samba Phase B — QA pass',s:'In Progress',a:'Dipro',dd:'Jul 23',proj:'samba_b'},
+ t_wait:{n:'Linstol — waiting on ERP access',s:'External Block',a:'Austin',dd:'',proj:'lin_inv'},
+ t_model:{n:'Isar — finance model v2',s:'Not started',a:'Dipro',dd:'Jul 26',proj:'isar_fin'},
+ t_pack:{n:'ZBI — monthly reporting pack',s:'Not started',a:'Zsolt',dd:'Jul 25',proj:'zbi_all'},
+ t_ref:{n:'anyRM — pending source access',s:'External Block',a:'Dipro',dd:'',proj:'anyrm_bi'},
+ tf1:{n:'Renew Databricks contract',s:'Not started',a:'Saju',dd:'Aug 20',area:'Ops'},
+ tf3:{n:'Schindler AI — proposal follow-up',s:'Not started',a:'Austin',dd:'Aug 5',proj:'sch_ai'},
+ td1:{n:'Schindler shadow session notes',s:'Done',a:'Zsolt',dd:'Jul 12',proj:'sch_bi'},
+ td2:{n:'ZBI budget planning refresh',s:'Done',a:'Zsolt',dd:'Jul 8',proj:'zbi_all'}
 };
-// ---- personnel + the ONE linked 1:1 dataset ----
+// people + linked 1:1s
 var PEO={
- austin:{n:'Austin Levine',fn:'Austin',role:'Managing Director',type:['Founder','green'],status:['Active','green'],email:'austin@casewhen.co',start:'2021-09',mgr:'—'},
- saju:{n:'Sajagan Thirugnanam',fn:'Saju',role:'Managing Director',type:['Founder','green'],status:['Active','green'],email:'sajagan@casewhen.co',start:'2021-09',mgr:'—'},
- zsolt:{n:'Zsolt Szabó',fn:'Zsolt',role:'Power BI Consultant',type:['Employee','grey'],status:['Active','green'],email:'zsolt@casewhen.co',start:'2022-05',mgr:'Saju'},
- dipro:{n:'Dipro Rahman',fn:'Dipro',role:'Power BI Consultant',type:['Freelancer','teal'],status:['Active','green'],email:'dipro@casewhen.co',start:'2023-02',mgr:'Austin'},
- ana:{n:'Ana Kurashvili',fn:'Ana',role:'Virtual EA',type:['Freelancer','teal'],status:['Active','green'],email:'ana@casewhen.co',start:'2024-01',mgr:'Saju'},
- anastasia:{n:'Anastasia Kailani',fn:'Anastasia',role:'Sr. BI Analyst',type:['Employee','grey'],status:['Past','grey'],email:'anastasia@casewhen.co',start:'2021-09',mgr:'Austin'},
- prachi:{n:'Prachi Pouranik',fn:'Prachi',role:'Head of Analytics',type:['Employee','grey'],status:['Past','grey'],email:'prachi@casewhen.co',start:'2021',mgr:'Austin'},
- carina:{n:'Carina König',fn:'Carina',role:'Verwaltungsassistentin',type:['Mini-job','grey'],status:['On leave','amber'],email:'—',start:'2022',mgr:'Saju'}
+ austin:{n:'Austin Levine',fn:'Austin',role:'Managing Director',type:['Founder','green'],status:['Active','green'],email:'austin@casewhen.co',start:'2023-08',mgr:'—',loc:'Berlin'},
+ saju:{n:'Sajagan Thirugnanam',fn:'Saju',role:'Managing Director',type:['Founder','green'],status:['Active','green'],email:'sajagan@casewhen.co',start:'2021-09',mgr:'—',loc:'Osnabrück'},
+ zsolt:{n:'Zsolt Szabó',fn:'Zsolt',role:'Power BI Consultant',type:['Employee','grey'],status:['Active','green'],email:'zsolt@casewhen.co',start:'2022-05',mgr:'Saju',loc:'Berlin'},
+ dipro:{n:'Dipro Rahman',fn:'Dipro',role:'Power BI Consultant',type:['Freelancer','teal'],status:['Active','green'],email:'dipro@casewhen.co',start:'2023-02',mgr:'Austin',loc:'Dhaka'},
+ ana:{n:'Ana Kurashvili',fn:'Ana',role:'Virtual Executive Assistant',type:['Freelancer','teal'],status:['Active','green'],email:'ana@casewhen.co',start:'2024-01',mgr:'Saju',loc:'Tbilisi'},
+ anastasia:{n:'Anastasia Kailani',fn:'Anastasia',role:'Sr. BI Analyst',type:['Employee','grey'],status:['Departed','grey'],email:'anastasia@casewhen.co',start:'2021-09',mgr:'Austin',loc:'—'},
+ prachi:{n:'Prachi Pouranik',fn:'Prachi',role:'Head of Analytics',type:['Employee','grey'],status:['Departed','grey'],email:'prachi@casewhen.co',start:'2021',mgr:'Austin',loc:'Jaipur'},
+ carina:{n:'Carina König',fn:'Carina',role:'Verwaltungsassistentin',type:['Mini-job','grey'],status:['On leave','amber'],email:'—',start:'2022',mgr:'Saju',loc:'Berlin'}
 };
 var PEO_ORDER=['austin','saju','zsolt','dipro','ana','anastasia','prachi','carina'];
-// ONE 1:1 dataset, keyed by person. Admin sees all persons; each person sees their own in My Space. Same records.
 var O1={
- dipro:[
-  {d:'2026-07-16',t:'Weekly 1:1',by:'Austin',s:'Schindler AI progress, AZ-305 study plan, workload balance.',obj:['Grow into a lead consultant role'],act:[['Complete AZ-305 study plan','Dipro','Aug 15'],['Book AZ-305 exam','Ana','Jul 30']]},
+ dipro:[{d:'2026-07-16',t:'Weekly 1:1',by:'Austin',s:'Schindler AI progress, AZ-305 study plan, workload balance.',obj:['Grow into a lead consultant role'],act:[['Complete AZ-305 study plan','Dipro','Aug 15'],['Book AZ-305 exam','Ana','Jul 30']]},
   {d:'2026-07-09',t:'Weekly 1:1',by:'Austin',s:'Handbook walkthrough; Isar onboarding.',obj:[],act:[['Draft H2 performance goals','Dipro','Jul 31']]},
-  {d:'2026-07-02',t:'Weekly 1:1',by:'Austin',s:'Kicked off on the Isar finance dashboard.',obj:[],act:[]}
- ],
- zsolt:[
-  {d:'2026-07-10',t:'Coaching 1:1',by:'Saju',s:'DAX optimization; ZBI workload; client comms.',obj:['Deepen modeling expertise'],act:[['Send ZBI updated model','Zsolt','Jul 22']]},
-  {d:'2026-06-26',t:'Coaching 1:1',by:'Saju',s:'Feedback on Schindler shadow sessions.',obj:[],act:[]}
- ],
+  {d:'2026-07-02',t:'Weekly 1:1',by:'Austin',s:'Kicked off on the Isar finance dashboard.',obj:[],act:[]}],
+ zsolt:[{d:'2026-07-10',t:'Coaching 1:1',by:'Saju',s:'DAX optimization; ZBI workload; client comms.',obj:['Deepen modeling expertise'],act:[['Send ZBI updated model','Zsolt','Jul 22']]}],
  ana:[{d:'2026-07-12',t:'Check-in',by:'Saju',s:'Ops & Buena offboarding coordination.',obj:[],act:[['Reconcile Buena offboarding','Ana','']]}],
  austin:[],saju:[],anastasia:[],prachi:[],carina:[]
 };
-var ME='dipro'; // the "logged-in" person for the My Space demo
-function projName(id){return PR[id]?PR[id].n:id;}
-function tasksForProject(pid){return Object.keys(TK).filter(function(k){return TK[k].proj===pid;});}
-
-// ============ generic table pages (admin secondary) ============
-var TP={
- areas:{sp:'team',ic:'🗂️',nm:'Areas',desc:'PARA Areas — the never-ending parts of the business (no end date). Ongoing/maintenance tasks relate here instead of to a project.',
-   cols:[['Area','title'],['Owner','person'],['Health','pill'],['Open tasks','text']],
-   rows:[['Client Delivery','Austin',['Healthy','green'],'8'],['Onboarding','Ana',['Healthy','green'],'2'],['Growth / Content','Saju',['Attention','amber'],'4'],['Ops','Ana',['Healthy','green'],'3']]},
- meetings:{sp:'team',ic:'🗓️',nm:'Meetings',desc:'Client & project meetings. Fathom notes land here; action items push into Tasks. (Internal 1:1s live in the Admin space.)',
-   cols:[['Meeting','title'],['Date','text'],['Project / Client','text'],['Action items','text']],
-   rows:[['Schindler Shadow Session 5',['2026-05-21'],'Schindler — AI','4'],['ZBI weekly sync',['2026-07-15'],'ZBI — Fondsmanagement','3'],['Isar dashboard review',['2026-07-14'],'Isar — Finance Dashboard','2']]},
- kb:{sp:'team',ic:'📚',nm:'Knowledge Base',desc:'PARA Resources — curated, current company knowledge: decisions, ICP, delivery know-how. Replaces the old catch-all Notes DB (which was sunsetting into rot).',
-   cols:[['Article','title'],['Topic','pill'],['Owner','person']],
-   rows:[['ICP & positioning',['Strategy','purple'],'Austin'],['DAX time-intelligence patterns',['Power BI','teal'],'Zsolt'],['Access provisioning runbook',['Ops','grey'],'Ana'],['Data-source discovery checklist',['Delivery','amber'],'Dipro']]},
- handbook:{sp:'team',ic:'📕',nm:'Client Delivery Handbook',desc:'The runbook for running an engagement — the “IKEA instructions.” This is what the New Client Project button automates.',
-   cols:[['Stage','title'],['What happens','text'],['Owner','person']],
-   rows:[['1 · Kickoff',['Confirm scope, lead, shared drive'],'Austin'],['2 · Contract & NDA',['Rahmenvertrag / NDA signed'],'Saju'],['3 · Access provisioning',['Grant tool access, credentials'],'Ana'],['4 · Discovery',['Data sources & structures'],'Dipro'],['5 · Build',['Pipeline / model'],'Zsolt'],['6 · PoC v1',['First dashboard'],'Dipro'],['7 · QA → Live',['Walkthrough, go-live, recurring'],'Zsolt'],['8 · Handover',['Revoke access, final report'],'Austin']]},
- brand:{sp:'team',ic:'🎨',nm:'Brand & Marketing',desc:'Logos, templates and marketing materials — team-accessible (the team needs these; they are not commercial-sensitive).',
-   cols:[['Asset','title'],['Type','pill']],
-   rows:[['CaseWhen logo pack',['Brand','teal']],['Client case-study templates',['Marketing','purple']],['Proposal deck template',['Templates','grey']]]},
- // ADMIN
- deals:{sp:'admin',ic:'💼',nm:'Deals & Offers',desc:'Commercial pipeline & pricing — admin only. (In the real build this is Attio; shown here so you see what stays private.) Values masked.',
-   cols:[['Deal','title'],['Client','text'],['Stage','pill'],['Value','mask']],
-   rows:[['Schindler AI — upsell','Schindler',['Proposal','amber'],'€••,•••'],['Isar — Phase 2','Isar Aerospace',['Qualified','blue'],'€••,•••'],['Pandata — partnership','Pandata',['Lead','grey'],'—'],['Ipsen — workshop','Ipsen',['Workshop','teal'],'€1,500']]},
- offers:{sp:'admin',ic:'📄',nm:'Offers & Proposals',desc:'Sent offers, SOWs and pricing — admin only (what we charge must not be team-visible).',
-   cols:[['Offer','title'],['Client','text'],['Day rate','mask'],['Status','pill']],
-   rows:[['Schindler Rahmenvertrag','Schindler','€•,•••',['Signed','green']],['Isar SOW — Finance Dashboard','Isar Aerospace','€•,•••',['Signed','green']],['Samba Phase B SOW','Samba TV','€•,•••',['Signed','green']]]},
- contracts:{sp:'admin',ic:'⚖️',nm:'Contracts & NDAs',desc:'The full register (61) with a renewal / notice watchdog. Two real gaps found — flagged.',
-   cols:[['Name','title'],['Type','pill'],['Counterparty','text'],['Renewal','text'],['Status','pill']],
-   rows:[['GmbH Incorporation (HRB 165895)',['incorporation','purple'],'—','—',['Active','green']],['Schindler Rahmenvertrag',['client','blue'],'Schindler','2026-12-01',['Active','green']],['Isar Aerospace — NDA',['nda','grey'],'Isar Aerospace','—',['Active','green']],['Office Lease — Ahoy Berlin',['lease','amber'],'Ahoy Berlin','2027-03-31',['Active','green']],['Databricks — Vendor',['vendor','grey'],'Databricks','2026-09-01',['Renewal due','amber']]],
-   after:'<div class="warn">⚠ MISSING: DPA / AVV (GDPR) — none on file for any client</div><div class="warn">⚠ MISSING: D&O / Berufshaftpflicht insurance</div>'},
- finance:{sp:'admin',ic:'🧾',nm:'Finance',desc:'NOT managed in Notion — runs in lexoffice. Only the documents are linked from the admin Drive folder. Shown here just to mark the boundary.',
-   cols:[['Item','title'],['Where','text']],
-   rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']],['Dividends / leasing / loans',['Drive · 01 Finance']]]},
- compliance:{sp:'admin',ic:'📋',nm:'Compliance & Tax',desc:'Filing deadlines & status only — no figures. Advisor: BMK Steuerberater (DATEV).',
-   cols:[['Item','title'],['Deadline','text'],['Status','pill'],['Owner','person']],
-   rows:[['VAT Sonderprüfung',['2026-04-20'],['Closed','green'],'Saju'],['USt-Voranmeldung Q2',['2026-07-31'],['Overdue','rose'],'Saju'],['Lohnsteuer (monthly)',['2026-08-10'],['Upcoming','amber'],'Saju']]},
- hr:{sp:'admin',ic:'🔐',nm:'HR / Personnel',desc:'Sensitive HR records (PII) — admin only, masked here.',
-   cols:[['Person','person'],['Address','mask'],['Tax / Social ID','mask'],['Salary','mask'],['Status','pill']],
-   rows:[['Zsolt Szabó','•••••','••••••','€•••••',['Active','green']],['Dipro Rahman','•••••','••••••','€••/day',['Active','green']],['Ana Kurashvili','•••••','••••••','€••/hr',['Active','green']]]},
- hiring:{sp:'admin',ic:'🧑‍💼',nm:'Hiring',desc:'PARA Area (never-ending) — the recruiting pipeline. Admin only.',
-   cols:[['Candidate','title'],['Role','text'],['Stage','pill']],
-   rows:[['(sample) BI Analyst','Power BI Analyst',['Screening','amber']],['(sample) Data Engineer','Data Engineer',['New','grey']]]},
- adminmeet:{sp:'admin',ic:'🔒',nm:'Meetings & 1:1s',desc:'Internal 1:1s and founder meetings — where process changes get discussed and pulled into Knowledge Base / Handbook. Admin only.',
-   cols:[['Meeting','title'],['Date','text'],['Type','pill'],['Person','text']],
-   rows:[['Weekly 1:1 Dipro',['2026-07-16'],['1:1','teal'],'Dipro'],['Zsolt coaching',['2026-07-10'],['1:1','teal'],'Zsolt'],['Founders Weekly',['2026-07-18'],['Internal','grey'],'—']]},
- oneone:{sp:'admin',ic:'🔒',nm:'1:1 / Personal Tasks',desc:'Per-person items — each person sees only their own; admins see all; the team never sees others’. (Access rule inside the admin space.)',
-   cols:[['Task','title'],['Assignee','person'],['Type','pill'],['Status','pill'],['Watcher','person']],
-   rows:[['Complete AZ-305 study plan','Dipro',['Personal','purple'],['In progress','amber'],'Austin'],['Address feedback from last 1:1','Zsolt',['1:1 action','teal'],['Open','amber'],'Saju']]},
- decisions:{sp:'admin',ic:'🧭',nm:'Decisions · OKRs · Risks',desc:'Back-office: the decision log, OKRs (to restart), and risk tracker. Admin only.',
-   cols:[['Item','title'],['Kind','pill'],['Owner','person']],
-   rows:[['Adopt Attio as CRM',['Decision','purple'],'Jay / Austin'],['No DPA/AVV in place',['Risk','rose'],'Austin'],['Client access not revoked at offboarding',['Risk','rose'],'Saju'],['Ship Cerebro v1',['OKR','blue'],'Austin']]}
+var ME='dipro';
+// entity / company & legal
+var ENTITY={legal:'CaseWhen Consulting GmbH',former:'caseWhen Consulting UG (haftungsbeschränkt)',hrb:'HRB 233345 B',court:'Amtsgericht Charlottenburg (Berlin)',sitz:'Wattstrasse 11, 13355 Berlin',biz:'Bismarckstr. 10-12, 10625 Berlin',inc:'2021-09-01',capital:'EUR 25,000 (300 shares)',ust:'DE347404148',steuer:'—',betriebs:'82291588',bank:'Berliner Sparkasse · IBAN DE96 1005 0000 0191 0768 80',notar:'GSK Stockmann, Berlin'};
+var CAPTABLE=[['Thiru Ventures UG','HRB 165896 B','Saju','150 / 300','50%'],['Shloom Ventures UG','HRB 232346 B','Austin','150 / 300','50%']];
+var OFFICERS=[['Sajagan Thirugnanam','Geschäftsführer','2021-09-07','sole · §181 exempt'],['Austin Levine','Geschäftsführer','2023-08-30','sole · §181 exempt']];
+var IDS=[['Handelsregister','HRB 233345 B',['Active','green']],['USt-IdNr','DE347404148',['Active','green']],['Betriebsnummer','82291588',['Active','green']],['Steuernummer','— not on file',['Pending','amber']],['Offenlegung Jahresabschluss FY2025','due 2026-12-31',['Upcoming','amber']]];
+var GAPS=['Berufshaftpflicht (professional liability) — none on file','D&O insurance — none on file','DPA / AVV — none on file for ANY client'];
+var CONTRACTS=[
+ {n:'Schindler Rahmenvertrag',cp:'Schindler',ty:['client','blue'],sign:'2022-11-01',exp:'2026-12-01',notice:'90 d',status:['≤90 d','amber'],bucket:'90'},
+ {n:'Databricks — SaaS licence',cp:'Databricks',ty:['vendor','grey'],sign:'2025-09-01',exp:'2026-09-01',notice:'30 d',status:['≤60 d','amber'],bucket:'60'},
+ {n:'Office Lease — Bismarckstr.',cp:'Landlord',ty:['lease','purple'],sign:'2023-01-01',exp:'2027-03-31',notice:'3 mo',status:['Active','green'],bucket:'later'},
+ {n:'SOW — Dipro Rahman',cp:'Dipro Rahman',ty:['freelance','teal'],sign:'2026-03-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'Arbeitsvertrag — Zsolt Szabó',cp:'Zsolt Szabó',ty:['employment','teal'],sign:'2022-05-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'Incorporation deed (HRB 233345 B)',cp:'GSK Stockmann',ty:['incorporation','purple'],sign:'2021-09-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'}
+];
+var COMPLIANCE=[
+ {n:'USt-Voranmeldung Q2',cad:'monthly',due:'2026-07-31',status:['Overdue','rose'],owner:'Saju'},
+ {n:'Lohnsteuer-Anmeldung',cad:'monthly',due:'2026-08-10',status:['Due soon','amber'],owner:'Saju'},
+ {n:'Sozialversicherung (SV)',cad:'monthly',due:'2026-07-29',status:['Filed','green'],owner:'Saju'},
+ {n:'GewSt-Vorauszahlung',cad:'quarterly',due:'2026-08-15',status:['Upcoming','amber'],owner:'Austin'},
+ {n:'USt-Jahreserklärung + Jahresabschluss',cad:'annual',due:'2027-07-31',status:['Upcoming','grey'],owner:'Austin'}
+];
+var DEALS=[
+ {n:'ZBI',stage:'Won',val:'€ day-rate',owner:'Saju',src:'Referral (Leo Hiller)'},
+ {n:'Schindler AI — upsell',stage:'Proposal',val:'€ ••,•••',owner:'Austin',src:'Existing client'},
+ {n:'Isar — Phase 2',stage:'Qualified',val:'€ ••,•••',owner:'Saju',src:'Existing client'},
+ {n:'IPSEN',stage:'Proposal',val:'open-ended support',owner:'Austin',src:'XING inbound'},
+ {n:'Alpha Gruppe',stage:'Qualified',val:'€4,500 workshop',owner:'Austin',src:'Outbound'},
+ {n:'Pandata',stage:'New',val:'—',owner:'Saju',src:'Partner'},
+ {n:'USim',stage:'Nurture',val:'—',owner:'Austin',src:'LinkedIn'}
+];
+var DEAL_STAGES=[['New','grey'],['Qualified','blue'],['Proposal','amber'],['Won','green'],['Nurture','purple']];
+// admin ops board (kanban)
+var ADMIN_TASKS=[
+ {n:'File USt-Voranmeldung Q2',s:'In Progress',a:'Saju',tag:'Compliance'},
+ {n:'Get DPA/AVV templates in place',s:'Not started',a:'Austin',tag:'Legal'},
+ {n:'D&O + Berufshaftpflicht insurance quotes',s:'Not started',a:'Saju',tag:'Legal'},
+ {n:'Renew Databricks contract',s:'Not started',a:'Saju',tag:'Legal'},
+ {n:'Screen BI Analyst candidates',s:'In Progress',a:'Austin',tag:'Hiring'},
+ {n:'Reconcile HRB 165895/165896 shareholder no.',s:'External Block',a:'Saju',tag:'Legal'},
+ {n:'Restart 2026 OKR cycle',s:'Not started',a:'Austin',tag:'Ops'},
+ {n:'BMK Steuerberater handover — final items',s:'Done',a:'Saju',tag:'Compliance'}
+];
+// simple tables (real OS data)
+var TBL={
+ areas:{ic:'🗂️',nm:'Areas',sp:'team',desc:'PARA Areas — the never-ending parts of the business (the ownership backbone that Roles, OKRs, Decisions and KB link to). Unassigned areas flag amber.',cols:[['Area','title'],['Owner','person'],['Status','pill']],rows:[['Delivery','Austin',['Owned','green']],['Sales','Austin',['Owned','green']],['People','Saju',['Owned','green']],['Systems','Saju',['Owned','green']],['Finance','—',['Unassigned','amber']]]},
+ meetings:{ic:'🗓️',nm:'Meetings',sp:'team',desc:'Client & project meetings. Fathom notes land here; action items push into Tasks. (Internal 1:1s are in Admin → Personnel.)',cols:[['Meeting','title'],['Date','text'],['Project / Client','text'],['Actions','text']],rows:[['Schindler Shadow Session 5',['2026-05-21'],'Schindler — AI','4'],['ZBI weekly sync',['2026-07-15'],'ZBI — Fondsmanagement','3']]},
+ brand:{ic:'🎨',nm:'Brand & Marketing',sp:'team',desc:'Logos, templates, marketing materials — team-accessible (not commercial-sensitive).',cols:[['Asset','title'],['Type','pill']],rows:[['CaseWhen logo pack',['Brand','teal']],['Proposal deck template',['Template','grey']],['Case-study templates',['Marketing','purple']]]},
+ kb:{ic:'📚',nm:'Knowledge Base',sp:'team',desc:'PARA Resources — curated, current company knowledge. Internal only (client material excluded). Staleness tracked.',cols:[['Article','title'],['Category','pill'],['Owner','person']],rows:[['Sales Playbook — Saju’s Learnings',['Playbooks','purple'],'Saju'],['2-Year Plan: Decisions (30 June)',['Strategy','blue'],'Austin'],['Data Engineer Interview Guide',['Hiring','amber'],'Austin'],['AZ-305 Study Plan — 12 weeks',['Personnel','grey'],'Dipro']]},
+ handbook:{ic:'📕',nm:'Client Delivery Handbook',sp:'team',desc:'The engagement runbook — the “IKEA instructions.” This is what the New Client Project button automates.',cols:[['Stage','title'],['What happens','text'],['Owner','person']],rows:[['1 · Kickoff',['Scope, lead, shared drive'],'Austin'],['2 · Contract & NDA',['Rahmenvertrag / NDA'],'Saju'],['3 · Access provisioning',['Grant tool access'],'Ana'],['4 · Discovery',['Data sources'],'Dipro'],['5 · Build',['Pipeline / model'],'Zsolt'],['6 · PoC v1',['First dashboard'],'Dipro'],['7 · QA → Live',['Go-live, recurring'],'Zsolt'],['8 · Handover',['Revoke access, final report'],'Austin']]},
+ roles:{ic:'🧩',nm:'Roles & Responsibilities',sp:'team',desc:'Who owns what — role expectations linked to Areas and People.',cols:[['Role','title'],['Person','person'],['Status','pill']],rows:[['Client Project Delivery Lead','Dipro',['Active','green']],['Data Engineering Quality & Standards Lead','—',['Draft','amber']]]},
+ okrs:{ic:'🎯',nm:'OKRs',sp:'team',desc:'Objectives & key results — last cycle frozen in 2023; flagged stale, needs a restart.',cols:[['Objective / KR','title'],['Period','text'],['Status','pill']],rows:[['Build strong network & reputation',['2023 Q1'],['Stale','amber']],['Book €42,000 monthly net revenue',['2023 Q2'],['Stale','amber']],['3 LinkedIn posts each / week',['2023 Q2'],['Stale','amber']]]},
+ decisions:{ic:'🧭',nm:'Decision Log',sp:'team',desc:'Durable record of what was decided and why — with supersede lineage.',cols:[['Decision','title'],['Category','pill'],['Status','pill']],rows:[['Juniors work 5 days a week',['People','teal'],['Active','green']],['Build skills in Claude on best practices',['Systems','purple'],['Active','green']],['Only take on perfect-fit projects',['Sales','amber'],['Active','green']]]},
+ ideas:{ic:'💡',nm:'Ideas',sp:'team',desc:'Delivery-framework improvement submissions from the team.',cols:[['Idea','title'],['Category','pill'],['By','person']],rows:[['Communicate delays early',['Client comms','purple'],'Zsolt'],['Prepare an agenda for meetings',['Delivery','amber'],'Dipro']]},
+ questions:{ic:'❓',nm:'Open Questions',sp:'team',desc:'Unklarheiten — unresolved questions, oldest-open first.',cols:[['Question','title'],['Status','pill']],rows:[['Wie Duplikataufwand vermeiden?',['Offen','amber']],['Excel Schicht — approach?',['Offen','amber']]]},
+ risks:{ic:'⚠️',nm:'Risk Tracker',sp:'team',desc:'Escalated risks with owner + project. Feeds the admin Needs-You view.',cols:[['Risk','title'],['Owner','person'],['Status','pill']],rows:[['anyRM — pending source access',['Dipro'],['Unresolved','rose']],['No DPA/AVV in place (GDPR)',['Austin'],['Unresolved','rose']],['Client access not revoked at offboarding',['Saju'],['Unresolved','rose']]]},
+ advisors:{ic:'🤝',nm:'Advisors & Agents',sp:'admin',desc:'External advisors of record.',cols:[['Party','title'],['Function','pill'],['Status','pill']],rows:[['BMK Steuerberater (via DATEV)',['Steuerberater','teal'],['Current','green']],['GSK Stockmann',['Notar','purple'],['Current','green']],['Berliner Sparkasse',['Hausbank','grey'],['Current','green']],['Steuerberatung Dubynska',['Steuerberater','teal'],['Former','grey']]]},
+ candidates:{ic:'🧑‍💼',nm:'Candidates (Hiring)',sp:'admin',desc:'Recruiting pipeline.',cols:[['Candidate','title'],['Role','text'],['Stage','pill']],rows:[['(sample) BI Analyst','Consultant',['Interview','amber']],['(sample) Data Engineer','Data Engineer',['New','grey']]]},
+ freelancers:{ic:'🧰',nm:'Freelancer Pool',sp:'admin',desc:'Sourcing bench — distinct from active freelancers.',cols:[['Name','title'],['Skills','pill'],['Rate','text']],rows:[['Thiago Fraletti Peixoto',['Power BI Dev','teal'],'$100/h'],['Joshua Stevenson',['Power BI PM','purple'],'$67/h']]},
+ handbookadopt:{ic:'📈',nm:'Handbook Adoption',sp:'admin',desc:'Who is actively applying the handbook.',cols:[['Person','person'],['Status','pill'],['Working on','text']],rows:[['Saju',['Actively applying','green'],'Power BI Dev phase'],['Austin',['Exploring','amber'],'Salesforce migration updates']]},
+ intake:{ic:'🚪',nm:'Client Intake',sp:'admin',desc:'Kick-off flow — intake form + secure credential request (secret stored in 1Password, never in the record).',cols:[['Prospect','title'],['Stage','pill'],['Owner','person']],rows:[['Pandata',['Form sent','amber'],'Saju'],['(new client)',['Intake kicked off','grey'],'Austin']]},
+ finance:{ic:'🧾',nm:'Finance',sp:'admin',desc:'NOT in Notion — runs in lexoffice. Documents linked from the admin Drive folder only. Shown to mark the boundary.',cols:[['Item','title'],['Where','text']],rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']]]}
 };
-var TEAM_ORDER=['tasks','clients','projects','areas','meetings','kb','handbook','brand'];
-var ADMIN_ORDER=['dash','personnel','deals','offers','contracts','finance','compliance','hiring','decisions'];
-var MY_ORDER=['mytasks','my1on1'];
-var LABELS={dash:['🏠','Admin Dashboard'],personnel:['👥','Personnel'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Projects']};
-
-// ============ sidebar ============
-function navHTML(list){return list.map(function(id){
-  var l=LABELS[id]||(TP[id]?[TP[id].ic,TP[id].nm]:['·',id]);
-  return '<a data-go="'+id+'"><span class="ico">'+l[0]+'</span>'+l[1]+'</a>';
-}).join('');}
-document.getElementById('nav-team').innerHTML=navHTML(TEAM_ORDER);
-document.getElementById('nav-admin').innerHTML=navHTML(ADMIN_ORDER);
-document.getElementById('nav-my').innerHTML=navHTML(MY_ORDER);
-
-// ============ cell + renderers ============
-function cell(v,t){
- if(v==null)return '<span class="mut">—</span>';
- if(t=='pill')return pill(v[0],v[1]);
- if(t=='person')return v=='—'?'<span class="mut">—</span>':av(v);
- if(t=='mask')return '<span class="mask">'+v+'</span>';
- if(t=='text')return Array.isArray(v)?v[0]:''+v;
- if(t=='title'){var nw=/\|NEW$/.test(v);var nm=(''+v).replace(/\|NEW$/,'');return '<span class="title-cell"><span class="di">▦</span>'+nm+(nw?nb():'')+'</span>';}
- return v;
+// ===================== sidebar =====================
+var NAV=[
+ {items:['home','folders']},
+ {g:['🚀','DELIVERY','everyone'],items:['tasks','clients','projects','areas','meetings','brand']},
+ {g:['📚','KNOWLEDGE & PROCESS','everyone'],items:['kb','handbook','roles','okrs','decisions','ideas','questions','risks']},
+ {g:['🔒','ADMIN','Austin · Saju · Ana',1],items:['dash','adminboard','personnel','onboarding','deals','entity','contracts','advisors','compliance','calendar','candidates','freelancers','handbookadopt','intake','finance']},
+ {g:['👤','MY SPACE','private'],items:['mytasks','my1on1']}
+];
+var LABELS={home:['🏠','Home'],folders:['📁','Folder structure'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Board'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],deals:['💼','CRM · Deals'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s']};
+function lbl(id){return LABELS[id]||(TBL[id]?[TBL[id].ic,TBL[id].nm]:['·',id]);}
+function buildSidebar(){
+ var h='';NAV.forEach(function(grp){
+  if(grp.g)h+='<div class="ghead">'+grp.g[0]+' '+grp.g[1]+' <span class="mut" style="font-weight:400">· '+grp.g[2]+'</span>'+(grp.g[3]?'<span class="lk">🔒</span>':'')+'</div>';
+  h+='<div class="nav">'+grp.items.map(function(id){var l=lbl(id);return '<a data-go="'+id+'"><span class="ico">'+l[0]+'</span>'+l[1]+'</a>';}).join('')+'</div>';
+ });document.getElementById('sidebar').innerHTML=h;
 }
-function ticon(t){return ({title:'',text:'≡',pill:'◉',person:'🙂',mask:'•'})[t]||'≡';}
-function tableHTML(p){
- var h='';if(p.callout)h+='<div class="callout"><span>🔒</span><span>'+p.callout+'</span></div>';
- h+='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+p.rows.length+' rows</span></div>';
- h+='<table><thead><tr>'+p.cols.map(function(c){return '<th><span class="ti">'+ticon(c[1])+'</span>'+c[0]+'</th>';}).join('')+'</tr></thead><tbody>';
- h+=p.rows.map(function(r){return '<tr>'+r.map(function(v,i){return '<td>'+cell(v,p.cols[i][1])+'</td>';}).join('')+'</tr>';}).join('');
- h+='</tbody></table>';if(p.after)h+=p.after;return h;
-}
+buildSidebar();
+var SPACE={};NAV.forEach(function(g){var sp=g.g?(g.g[1]=='ADMIN'?'admin':(g.g[1]=='MY SPACE'?'my':'team')):'';g.items.forEach(function(id){SPACE[id]=sp;});});
+
+// ===================== renderers =====================
 function pageShell(ic,nm,desc,body){return '<div class="ptitle"><span class="pico">'+ic+'</span>'+nm+'</div>'+(desc?'<p class="pdesc">'+desc+'</p>':'')+body;}
-
-// -------- Tasks (GTD, multiple views) --------
-var TASK_VIEWS=[['inbox','📥 Inbox'],['week','▥ This Week'],['future','🗓️ Future / Someday'],['assignee','👥 By Assignee'],['all','▦ All']];
-function taskRow(id){var t=TK[id];var proj=t.proj?pill(PR[t.proj].n.split(' — ')[0]||PR[t.proj].n,'grey'):(t.area?pill(t.area,'purple'):'');
- return '<div class="card" data-open="task/'+id+'"><div class="ct">'+t.n+'</div><div class="cm">'+(t.a?av(t.a):'<span class="mut">unassigned</span>')+(t.dd?'<span class="mut">'+t.dd+'</span>':'')+proj+(t.wait?pill('waiting: '+t.wait,'rose'):'')+'</div></div>';}
-function tasksView(view){
- var ids=Object.keys(TK);
- var h='<p class="pdesc">The single GTD database — every idea, reminder and to-do lands here, gets processed, then surfaces on the right board. The lever is <b>Do&nbsp;Date</b>: set it to this week and it shows in <b>This Week</b>; leave it future/blank and it waits in <b>Someday</b>. One database, many views.</p>';
- h+='<div class="tabs">'+TASK_VIEWS.map(function(v){return '<span class="tab'+(v[0]==view?' on':'')+'" data-view="'+v[0]+'">'+v[1]+'</span>';}).join('')+'</div>';
- if(view=='inbox'){
-   var inbox=ids.filter(function(k){return TK[k].s[0]=='Inbox';});
-   h+='<p class="mut" style="font-size:12.5px;margin:12px 0 4px">Unprocessed captures — during a review, set an assignee, a Do Date and a Project/Area to process each one.</p>';
-   h+='<div style="max-width:640px">'+inbox.map(taskRow).join('')+'</div>';
- } else if(view=='week'){
-   var cols=[['Next','blue'],['In progress','amber'],['Waiting','rose']];
-   h+='<div class="board">'+cols.map(function(c){
-     var items=ids.filter(function(k){return TK[k].s[0]==c[0]&&TK[k].dd&&!/Aug|Sep/.test(TK[k].dd);});
-     return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+({blue:'#4aabc2',amber:'#e0a94a',rose:'#c24a6b'})[c[1]]+'"></span>'+c[0]+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';
-   }).join('')+'</div>';
- } else if(view=='future'){
-   var fut=ids.filter(function(k){return /Aug|Sep/.test(TK[k].dd);});
-   h+='<p class="mut" style="font-size:12.5px;margin:12px 0 4px">Do Date is weeks out — hidden from the daily view; each item auto-reappears in This Week when its date arrives.</p>';
-   h+='<div style="max-width:640px">'+fut.map(taskRow).join('')+'</div>';
- } else if(view=='assignee'){
-   var people=['Zsolt','Dipro','Austin','Saju','Ana'];
-   h+='<div class="board">'+people.map(function(pn){
-     var items=ids.filter(function(k){return TK[k].a==pn&&TK[k].s[0]!='Done';});
-     return '<div class="bcol"><div class="bch">'+av(pn)+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';
-   }).join('')+'</div>';
- } else {
-   h+='<table style="margin-top:12px"><thead><tr><th><span class="ti">≡</span>Task</th><th><span class="ti">◉</span>Status</th><th><span class="ti">🙂</span>Assignee</th><th><span class="ti">≡</span>Do Date</th><th><span class="ti">↗</span>Project / Area</th></tr></thead><tbody>';
-   h+=ids.map(function(k){var t=TK[k];return '<tr class="click" data-open="task/'+k+'"><td><span class="title-cell"><span class="di">▦</span>'+t.n+'</span></td><td>'+pill(t.s[0],t.s[1])+'</td><td>'+(t.a?av(t.a):'<span class="mut">—</span>')+'</td><td>'+(t.dd||'<span class="mut">—</span>')+'</td><td>'+(t.proj?'<span class="rel">'+PR[t.proj].n+'</span>':(t.area?pill(t.area,'purple'):'<span class="mut">—</span>'))+'</td></tr>';}).join('');
-   h+='</tbody></table>';
- }
- return h;
-}
-
-// -------- Clients (table -> detail) --------
-function clientsTable(){
- var h='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+Object.keys(CL).length+' rows</span></div>';
- h+='<table><thead><tr><th><span class="ti"></span>Name</th><th><span class="ti">◉</span>Status</th><th><span class="ti">≡</span>Industry</th><th><span class="ti">≡</span>Domains</th><th><span class="ti">🙂</span>Lead</th><th><span class="ti">↗</span>Projects</th></tr></thead><tbody>';
- h+=Object.keys(CL).map(function(id){var c=CL[id];
-   return '<tr class="click" data-open="client/'+id+'"><td><span class="title-cell"><span class="di">🏢</span>'+c.n+(c.NEW?nb():'')+'</span></td><td>'+pill(c.st[0],c.st[1])+'</td><td>'+c.ind+'</td><td><span class="multi">'+c.dom.map(function(d){return pill(d,'grey');}).join('')+'</span></td><td>'+av(c.lead)+'</td><td><span class="multi">'+(c.projs.length?c.projs.map(function(p){return '<span class="rel">'+PR[p].n.split(' — ')[1]+'</span>';}).join(''):'<span class="mut">—</span>')+'</span><span class="opener">open ↗</span></td></tr>';
- }).join('');
- h+='</tbody></table>';
- return pageShell('🏢','Clients','One record per client. Domains is the email-match key. Click a client to open its page — projects, contacts, drive. Commercial data (pricing/offers) lives in the Admin space, not here.',h);
-}
-function clientDetail(id){
- var c=CL[id];
- var props='<div class="props">'
-   +prow('◉','Status',pill(c.st[0],c.st[1]))
-   +prow('≡','Industry',c.ind)
-   +prow('@','Domains','<span class="multi">'+c.dom.map(function(d){return pill(d,'grey');}).join('')+'</span>')
-   +prow('🙂','Lead',av(c.lead))
-   +prow('📁','Drive folder','<span class="lnk">06 Clients / '+c.n+' ↗</span>')
-   +prow('💼','Attio company','<span class="lnk">attio.com/…/'+id+' ↗</span>')
-   +'</div>';
- var projCards=c.projs.length?c.projs.map(function(p){var pr=PR[p];return '<div class="card" data-open="project/'+p+'"><div class="ct">'+pr.n+'</div><div class="cm">'+pill(pr.stage[0],pr.stage[1])+av(pr.lead)+'</div></div>';}).join(''):'<div class="mut" style="font-size:13px">No active projects.</div>';
- var contacts=c.contacts.length?c.contacts.map(function(ct){return '<li style="padding:6px 0">'+ct[0]+' <span class="mut">· '+ct[1]+'</span></li>';}).join(''):'<li class="mut">—</li>';
- var body=props
-   +'<div class="h3">📊 Client Projects <span class="mut" style="font-weight:400;font-size:12px">· one project = one shared drive + repo</span></div>'
-   +'<div style="max-width:520px">'+projCards+'</div>'
-   +'<div class="h3">👥 Key contacts</div><ul class="chk">'+contacts+'</ul>'
-   +'<div class="callout g"><span>💡</span><span>The client-facing record (delivery, contacts, drive) lives in the <b>Delivery</b> space so the whole team can work. What we charge (offers, value) is in the <b>Admin</b> space only.</span></div>';
- return '<div class="detail"><div class="dtitle">🏢 '+c.n+(c.NEW?nb():'')+'</div>'+body+'</div>';
-}
 function prow(ic,k,v){return '<div class="prow"><span class="pk"><span class="pi">'+ic+'</span>'+k+'</span><span>'+v+'</span></div>';}
-
-// -------- Projects (board by stage -> detail) --------
-function projectsBoard(){
- var stages=[['Discovery','blue'],['Build','amber'],['PoC v1','teal'],['Live','green'],['Handover','grey']];
- var h='<button class="btn">＋ New Client Project</button> <span class="mut" style="font-size:12px">one click → creates the project, its task board, deliverables checklist & shared-drive link (Notion button + template)</span>';
- h+='<div class="tabs" style="margin-top:12px"><span class="tab on">▥ Board · by Stage</span><span class="rowcount">'+Object.keys(PR).length+' projects</span></div>';
- h+='<div class="board">'+stages.map(function(s){
-   var items=Object.keys(PR).filter(function(k){return PR[k].stage[0]==s[0];});
-   return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+({blue:'#4aabc2',amber:'#e0a94a',teal:'#2a6b72',green:'#1d967c',grey:'#9b9a97'})[s[1]]+'"></span>'+s[0]+'<span class="bc">'+items.length+'</span></div>'
-     +items.map(function(k){var pr=PR[k];return '<div class="card" data-open="project/'+k+'"><div class="ct">'+pr.n+'</div><div class="cm">'+(pr.type=='Internal'?pill('Internal','purple'):pill(CL[pr.cl].n.split(' ')[0],'grey'))+av(pr.lead)+'</div></div>';}).join('')
-     +(items.length?'':'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';
- }).join('')+'</div>';
- return pageShell('📊','Projects','PARA Projects — fixed end date + goal. Type = Client or Internal, both flow through the same board. Click a project to open its page. Areas (never-ending work) are separate.',h);
-}
-function projectDetail(id){
- var pr=PR[id];var tk=tasksForProject(id);
- var props='<div class="props">'
-   +prow('🏢','Client',pr.cl?'<span class="rel" data-open="client/'+pr.cl+'">'+CL[pr.cl].n+'</span>':pill('Internal','purple'))
-   +prow('◉','Stage',pill(pr.stage[0],pr.stage[1]))
-   +prow('≡','Type',pr.type)
-   +prow('🙂','Lead',av(pr.lead))
-   +prow('📅','Timeline',pr.start+' → '+pr.end)
-   +prow('📁','Shared drive','<span class="lnk">Google Drive · work product ↗</span>')
-   +prow('🐙','GitHub repo','<span class="lnk">github.com/casewhen/'+id+' ↗</span>')
-   +'</div>';
- var deliv=pr.deliv.length?pr.deliv.map(function(d){return '<li class="'+(d[1]?'done':'')+'"><span class="box"></span><span>'+d[0]+'</span></li>';}).join(''):'<li class="mut">—</li>';
- var cols=[['Next','blue'],['In progress','amber'],['Waiting','rose'],['Done','green']];
- var boardH=cols.map(function(c){var items=tk.filter(function(k){return TK[k].s[0]==c[0];});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+({blue:'#4aabc2',amber:'#e0a94a',rose:'#c24a6b',green:'#1d967c'})[c[1]]+'"></span>'+c[0]+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('');
- var body=props
-   +'<div class="h3">✅ Campaign board <span class="mut" style="font-weight:400;font-size:12px">· linked view of the Tasks DB, filtered to this project</span></div><div class="board">'+boardH+'</div>'
-   +'<div class="h3">📦 Deliverables</div><ul class="chk">'+deliv+'</ul>'
-   +'<div class="h3">📝 Brief</div><p class="bodytext">Engagement brief, scope and notes live here in the page body. The standard structure (campaign board + deliverables + drive link) is stamped out by the New-Client-Project template so every project starts identical.</p>';
- return '<div class="detail"><div class="dtitle">📊 '+pr.n+'</div>'+body+'</div>';
-}
-function taskDetail(id){
- var t=TK[id];
- var props='<div class="props">'
-   +prow('◉','Status',pill(t.s[0],t.s[1]))
-   +prow('🙂','Assignee',t.a?av(t.a):'<span class="mut">unassigned</span>')
-   +prow('📅','Do Date',t.dd||'<span class="mut">—</span>')
-   +prow('🏁','Due Date','<span class="mut">—</span>')
-   +prow('↗','Project / Area',t.proj?'<span class="rel" data-open="project/'+t.proj+'">'+PR[t.proj].n+'</span>':(t.area?pill(t.area,'purple'):'<span class="mut">—</span>'))
-   +(t.wait?prow('⏳','Waiting on',t.wait):'')
-   +'</div>';
- var body=props+'<div class="h3">☑ Sub-tasks</div><ul class="chk"><li><span class="box"></span><span>Step 1…</span></li><li><span class="box"></span><span>Step 2…</span></li></ul>'
-   +'<div class="h3">📝 Notes</div><p class="bodytext">Task detail, context and any Fathom/meeting source link live in the page body.</p>';
- return '<div class="detail"><div class="dtitle">✅ '+t.n+'</div>'+body+'</div>';
-}
-
-// -------- Home & Dashboard & Folders --------
-function weekBoard(){
- var cols=[['Next','blue'],['In progress','amber'],['Waiting','rose']];
- return '<div class="board">'+cols.map(function(c){var items=Object.keys(TK).filter(function(k){return TK[k].s[0]==c[0]&&TK[k].dd&&!/Aug|Sep/.test(TK[k].dd);});
-   return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+({blue:'#4aabc2',amber:'#e0a94a',rose:'#c24a6b'})[c[1]]+'"></span>'+c[0]+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';
- }).join('')+'</div>';
-}
+function cell(v,t){if(v==null)return '<span class="mut">—</span>';if(t=='pill')return pill(v[0],v[1]);if(t=='person')return av(v);if(t=='mask')return '<span class="mask">'+v+'</span>';if(t=='text')return Array.isArray(v)?v[0]:''+v;if(t=='title')return '<span class="title-cell"><span class="di">▦</span>'+v+'</span>';return v;}
+function tableHTML(p){var h='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+p.rows.length+' rows</span></div><table><thead><tr>'+p.cols.map(function(c){return '<th><span class="ti">◦</span>'+c[0]+'</th>';}).join('')+'</tr></thead><tbody>'+p.rows.map(function(r){return '<tr>'+r.map(function(v,i){return '<td>'+cell(v,p.cols[i][1])+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table>';return h;}
+// task card + boards (real statuses)
+function taskRow(id){var t=TK[id];var tag=t.proj?pill((PR[t.proj].n.split(' — ')[0]),'grey'):(t.area?pill(t.area,'purple'):'');
+ return '<div class="card" data-open="task/'+id+'"><div class="ct">'+t.n+'</div><div class="cm">'+(t.a?av(t.a):'<span class="mut">unassigned</span>')+(t.dd?'<span class="mut">'+t.dd+'</span>':'')+tag+'</div></div>';}
+function statusBoard(ids,cols){return '<div class="board">'+cols.map(function(st){var items=ids.filter(function(k){return TK[k].s==st;});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[TS[st]]+'"></span>'+st+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';}
+// -------- Home: master board of all project items --------
 function homePage(){
+ var projItems=Object.keys(TK).filter(function(k){return TK[k].proj;});
  var h='<p class="pdesc">The team home. Capture anything into the inbox, then work the company board. Everything flows through the single Tasks database.</p>';
  h+='<button class="btn">＋ Quick capture</button> <span class="mut" style="font-size:12px">drops a row into the Tasks Inbox</span>';
- h+='<div class="h3" style="margin-top:18px">▥ Company board · This Week <span class="mut" style="font-weight:400;font-size:12px">· every active task across the whole team</span></div>'+weekBoard();
+ h+='<div class="h3" style="margin-top:18px">▥ Company board <span class="mut" style="font-weight:400;font-size:12px">· a master Kanban of every project task, grouped by status</span></div>'+statusBoard(projItems,TASK_COLS);
  h+='<div class="dgrid" style="margin-top:22px">';
  h+='<div class="dcard"><div class="dch">📊 Active client projects<span class="cnt">7</span></div>'+['zbi_fonds','sch_ai','isar_fin','lin_inv'].map(function(k){return '<div class="drow" style="cursor:pointer" onclick="go(\'project/'+k+'\')">'+PR[k].n+'<span class="dl">'+pill(PR[k].stage[0],PR[k].stage[1])+'</span></div>';}).join('')+'</div>';
  h+='<div class="dcard"><div class="dch">📥 Inbox to process<span class="cnt">3</span></div>'+['tc1','tc2','tc3'].map(function(k){return '<div class="drow" style="cursor:pointer" onclick="go(\'task/'+k+'\')">'+TK[k].n+'</div>';}).join('')+'</div>';
  h+='</div>';
  return pageShell('🏠','Home',null,h);
 }
-// -------- Personnel + linked 1:1s --------
-function one1Card(e){
- return '<div style="border:1px solid var(--line2);border-radius:8px;padding:11px 14px;margin-bottom:10px">'
-  +'<div style="display:flex;gap:8px;align-items:center;font-size:13.5px"><b>'+e.t+'</b><span class="mut">· '+e.d+(e.by?' · with '+e.by:'')+'</span></div>'
-  +'<div class="bodytext" style="margin:6px 0 4px">'+e.s+'</div>'
-  +(e.obj.length?'<div class="mut" style="font-size:11.5px;margin-top:4px">Objectives</div><div class="multi">'+e.obj.map(function(o){return pill(o,'purple');}).join('')+'</div>':'')
-  +(e.act.length?'<div class="mut" style="font-size:11.5px;margin-top:6px">Action items</div><ul class="chk" style="margin-top:2px">'+e.act.map(function(a){return '<li style="border:0;padding:3px 0"><span class="box"></span><span>'+a[0]+' <span class="mut">· '+a[1]+(a[2]?' · '+a[2]:'')+'</span></span></li>';}).join('')+'</ul>':'')
-  +'</div>';
+// -------- Tasks GTD views --------
+var TASK_VIEWS=[['inbox','📥 Inbox'],['board','▥ Board'],['assignee','👥 By Assignee'],['all','▦ All']];
+function tasksView(view){
+ var ids=Object.keys(TK);
+ var h='<p class="pdesc">The single GTD database — every idea, reminder and to-do lands here, gets processed, then worked on the board. Board columns are CaseWhen’s real Notion statuses: Not started · In Progress · External Block · Done.</p>';
+ h+='<div class="tabs">'+TASK_VIEWS.map(function(v){return '<span class="tab'+(v[0]==view?' on':'')+'" data-view="'+v[0]+'">'+v[1]+'</span>';}).join('')+'</div>';
+ if(view=='inbox'){var inbox=ids.filter(function(k){return TK[k].inbox;});h+='<p class="mut" style="font-size:12.5px;margin:12px 0 4px">Unprocessed captures — assign an owner, a due date and a project/area to process each.</p><div style="max-width:640px">'+inbox.map(taskRow).join('')+'</div>';}
+ else if(view=='assignee'){var people=['Zsolt','Dipro','Austin','Saju','Ana'];h+='<div class="board">'+people.map(function(pn){var items=ids.filter(function(k){return TK[k].a==pn&&TK[k].s!='Done';});return '<div class="bcol"><div class="bch">'+av(pn)+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';}
+ else if(view=='all'){h+='<table style="margin-top:12px"><thead><tr><th>Task</th><th>Status</th><th>Assignee</th><th>Due</th><th>Project / Area</th></tr></thead><tbody>'+ids.map(function(k){var t=TK[k];return '<tr class="click" data-open="task/'+k+'"><td><span class="title-cell"><span class="di">▦</span>'+t.n+'</span></td><td>'+pill(t.s,TS[t.s])+'</td><td>'+(t.a?av(t.a):'<span class="mut">—</span>')+'</td><td>'+(t.dd||'<span class="mut">—</span>')+'</td><td>'+(t.proj?'<span class="rel">'+PR[t.proj].n+'</span>':(t.area?pill(t.area,'purple'):'—'))+'</td></tr>';}).join('')+'</tbody></table>';}
+ else {h+=statusBoard(ids.filter(function(k){return TK[k].s!='Done';}).concat(ids.filter(function(k){return TK[k].s=='Done';})),TASK_COLS);}
+ return h;
 }
+// -------- Clients / detail --------
+function clientsTable(){
+ var h='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+Object.keys(CL).length+' rows</span></div><table><thead><tr><th>Name</th><th>Status</th><th>Industry</th><th>Domains</th><th>Lead</th><th>Projects</th></tr></thead><tbody>';
+ h+=Object.keys(CL).map(function(id){var c=CL[id];return '<tr class="click" data-open="client/'+id+'"><td><span class="title-cell"><span class="di">🏢</span>'+c.n+(c.NEW?nb():'')+'</span></td><td>'+pill(c.st[0],c.st[1])+'</td><td>'+c.ind+'</td><td><span class="multi">'+c.dom.map(function(d){return pill(d,'grey');}).join('')+'</span></td><td>'+av(c.lead)+'</td><td><span class="multi">'+(c.projs.length?c.projs.map(function(p){return '<span class="rel">'+PR[p].n.split(' — ')[1]+'</span>';}).join(''):'<span class="mut">—</span>')+'</span><span class="opener">open ↗</span></td></tr>';}).join('');
+ return pageShell('🏢','Clients','One record per client. Domains is the email-match key. Click a client for its page. Commercial data (deals/pricing) lives in Admin, not here.',h+'</tbody></table>');
+}
+function clientDetail(id){var c=CL[id];
+ var props='<div class="props">'+prow('◉','Status',pill(c.st[0],c.st[1]))+prow('≡','Industry',c.ind)+prow('@','Domains','<span class="multi">'+c.dom.map(function(d){return pill(d,'grey');}).join('')+'</span>')+prow('🙂','Lead',av(c.lead))+prow('📁','Drive folder','<span class="lnk">06 Clients / '+c.n+' ↗</span>')+'</div>';
+ var pc=c.projs.length?c.projs.map(function(p){var pr=PR[p];return '<div class="card" data-open="project/'+p+'"><div class="ct">'+pr.n+'</div><div class="cm">'+pill(pr.stage[0],pr.stage[1])+av(pr.lead)+'</div></div>';}).join(''):'<div class="mut" style="font-size:13px">No active projects.</div>';
+ var ct=c.contacts.length?c.contacts.map(function(x){return '<li style="padding:6px 0">'+x[0]+' <span class="mut">· '+x[1]+'</span></li>';}).join(''):'<li class="mut">—</li>';
+ return '<div class="detail"><div class="dtitle">🏢 '+c.n+(c.NEW?nb():'')+'</div>'+props+'<div class="h3">📊 Client Projects</div><div style="max-width:520px">'+pc+'</div><div class="h3">👥 Key contacts</div><ul class="chk">'+ct+'</ul></div>';
+}
+// -------- Projects board / detail (kanban) --------
+function projectsBoard(){
+ var stages=[['Discovery','blue'],['Build','amber'],['PoC v1','teal'],['Live','green'],['Handover','grey']];
+ var h='<button class="btn">＋ New Client Project</button> <span class="mut" style="font-size:12px">one click → creates the project, its Kanban, deliverables & shared-drive link</span>';
+ h+='<div class="tabs" style="margin-top:12px"><span class="tab on">▥ Board · by Stage</span><span class="rowcount">'+Object.keys(PR).length+' projects</span></div><div class="board">';
+ h+=stages.map(function(s){var items=Object.keys(PR).filter(function(k){return PR[k].stage[0]==s[0];});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[s[1]]+'"></span>'+s[0]+'<span class="bc">'+items.length+'</span></div>'+items.map(function(k){var pr=PR[k];return '<div class="card" data-open="project/'+k+'"><div class="ct">'+pr.n+'</div><div class="cm">'+(pr.type=='Internal'?pill('Internal','purple'):pill(CL[pr.cl].n.split(' ')[0],'grey'))+av(pr.lead)+'</div></div>';}).join('')+(items.length?'':'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';
+ return pageShell('📊','Client Projects','PARA Projects — fixed end + goal, Client or Internal. Click a project to open its page with its own Kanban board.',h);
+}
+function projectDetail(id){var pr=PR[id];var tk=Object.keys(TK).filter(function(k){return TK[k].proj===id;});
+ var props='<div class="props">'+prow('🏢','Client',pr.cl?'<span class="rel" data-open="client/'+pr.cl+'">'+CL[pr.cl].n+'</span>':pill('Internal','purple'))+prow('◉','Stage',pill(pr.stage[0],pr.stage[1]))+prow('🙂','Lead',av(pr.lead))+prow('📅','Timeline',pr.start+' → '+pr.end)+prow('📁','Shared drive','<span class="lnk">Google Drive · work product ↗</span>')+prow('🐙','GitHub repo','<span class="lnk">github.com/casewhen/'+id+' ↗</span>')+'</div>';
+ var deliv=pr.deliv.length?pr.deliv.map(function(d){return '<li class="'+(d[1]?'done':'')+'"><span class="box"></span><span>'+d[0]+'</span></li>';}).join(''):'<li class="mut">—</li>';
+ return '<div class="detail"><div class="dtitle">📊 '+pr.n+'</div>'+props+'<div class="h3">✅ Kanban board <span class="mut" style="font-weight:400;font-size:12px">· the Tasks DB, filtered to this project</span></div>'+statusBoard(tk,TASK_COLS)+'<div class="h3">📦 Deliverables</div><ul class="chk">'+deliv+'</ul><div class="h3">📝 Brief</div><p class="bodytext">Scope, brief and notes live in the page body. The New-Client-Project template stamps out this identical structure every time.</p></div>';
+}
+function taskDetail(id){var t=TK[id];
+ return '<div class="detail"><div class="dtitle">✅ '+t.n+'</div><div class="props">'+prow('◉','Status',pill(t.s,TS[t.s]))+prow('🙂','Assignee',t.a?av(t.a):'<span class="mut">unassigned</span>')+prow('📅','Due',t.dd||'<span class="mut">—</span>')+prow('↗','Project / Area',t.proj?'<span class="rel" data-open="project/'+t.proj+'">'+PR[t.proj].n+'</span>':(t.area?pill(t.area,'purple'):'—'))+'</div><div class="h3">📝 Notes</div><p class="bodytext">Task detail + Fathom/meeting source link live in the body.</p></div>';
+}
+// -------- Personnel / person / 1:1s --------
+function one1Card(e){return '<div style="border:1px solid var(--line2);border-radius:8px;padding:11px 14px;margin-bottom:10px"><div style="display:flex;gap:8px;align-items:center;font-size:13.5px"><b>'+e.t+'</b><span class="mut">· '+e.d+(e.by?' · with '+e.by:'')+'</span></div><div class="bodytext" style="margin:6px 0 4px">'+e.s+'</div>'+(e.obj.length?'<div class="mut" style="font-size:11.5px">Objectives</div><div class="multi">'+e.obj.map(function(o){return pill(o,'purple');}).join('')+'</div>':'')+(e.act.length?'<div class="mut" style="font-size:11.5px;margin-top:6px">Action items</div><ul class="chk" style="margin-top:2px">'+e.act.map(function(a){return '<li style="border:0;padding:3px 0"><span class="box"></span><span>'+a[0]+' <span class="mut">· '+a[1]+(a[2]?' · '+a[2]:'')+'</span></span></li>';}).join('')+'</ul>':'')+'</div>';}
 function renderPersonnel(){
- var h='<div class="callout g"><span>🔗</span><span>The linked layer: each person’s <b>1:1 history + action items</b> live here (admins see everyone) and mirror into that person’s <b>My Space → My 1:1s</b> (they see only their own). A new 1:1 from Fathom/Cerebro auto-appears in both.</span></div>';
- h+='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+PEO_ORDER.length+' people</span></div>';
- h+='<table><thead><tr><th>Name</th><th><span class="ti">◉</span>Type</th><th><span class="ti">◉</span>Status</th><th><span class="ti">≡</span>Role</th><th><span class="ti">🔒</span>1:1s</th><th><span class="ti">✅</span>Open tasks</th></tr></thead><tbody>';
- h+=PEO_ORDER.map(function(id){var p=PEO[id];var n1=(O1[id]||[]).length;var ot=Object.keys(TK).filter(function(k){return TK[k].a==p.fn&&TK[k].s[0]!='Done';}).length;
-  return '<tr class="click" data-open="person/'+id+'"><td><span class="title-cell">'+av(p.fn)+'</span></td><td>'+pill(p.type[0],p.type[1])+'</td><td>'+pill(p.status[0],p.status[1])+'</td><td>'+p.role+'</td><td>'+(n1?pill(n1+' logged','teal'):'<span class="mut">0</span>')+'</td><td>'+(ot||'<span class="mut">0</span>')+'<span class="opener">open ↗</span></td></tr>';
- }).join('');
- h+='</tbody></table>';
- return pageShell('👥','Personnel','Every person, with profile, employment, tasks and their full 1:1 history. Click a person to open their page.',h);
+ var h='<div class="callout g"><span>🔗</span><span>The linked layer: each person’s <b>1:1 history + action items</b> live here (admins see everyone) and mirror into their <b>My Space → My 1:1s</b> (they see only their own), auto-updating from Fathom.</span></div>';
+ h+='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+PEO_ORDER.length+' people</span></div><table><thead><tr><th>Name</th><th>Type</th><th>Status</th><th>Role</th><th>Location</th><th>1:1s</th><th>Open tasks</th></tr></thead><tbody>';
+ h+=PEO_ORDER.map(function(id){var p=PEO[id];var n1=(O1[id]||[]).length;var ot=Object.keys(TK).filter(function(k){return TK[k].a==p.fn&&TK[k].s!='Done';}).length;return '<tr class="click" data-open="person/'+id+'"><td><span class="title-cell">'+av(p.fn)+'</span></td><td>'+pill(p.type[0],p.type[1])+'</td><td>'+pill(p.status[0],p.status[1])+'</td><td>'+p.role+'</td><td>'+p.loc+'</td><td>'+(n1?pill(n1+' logged','teal'):'<span class="mut">0</span>')+'</td><td>'+(ot||'<span class="mut">0</span>')+'<span class="opener">open ↗</span></td></tr>';}).join('');
+ return pageShell('👥','Personnel','Every person — profile, employment, tenure, tasks, HR docs, and full 1:1 history. Click a person to open their page.',h+'</tbody></table>');
 }
-function personDetail(id){
- var p=PEO[id];var o=O1[id]||[];
- var mine=Object.keys(TK).filter(function(k){return TK[k].a==p.fn&&TK[k].s[0]!='Done';});
- var props='<div class="props">'
-  +prow('◉','Type',pill(p.type[0],p.type[1]))+prow('◉','Status',pill(p.status[0],p.status[1]))+prow('≡','Role',p.role)
-  +prow('@','Email',p.email=='—'?'<span class="mut">none</span>':'<span class="mut">'+p.email+'</span>')
-  +prow('🙂','Manager',p.mgr=='—'?'<span class="mut">—</span>':av(p.mgr))+prow('📅','Start',p.start)
-  +prow('🔐','HR (address · tax ID · salary)','<span class="mask">•••••</span> <span class="mut" style="font-size:11px">admin-only</span>')+'</div>';
- var body=props
-  +'<div class="h3">🔒 1:1 history <span class="mut" style="font-weight:400;font-size:12px">· mirrors to '+p.fn+'’s My Space · auto-updates from Fathom</span></div>'
-  +(o.length?o.map(one1Card).join(''):'<div class="mut" style="font-size:13px">No 1:1s on file.</div>')
-  +'<div class="h3">✅ Open tasks</div>'+(mine.length?'<div style="max-width:560px">'+mine.map(taskRow).join('')+'</div>':'<div class="mut" style="font-size:13px">None open.</div>')
-  +'<div class="h3">📄 HR documents</div><div class="mut" style="font-size:13px">Employment contract · payslips · amendments — stored in Drive (admin), linked here. Masked in mockup.</div>';
- return '<div class="detail"><div class="dtitle">👤 '+p.n+'</div>'+body+'</div>';
+function personDetail(id){var p=PEO[id];var o=O1[id]||[];var mine=Object.keys(TK).filter(function(k){return TK[k].a==p.fn&&TK[k].s!='Done';});
+ var props='<div class="props">'+prow('◉','Type',pill(p.type[0],p.type[1]))+prow('◉','Status',pill(p.status[0],p.status[1]))+prow('≡','Role',p.role)+prow('@','Work email',p.email=='—'?'<span class="mut">none</span>':'<span class="mut">'+p.email+'</span>')+prow('🙂','Manager',av(p.mgr))+prow('📅','Start',p.start)+prow('📍','Location',p.loc)+prow('🔐','HR (address · DOB · tax ID · salary)','<span class="mask">•••••</span> <span class="mut" style="font-size:11px">admin-only, masked</span>')+'</div>';
+ return '<div class="detail"><div class="dtitle">👤 '+p.n+'</div>'+props+'<div class="h3">🔒 1:1 history <span class="mut" style="font-weight:400;font-size:12px">· mirrors to '+p.fn+'’s My Space · auto-updates from Fathom</span></div>'+(o.length?o.map(one1Card).join(''):'<div class="mut" style="font-size:13px">No 1:1s on file.</div>')+'<div class="h3">✅ Open tasks</div>'+(mine.length?'<div style="max-width:560px">'+mine.map(taskRow).join('')+'</div>':'<div class="mut" style="font-size:13px">None open.</div>')+'<div class="h3">📄 HR documents <span class="mut" style="font-weight:400;font-size:12px">· segmented: Employment · Payroll · Official/identity · Freelance</span></div><div class="mut" style="font-size:13px">Stored in Drive (admin), linked here. Masked in mockup.</div></div>';
 }
-function my1on1(){
- var p=PEO[ME];var o=O1[ME]||[];
- var h='<div class="callout g"><span>🔗</span><span>These are <b>your own</b> 1:1 records — the same entries your manager sees in <b>Admin → Personnel → '+p.fn+'</b>. One source, two views: you see only yours, admins see everyone’s. Updates automatically after each 1:1.</span></div>';
- h+=(o.length?o.map(one1Card).join(''):'<div class="mut">No 1:1s yet.</div>');
- return pageShell('🔒','My 1:1s ('+p.fn+')',null,h);
+function my1on1(){var p=PEO[ME];var o=O1[ME]||[];return pageShell('🔒','My 1:1s ('+p.fn+')',null,'<div class="callout g"><span>🔗</span><span>Your own 1:1 records — the same entries your manager sees in <b>Admin → Personnel → '+p.fn+'</b>. One source, two views; updates automatically after each 1:1.</span></div>'+(o.length?o.map(one1Card).join(''):'<div class="mut">No 1:1s yet.</div>'));}
+function myTasks(){var mine=Object.keys(TK).filter(function(k){return TK[k].a=='Dipro'&&TK[k].s!='Done';});return pageShell('✅','My Tasks (Dipro)','Your private view — a filter of the shared Tasks DB where Assignee = you.','<div style="max-width:640px">'+mine.map(taskRow).join('')+'</div>');}
+// -------- Company & Entity --------
+function entityPage(){
+ var e=ENTITY;
+ var props='<div class="props">'+prow('🏛️','Legal name',e.legal)+prow('≡','Former name','<span class="mut">'+e.former+'</span>')+prow('#','Handelsregister',e.hrb+' · '+e.court)+prow('🏠','Registered seat',e.sitz)+prow('🏢','Business address',e.biz)+prow('📅','Incorporated',e.inc)+prow('💶','Share capital',e.capital)+prow('#','USt-IdNr',e.ust)+prow('#','Betriebsnummer',e.betriebs)+prow('🏦','Bank',e.bank)+prow('📝','Notary',e.notar)+'</div>';
+ var cap='<table><thead><tr><th>Shareholder</th><th>Register</th><th>Held by</th><th>Shares</th><th>%</th></tr></thead><tbody>'+CAPTABLE.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+av(r[2])+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';}).join('')+'</tbody></table>';
+ var off='<table><thead><tr><th>Officer</th><th>Role</th><th>Since</th><th>Representation</th></tr></thead><tbody>'+OFFICERS.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+pill(r[1],'purple')+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';}).join('')+'</tbody></table>';
+ var ids='<table><thead><tr><th>Identifier / Filing</th><th>Value</th><th>Status</th></tr></thead><tbody>'+IDS.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+pill(r[2][0],r[2][1])+'</td></tr>';}).join('')+'</tbody></table>';
+ var gaps='<div class="warn">⚠ Gaps register: '+GAPS.join(' · ')+'</div>';
+ return '<div class="detail"><div class="dtitle">⚖️ Company &amp; Entity</div><p class="pdesc">The legal system-of-record — entity, cap table, officers, tax IDs and corporate filings. Admin-only.</p>'+props+'<div class="h3">📊 Cap table <span class="mut" style="font-weight:400;font-size:12px">· must sum to 100% / €25,000</span></div>'+cap+'<div class="h3">🧑‍⚖️ Officers (Geschäftsführer)</div>'+off+'<div class="h3">🆔 Legal &amp; tax IDs · corporate filings</div>'+ids+gaps+'</div>';
 }
+// -------- Contract Register (renewal rail) --------
+function contractsPage(){
+ var buckets=[['90','Renewal / notice ≤ 90 days'],['60','Notice ≤ 60 days'],['later','Active · later / evergreen']];
+ var h='<p class="pdesc">The full contract register (61 in the real data) with a renewal / notice-period watchdog — grouped by how soon you must act. This is what a task/project model has no home for.</p>';
+ h+='<div class="tabs"><span class="tab on">🗓️ By renewal</span><span class="tab">▦ Table</span></div>';
+ buckets.forEach(function(b){var items=CONTRACTS.filter(function(c){return c.bucket==b[0];});if(!items.length)return;
+  h+='<div class="rail"><div class="railh">'+b[1]+' · '+items.length+'</div><table><tbody>'+items.map(function(c){return '<tr><td style="font-weight:500">'+c.n+'</td><td>'+pill(c.ty[0],c.ty[1])+'</td><td class="mut">'+c.cp+'</td><td>'+(c.exp=='—'?'<span class="mut">—</span>':'exp '+c.exp)+'</td><td class="mut">notice '+c.notice+'</td><td>'+pill(c.status[0],c.status[1])+'</td></tr>';}).join('')+'</tbody></table></div>';});
+ h+='<div class="warn">⚠ Missing from the register: DPA/AVV (all clients) · D&O insurance · Berufshaftpflicht</div>';
+ return pageShell('📄','Contract Register',null,h);
+}
+// -------- Compliance --------
+function compliancePage(){
+ var h='<p class="pdesc">Recurring statutory tax filings + status. No financial figures. Advisor: BMK Steuerberater (DATEV). (These are tax obligations, not payroll.)</p>';
+ h+='<table><thead><tr><th>Obligation</th><th>Cadence</th><th>Due</th><th>Status</th><th>Owner</th></tr></thead><tbody>'+COMPLIANCE.map(function(r){return '<tr><td style="font-weight:500">'+r.n+'</td><td class="mut">'+r.cad+'</td><td>'+r.due+'</td><td>'+pill(r.status[0],r.status[1])+'</td><td>'+av(r.owner)+'</td></tr>';}).join('')+'</tbody></table>';
+ h+='<div class="callout g"><span>✓</span><span>VAT Sonderprüfung 07–11/2025 — <b>concluded 2026-04-20</b> (€142.72 challenged). Kept as record.</span></div>';
+ h+='<div class="warn">⚠ Lohnsteuer — recurring late payments · 3× Finanzamt Mahnungen. Watch on the calendar.</div>';
+ return pageShell('📋','Compliance & Tax',null,h);
+}
+// -------- CRM deals board --------
+function dealsBoard(){
+ var h='<p class="pdesc">The commercial pipeline — admin only (in the real build this is Attio; shown here so you see what stays private). Board by stage; values masked.</p>';
+ h+='<div class="tabs"><span class="tab on">▥ Board · by Stage</span></div><div class="board">';
+ h+=DEAL_STAGES.map(function(s){var items=DEALS.filter(function(d){return d.stage==s[0];});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[s[1]]+'"></span>'+s[0]+'<span class="bc">'+items.length+'</span></div>'+items.map(function(d){return '<div class="card"><div class="ct">'+d.n+'</div><div class="cm">'+av(d.owner)+pill(d.val,'grey')+'<span class="mut" style="font-size:11px">'+d.src+'</span></div></div>';}).join('')+(items.length?'':'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';
+ return pageShell('💼','CRM · Deals',null,h);
+}
+// -------- Onboarding --------
+function onboardingPage(){
+ var h='<p class="pdesc">New-hire onboarding — an Employee / Freelancer fork with auto (OS-provisioned) vs manual steps. Everyone current is already onboarded, so the board is empty by design; the template is shown.</p>';
+ h+='<div class="tabs"><span class="tab on">▥ Board · by State</span></div><div class="board">'+['Invited','Form submitted','Provisioning','Ready for day 1','Active'].map(function(st){return '<div class="bcol"><div class="bch"><span class="dot" style="background:#9b9a97"></span>'+st+'<span class="bc">0</span></div><div class="mut" style="font-size:12px;padding:4px">—</div></div>';}).join('')+'</div>';
+ h+='<div class="h3">📋 Onboarding template <span class="mut" style="font-weight:400;font-size:12px">· auto vs manual</span></div><ul class="chk">'+[['Google Workspace, Slack, GitHub, 1Password, Notion','auto'],['Figma / Loom / Pleo / Spendit / office access','auto'],['Contract / NDA / SOW e-signed','manual'],['Day-1 walkthrough & system setup','manual'],['30-60-90 curriculum','manual'],['Scheinselbständigkeit check (freelancers)','manual']].map(function(x){return '<li><span class="box"></span><span>'+x[0]+' <span class="'+(x[1]=='auto'?'':'mut')+'">'+pill(x[1],x[1]=='auto'?'teal':'grey')+'</span></span></li>';}).join('')+'</ul>';
+ return pageShell('🚀','Onboarding',null,h);
+}
+// -------- Calendar / Needs-you --------
+function calendarPage(){
+ var h='<p class="pdesc">The cross-source date-spine — every renewal, filing, deadline and review reads off this one timeline (not a per-DB reminder engine). The Needs-You view is this filtered to overdue / due-soon.</p>';
+ h+='<div class="dgrid"><div class="dcard full"><div class="dch">🔔 Needs you<span class="cnt">4</span></div>'+[[pill('Compliance','rose')+' USt-Voranmeldung Q2 overdue','was Jul 31'],[pill('Contract','amber')+' Schindler Rahmenvertrag — notice window','opt-out by Sep'],[pill('Contract','amber')+' Databricks renewal','Sep 1 · notice 30 d'],[pill('Risk','rose')+' anyRM — pending source access','escalated Jun 23']].map(function(r){return '<div class="drow">'+r[0]+'<span class="dl">'+r[1]+'</span></div>';}).join('')+'</div></div>';
+ h+='<div class="h3">🗓️ Upcoming (dated events)</div><table><thead><tr><th>Event</th><th>Date</th><th>Kind</th><th>Owner</th></tr></thead><tbody>'+[['USt-Voranmeldung Q2','2026-07-31',['tax','rose'],'Saju'],['Lohnsteuer-Anmeldung','2026-08-10',['tax','amber'],'Saju'],['Databricks renewal','2026-09-01',['contract','amber'],'Saju'],['GewSt-Vorauszahlung','2026-08-15',['tax','grey'],'Austin'],['Offenlegung FY2025','2026-12-31',['filing','grey'],'Austin']].map(function(r){return '<tr><td style="font-weight:500">'+r[0]+'</td><td>'+r[1]+'</td><td>'+pill(r[2][0],r[2][1])+'</td><td>'+av(r[3])+'</td></tr>';}).join('')+'</tbody></table>';
+ return pageShell('🗓️','Calendar / Deadlines',null,h);
+}
+// -------- Admin board (kanban) --------
+function adminBoard(){
+ var h='<p class="pdesc">The back-office Kanban — admin/legal/compliance/hiring work moving through the same status columns. This is the founders’ operational board.</p>';
+ h+='<div class="tabs"><span class="tab on">▥ Board · by Status</span></div><div class="board">'+TASK_COLS.map(function(st){var items=ADMIN_TASKS.filter(function(t){return t.s==st;});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[TS[st]]+'"></span>'+st+'<span class="bc">'+items.length+'</span></div>'+items.map(function(t){return '<div class="card"><div class="ct">'+t.n+'</div><div class="cm">'+av(t.a)+pill(t.tag,'purple')+'</div></div>';}).join('')+(items.length?'':'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';
+ return pageShell('▥','Admin Board',null,h);
+}
+// -------- Admin dashboard --------
 function dashPage(){
  var h='<div class="dgrid">';
- h+='<div class="dcard full"><div class="dch">🔔 Needs you<span class="cnt">4</span></div>'
-   +'<div class="drow">'+pill('SLA','rose')+' &nbsp;Pandata lead unanswered — 2 days<span class="dl">follow up</span></div>'
-   +'<div class="drow">'+pill('Renewal','amber')+' &nbsp;Databricks contract renews<span class="dl">Sep 1 · notice 30 d</span></div>'
-   +'<div class="drow">'+pill('Compliance','rose')+' &nbsp;USt-Voranmeldung Q2 overdue<span class="dl">was Jul 31</span></div>'
-   +'<div class="drow">'+pill('Risk','rose')+' &nbsp;No DPA/AVV on file for any client<span class="dl">legal gap</span></div></div>';
- h+='<div class="dcard"><div class="dch">✅ All outstanding tasks<span class="cnt">46 open</span></div>'
-   +['t_dax','t_disc','t_wait','t_model'].map(function(k){var t=TK[k];return '<div class="drow" style="cursor:pointer" onclick="go(\'task/'+k+'\')">'+av(t.a)+' &nbsp;'+t.n+'<span class="dl">'+pill(t.s[0],t.s[1])+'</span></div>';}).join('')
-   +'<div class="mut" style="font-size:12px;padding-top:6px">across all people & projects · 6 overdue</div></div>';
- h+='<div class="dcard"><div class="dch">💼 Commercial<span class="cnt">Attio</span></div>'
-   +'<div class="drow">Schindler AI — upsell<span class="dl">'+pill('Proposal','amber')+'</span></div>'
-   +'<div class="drow">Isar — Phase 2<span class="dl">'+pill('Qualified','blue')+'</span></div>'
-   +'<div class="drow">Ipsen — workshop<span class="dl">€1,500</span></div></div>';
- h+='<div class="dcard"><div class="dch">👤 People<span class="cnt">5 active</span></div>'+[['Zsolt','12 open · 0 overdue'],['Dipro','9 open · 1 overdue'],['Austin','6 open'],['Ana','3 open']].map(function(r){return '<div class="drow">'+av(r[0])+'<span class="dl">'+r[1]+'</span></div>';}).join('')+'</div>';
+ h+='<div class="dcard full"><div class="dch">🔔 Needs you<span class="cnt">4</span></div>'+[[pill('SLA','rose')+' Pandata lead unanswered — 2 days','follow up'],[pill('Compliance','rose')+' USt-Voranmeldung Q2 overdue','was Jul 31'],[pill('Renewal','amber')+' Databricks contract renews','Sep 1'],[pill('Risk','rose')+' No DPA/AVV on file for any client','legal gap']].map(function(r){return '<div class="drow">'+r[0]+'<span class="dl">'+r[1]+'</span></div>';}).join('')+'</div>';
+ h+='<div class="dcard"><div class="dch">✅ All outstanding tasks<span class="cnt">46 open</span></div>'+['t_dax','t_disc','t_wait','t_model'].map(function(k){var t=TK[k];return '<div class="drow" style="cursor:pointer" onclick="go(\'task/'+k+'\')">'+av(t.a)+' &nbsp;'+t.n+'<span class="dl">'+pill(t.s,TS[t.s])+'</span></div>';}).join('')+'</div>';
+ h+='<div class="dcard"><div class="dch">💼 Pipeline<span class="cnt">Attio</span></div>'+DEALS.slice(0,3).map(function(d){return '<div class="drow">'+d.n+'<span class="dl">'+pill(d.stage,'grey')+'</span></div>';}).join('')+'</div>';
+ h+='<div class="dcard"><div class="dch">👤 People<span class="cnt">5 active</span></div>'+[['Zsolt','12 open'],['Dipro','9 open · 1 overdue'],['Austin','6 open'],['Ana','3 open']].map(function(r){return '<div class="drow">'+av(r[0])+'<span class="dl">'+r[1]+'</span></div>';}).join('')+'</div>';
  h+='<div class="dcard"><div class="dch">⚖️ Legal & contracts<span class="cnt">2 flags</span></div><div class="drow">Databricks renewal<span class="dl">'+pill('Sep 1','amber')+'</span></div><div class="warn" style="margin-top:8px">⚠ Missing: DPA/AVV · D&O insurance</div></div>';
  h+='<div class="dcard"><div class="dch">📋 Compliance<span class="cnt">2 due</span></div><div class="drow">USt-Voranmeldung Q2<span class="dl">'+pill('Overdue','rose')+'</span></div><div class="drow">Lohnsteuer<span class="dl">'+pill('Aug 10','amber')+'</span></div></div>';
- h+='</div><div class="exclude">🚫 <b>Finance & Payroll are intentionally excluded</b> — they stay in lexoffice; documents are linked from the admin Drive folder only.</div>';
- return pageShell('🏠','Admin Dashboard','Everything outstanding at a glance for the founders. Admins see all tasks & items. Commercial lives in Attio; finance & payroll stay out.',h);
+ h+='</div><div class="exclude">🚫 <b>Finance & Payroll are intentionally excluded</b> — they stay in lexoffice; documents linked from the admin Drive folder only.</div>';
+ return pageShell('🏠','Admin Dashboard','Everything outstanding at a glance for the founders. Admins see all tasks & items across the company.',h);
 }
-function myTasks(){
- var mine=Object.keys(TK).filter(function(k){return TK[k].a=='Dipro'&&TK[k].s[0]!='Done';});
- var h='<p class="pdesc">Your private view — a filter of the shared Tasks DB where Assignee = you, plus any genuinely personal to-dos. Nobody else sees this arrangement.</p>';
- h+='<div style="max-width:640px">'+mine.map(function(k){return taskRow(k);}).join('')+'</div>';
- return pageShell('✅','My Tasks (Dipro)',null,h);
-}
+// -------- Folders --------
 function foldersPage(){
- var h='<p class="pdesc">The file/folder organization, mirrored across Notion, Google Drive & GitHub. Work-product lives in per-project <b>shared drives</b> the team can access; commercial/legal/finance lives in an <b>admin-only</b> area. Every client project gets the same fixed subfolders.</p>';
- h+='<div class="mirror">Same structure in &nbsp;<span class="tool">🗄️ Notion</span><span class="tool">📁 Google Drive</span><span class="tool">🐙 GitHub</span></div>';
- h+='<div class="fcols">';
- h+='<div class="fcard team"><div class="fh">🟢 Team / work product · <span style="font-weight:400">everyone + freelancers</span></div><div class="tree">'
-   +'<div>casewhen-team/</div><div> ├─ processes-and-runbooks/</div><div> ├─ templates/</div><div> ├─ brand-and-marketing/  <span class="cm"># logos etc.</span></div><div> ├─ knowledge-base/</div><div> └─ clients/</div>'
-   +'<div>     ├─ 00 Leads/</div><div>     ├─ <span class="cl">01 ZBI/</span>  <span class="cm">← per-project shared drive</span></div><div>     ├─ 04 Isar Aerospace/</div><div>     └─ 05 Samba TV/ …</div></div></div>';
- h+='<div class="fcard admin"><div class="fh">🔒 Admin only · <span style="font-weight:400">Austin · Saju · Ana</span></div><div class="tree">'
-   +'<div><span class="nm">casewhen-admin/</span></div><div> ├─ finance/  <span class="cm"># lexoffice docs</span></div><div> ├─ offers-and-proposals/  <span class="cm"># pricing</span></div><div> ├─ legal-and-ndas/</div><div> ├─ tax/</div><div> └─ personnel-and-hiring/</div>'
-   +'<div>     └─ NN &lt;Person&gt;/</div><div>         ├─ docs/</div><div>         └─ notes/</div></div></div>';
- h+='</div>';
- h+='<div class="subset"><div class="st">📂 Every client project = the same fixed subfolders <span class="mut" style="font-weight:400">(the shared drive the team works in)</span></div><div class="chips">'+['00-brief','01-deliverables','02-data-models','03-reports','04-handover'].map(function(x){return '<span class="fchip">'+x+'/</span>';}).join('')+'</div><div class="mut" style="font-size:12px;margin-top:8px">Offers, NDAs and pricing are NOT in the shared drive — they live in the admin area only. One project = one shared drive + one GitHub repo, linked from the Notion Client Project page.</div></div>';
+ var h='<p class="pdesc">Files mirrored across Notion, Google Drive & GitHub. Work-product in per-project shared drives (team); commercial/legal/finance admin-only. Every client project gets the same fixed subfolders.</p>';
+ h+='<div class="mirror">Same structure in &nbsp;<span class="tool">🗄️ Notion</span><span class="tool">📁 Google Drive</span><span class="tool">🐙 GitHub</span></div><div class="fcols">';
+ h+='<div class="fcard team"><div class="fh">🟢 Team / work product</div><div class="tree"><div>casewhen-team/</div><div> ├─ processes-and-runbooks/</div><div> ├─ templates/</div><div> ├─ brand-and-marketing/</div><div> ├─ knowledge-base/</div><div> └─ clients/</div><div>     ├─ 00 Leads/</div><div>     ├─ <span class="cl">01 ZBI/</span></div><div>     ├─ 04 Isar Aerospace/</div><div>     └─ 05 Samba TV/ …</div></div></div>';
+ h+='<div class="fcard admin"><div class="fh">🔒 Admin only</div><div class="tree"><div><span class="nm">casewhen-admin/</span></div><div> ├─ finance/  <span class="cm"># lexoffice docs</span></div><div> ├─ offers-and-proposals/</div><div> ├─ legal-and-ndas/</div><div> ├─ tax/</div><div> └─ personnel-and-hiring/</div><div>     └─ NN &lt;Person&gt;/ docs · notes</div></div></div></div>';
+ h+='<div class="subset"><div class="st">📂 Every client project = the same fixed subfolders</div><div class="chips">'+['00-brief','01-deliverables','02-data-models','03-reports','04-handover'].map(function(x){return '<span class="fchip">'+x+'/</span>';}).join('')+'</div></div>';
  return pageShell('📁','Folder structure',null,h);
 }
-
-// ============ router ============
-function spaceOf(route){
- var id=route.split('/')[0];
- if(['home','folders'].indexOf(id)>-1)return '';
- if(id=='client'){return 'team';}if(id=='project'){return 'team';}if(id=='task')return 'team';
- if(id=='mytasks'||id=='my1on1')return 'my';
- if(id=='person'||id=='personnel')return 'admin';
- if(TEAM_ORDER.indexOf(id)>-1)return 'team';
- if(ADMIN_ORDER.indexOf(id)>-1)return 'admin';
- return '';
+// ===================== router =====================
+var curView='board';
+function crumbFor(id,seg){var sp=SPACE[id]||(id=='client'||id=='project'||id=='task'?'team':(id=='person'?'admin':''));
+ var spName=sp=='team'?'Delivery':(sp=='admin'?'Admin':(sp=='my'?'My Space':''));
+ var root=spName?'<a data-go="home">'+spName+'</a><span class="sep">/</span>':'';
+ if(id=='client')return root+'<a data-go="clients">Clients</a><span class="sep">/</span><b>'+CL[seg].n+'</b>';
+ if(id=='project')return root+'<a data-go="projects">Client Projects</a><span class="sep">/</span><b>'+PR[seg].n+'</b>';
+ if(id=='task')return root+'<a data-go="tasks">Tasks</a><span class="sep">/</span><b>'+TK[seg].n+'</b>';
+ if(id=='person')return root+'<a data-go="personnel">Personnel</a><span class="sep">/</span><b>'+PEO[seg].n+'</b>';
+ return root+'<b>'+lbl(id)[1]+'</b>';
 }
-function crumbFor(route){
- var seg=route.split('/');var id=seg[0];
- var sp=spaceOf(route);var spName=sp=='team'?'Delivery':(sp=='admin'?'Admin':(sp=='my'?'My Space':''));
- function root(){return spName?'<a data-go="home">'+spName+'</a><span class="sep">/</span>':'';}
- if(id=='client')return root()+'<a data-go="clients">Clients</a><span class="sep">/</span><b>'+CL[seg[1]].n+'</b>';
- if(id=='project'){var pr=PR[seg[1]];return root()+'<a data-go="projects">Projects</a><span class="sep">/</span><b>'+pr.n+'</b>';}
- if(id=='task'){return root()+'<a data-go="tasks">Tasks</a><span class="sep">/</span><b>'+TK[seg[1]].n+'</b>';}
- if(id=='person'){return root()+'<a data-go="personnel">Personnel</a><span class="sep">/</span><b>'+PEO[seg[1]].n+'</b>';}
- var nm=LABELS[id]?LABELS[id][1]:(id=='home'?'Home':(id=='folders'?'Folder structure':(TP[id]?TP[id].nm:id)));
- return root()+'<b>'+nm+'</b>';
-}
-var curView='week';
-function render(route){
- var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
- if(id=='home')el.innerHTML=homePage();
- else if(id=='folders')el.innerHTML=foldersPage();
- else if(id=='dash')el.innerHTML=dashPage();
- else if(id=='mytasks')el.innerHTML=myTasks();
- else if(id=='my1on1')el.innerHTML=my1on1();
- else if(id=='personnel')el.innerHTML=renderPersonnel();
- else if(id=='person')el.innerHTML=personDetail(seg[1]);
- else if(id=='tasks')el.innerHTML=pageShell('📥','Tasks',null,tasksView(curView));
- else if(id=='clients')el.innerHTML=clientsTable();
- else if(id=='projects')el.innerHTML=projectsBoard();
+function render(route){var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
+ var R={home:homePage,folders:foldersPage,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,deals:dealsBoard,onboarding:onboardingPage,calendar:calendarPage};
+ if(id=='tasks')el.innerHTML=pageShell('📥','Tasks',null,tasksView(curView));
  else if(id=='client')el.innerHTML=clientDetail(seg[1]);
  else if(id=='project')el.innerHTML=projectDetail(seg[1]);
  else if(id=='task')el.innerHTML=taskDetail(seg[1]);
- else if(TP[id])el.innerHTML=pageShell(TP[id].ic,TP[id].nm,TP[id].desc,tableHTML(TP[id]));
- else el.innerHTML='<p>—</p>';
- // crumb / lock
- document.getElementById('crumb').innerHTML=crumbFor(route);
- var sp=spaceOf(route);
+ else if(id=='person')el.innerHTML=personDetail(seg[1]);
+ else if(R[id])el.innerHTML=R[id]();
+ else if(TBL[id])el.innerHTML=pageShell(TBL[id].ic,TBL[id].nm,TBL[id].desc,tableHTML(TBL[id]));
+ else el.innerHTML='<p class="mut">—</p>';
+ document.getElementById('crumb').innerHTML=crumbFor(id,seg[1]);
+ var sp=SPACE[id]||(id=='client'||id=='project'||id=='task'?'team':(id=='person'?'admin':''));
  var lb=document.getElementById('lockb');
  if(sp=='admin'){lb.style.display='inline';lb.textContent='🔒 Private · Austin · Saju · Ana';}
  else if(sp=='my'){lb.style.display='inline';lb.textContent='👤 Private to you';}
  else lb.style.display='none';
- // active nav
- document.querySelectorAll('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.go===id||(id=='dash'&&a.dataset.go=='dash'));});
+ document.querySelectorAll('.nav a').forEach(function(a){a.classList.toggle('on',a.dataset.go===id);});
  bindOpens();document.querySelector('.main').scrollTo(0,0);
 }
-function go(route){render(route);}
-window.go=go;
-function bindOpens(){
- document.querySelectorAll('[data-open]').forEach(function(e){e.onclick=function(ev){ev.stopPropagation();go(e.getAttribute('data-open'));};});
- document.querySelectorAll('.tab[data-view]').forEach(function(t){t.onclick=function(){curView=t.getAttribute('data-view');go('tasks');};});
-}
-document.querySelectorAll('.nav a,[data-go]').forEach(function(a){a.addEventListener('click',function(){go(a.dataset.go);});});
+function go(route){render(route);}window.go=go;
+function bindOpens(){document.querySelectorAll('[data-open]').forEach(function(e){e.onclick=function(ev){ev.stopPropagation();go(e.getAttribute('data-open'));};});document.querySelectorAll('.tab[data-view]').forEach(function(t){t.onclick=function(){curView=t.getAttribute('data-view');go('tasks');};});}
+document.getElementById('sidebar').addEventListener('click',function(ev){var a=ev.target.closest('[data-go]');if(a)go(a.dataset.go);});
 document.getElementById('crumb').addEventListener('click',function(ev){var a=ev.target.closest('[data-go]');if(a)go(a.dataset.go);});
 document.getElementById('page').addEventListener('click',function(ev){var a=ev.target.closest('[data-go]');if(a){ev.stopPropagation();go(a.dataset.go);}});
 go('home');
