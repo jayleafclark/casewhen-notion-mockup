@@ -199,12 +199,16 @@ var CAPTABLE=[['Thiru Ventures UG','HRB 165896 B','Saju','150 / 300','50%'],['Sh
 var OFFICERS=[['Sajagan Thirugnanam','Geschäftsführer','2021-09-07','sole · §181 exempt'],['Austin Levine','Geschäftsführer','2023-08-30','sole · §181 exempt']];
 var IDS=[['Handelsregister','HRB 233345 B',['Active','green']],['USt-IdNr','DE347404148',['Active','green']],['Betriebsnummer','82291588',['Active','green']],['Steuernummer','— not on file',['Pending','amber']],['Offenlegung Jahresabschluss FY2025','due 2026-12-31',['Upcoming','amber']]];
 var GAPS=['Berufshaftpflicht (professional liability) — none on file','D&O insurance — none on file','DPA / AVV — none on file for ANY client'];
+// REAL register — from readers/_contracts.json (61 contracts)
 var CONTRACTS=[
- {n:'Schindler Rahmenvertrag',cp:'Schindler',ty:['client','blue'],sign:'2022-11-01',exp:'2026-12-01',notice:'90 d',status:['≤90 d','amber'],bucket:'90'},
- {n:'Databricks — SaaS licence',cp:'Databricks',ty:['vendor','grey'],sign:'2025-09-01',exp:'2026-09-01',notice:'30 d',status:['≤60 d','amber'],bucket:'60'},
- {n:'Office Lease — Bismarckstr.',cp:'Landlord',ty:['lease','purple'],sign:'2023-01-01',exp:'2027-03-31',notice:'3 mo',status:['Active','green'],bucket:'later'},
+ {n:'Vodafone — Internetvertrag',cp:'Vodafone',ty:['vendor','grey'],sign:'2026',exp:'2028',notice:'—',status:['Auto-renew','amber'],bucket:'90'},
+ {n:'Mietvertrag Bismarckstr. 10-12',cp:'WISTA Management',ty:['lease','purple'],sign:'2023',exp:'—',notice:'3 mo',status:['Notice window','amber'],bucket:'60'},
+ {n:'Schindler Rahmenvertrag',cp:'Schindler',ty:['client','blue'],sign:'2022-11',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'Power BI Phase B — Samba TV',cp:'Samba TV, Inc.',ty:['client','blue'],sign:'2025-07-31',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'Power BI Support offer — Pandata',cp:'Pandata',ty:['client','blue'],sign:'2025-11-13',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
  {n:'SOW — Dipro Rahman',cp:'Dipro Rahman',ty:['freelance','teal'],sign:'2026-03-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
- {n:'Arbeitsvertrag — Zsolt Szabó',cp:'Zsolt Szabó',ty:['employment','teal'],sign:'2022-05-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'Employment Contract — Zsolt Szabó',cp:'Zsolt Szabó',ty:['employment','teal'],sign:'2026-01-22',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
+ {n:'GTC — Archana Garg / Anum Haroon',cp:'Freelancers',ty:['freelance','teal'],sign:'2025',exp:'—',notice:'—',status:['Active','green'],bucket:'later'},
  {n:'Incorporation deed (HRB 233345 B)',cp:'GSK Stockmann',ty:['incorporation','purple'],sign:'2021-09-01',exp:'—',notice:'—',status:['Active','green'],bucket:'later'}
 ];
 var COMPLIANCE=[
@@ -214,14 +218,19 @@ var COMPLIANCE=[
  {n:'GewSt-Vorauszahlung',cad:'quarterly',due:'2026-08-15',status:['Upcoming','amber'],owner:'Austin'},
  {n:'USt-Jahreserklärung + Jahresabschluss',cad:'annual',due:'2027-07-31',status:['Upcoming','grey'],owner:'Austin'}
 ];
+// REAL pipeline — from the email/CRM scan (_leads.json, 19 deals)
 var DEALS=[
- {n:'ZBI',stage:'Won',val:'€ day-rate',owner:'Saju',src:'Referral (Leo Hiller)'},
- {n:'Schindler AI — upsell',stage:'Proposal',val:'€ ••,•••',owner:'Austin',src:'Existing client'},
- {n:'Isar — Phase 2',stage:'Qualified',val:'€ ••,•••',owner:'Saju',src:'Existing client'},
- {n:'IPSEN',stage:'Proposal',val:'open-ended support',owner:'Austin',src:'XING inbound'},
- {n:'Alpha Gruppe',stage:'Qualified',val:'€4,500 workshop',owner:'Austin',src:'Outbound'},
- {n:'Pandata',stage:'New',val:'—',owner:'Saju',src:'Partner'},
- {n:'USim',stage:'Nurture',val:'—',owner:'Austin',src:'LinkedIn'}
+ {n:'ZBI',stage:'Won',val:'Rahmenvertrag · day-rate',owner:'Saju',src:'Referral — Leo Hiller'},
+ {n:'Schindler',stage:'Won',val:'Rahmenvertrag',owner:'Austin',src:'Existing'},
+ {n:'Linstol',stage:'Won',val:'€1,350 / day',owner:'Austin',src:'Existing'},
+ {n:'IPSEN',stage:'Proposal',val:'Open-ended Power BI support',owner:'Austin',src:'Outbound — Thorsten'},
+ {n:'Alpha Gruppe',stage:'Qualified',val:'€4,500 workshop',owner:'Austin',src:'Referral — Leo Hiller'},
+ {n:'Alive Capital',stage:'New',val:'—',owner:'Austin',src:'Outbound LinkedIn (Arvana)'},
+ {n:'Kathrin Schumilin',stage:'New',val:'—',owner:'Saju',src:'GTM (Notion)'},
+ {n:'Binzel',stage:'New',val:'—',owner:'Austin',src:'Outbound (Arvana)'},
+ {n:'Hugo Inc',stage:'Nurture',val:'—',owner:'Saju',src:'Metabase marketplace'},
+ {n:'Lobe / SThree',stage:'Nurture',val:'—',owner:'Austin',src:'Staffing Agentur'},
+ {n:'USim',stage:'Nurture',val:'—',owner:'Austin',src:'Metabase referral'}
 ];
 var DEAL_STAGES=[['New','grey'],['Qualified','blue'],['Proposal','amber'],['Won','green'],['Nurture','purple']];
 // admin ops board (kanban)
@@ -242,14 +251,14 @@ var TBL={
  kb:{ic:'📚',nm:'Knowledge Base',sp:'team',desc:'PARA Resources — curated, current company knowledge. Internal only (client material excluded). Staleness tracked.',cols:[['Article','title'],['Category','pill'],['Owner','person']],rows:[['Sales Playbook — Saju’s Learnings',['Playbooks','purple'],'Saju'],['2-Year Plan: Decisions (30 June)',['Strategy','blue'],'Austin'],['Data Engineer Interview Guide',['Hiring','amber'],'Austin'],['AZ-305 Study Plan — 12 weeks',['Personnel','grey'],'Dipro']]},
  handbook:{ic:'📕',nm:'Client Delivery Handbook',sp:'team',desc:'The engagement runbook — the “IKEA instructions.” This is what the New Client Project button automates.',cols:[['Stage','title'],['What happens','text'],['Owner','person']],rows:[['1 · Kickoff',['Scope, lead, shared drive'],'Austin'],['2 · Contract & NDA',['Rahmenvertrag / NDA'],'Saju'],['3 · Access provisioning',['Grant tool access'],'Ana'],['4 · Discovery',['Data sources'],'Dipro'],['5 · Build',['Pipeline / model'],'Zsolt'],['6 · PoC v1',['First dashboard'],'Dipro'],['7 · QA → Live',['Go-live, recurring'],'Zsolt'],['8 · Handover',['Revoke access, final report'],'Austin']]},
  roles:{ic:'🧩',nm:'Roles & Responsibilities',sp:'team',desc:'Who owns what — role expectations linked to Areas and People.',cols:[['Role','title'],['Person','person'],['Status','pill']],rows:[['Client Project Delivery Lead','Dipro',['Active','green']],['Data Engineering Quality & Standards Lead','—',['Draft','amber']]]},
- okrs:{ic:'🎯',nm:'OKRs',sp:'team',desc:'Objectives & key results — last cycle frozen in 2023; flagged stale, needs a restart.',cols:[['Objective / KR','title'],['Period','text'],['Status','pill']],rows:[['Build strong network & reputation',['2023 Q1'],['Stale','amber']],['Book €42,000 monthly net revenue',['2023 Q2'],['Stale','amber']],['3 LinkedIn posts each / week',['2023 Q2'],['Stale','amber']]]},
- decisions:{ic:'🧭',nm:'Decision Log',sp:'team',desc:'Durable record of what was decided and why — with supersede lineage.',cols:[['Decision','title'],['Category','pill'],['Status','pill']],rows:[['Juniors work 5 days a week',['People','teal'],['Active','green']],['Build skills in Claude on best practices',['Systems','purple'],['Active','green']],['Only take on perfect-fit projects',['Sales','amber'],['Active','green']]]},
+ okrs:{ic:'🎯',nm:'OKRs',sp:'team',desc:'Real OKRs from Notion — last cycle frozen in 2023; flagged stale, needs a restart.',cols:[['Objective / KR','title'],['Period','text'],['Status','pill']],rows:[['Build strong network and reputation',['2023 Q1'],['Stale','amber']],['Build our foundational team',['2023 Q1'],['Stale','amber']],['3 LinkedIn posts each per week',['2023 Q2'],['Stale','amber']],['3 blog posts per week',['2023 Q2'],['Stale','amber']],['2 networking slots each per week',['2023 Q2'],['Stale','amber']]]},
+ decisions:{ic:'🧭',nm:'Decision Log',sp:'team',desc:'Real decision log from Notion — what was decided and why.',cols:[['Decision','title'],['Category','pill'],['Status','pill']],rows:[['Juniors work 5 days a week',['People','teal'],['Active','green']],['Build skills in Claude based on best practices',['Systems','purple'],['Active','green']],['Zsolt: document Power BI best practices',['Systems','purple'],['Active','green']],['Create first 5 high-quality YouTube videos',['Marketing','amber'],['Active','green']],['Don’t take on projects unless a perfect fit',['Sales','amber'],['Active','green']]]},
  ideas:{ic:'💡',nm:'Ideas',sp:'team',desc:'Delivery-framework improvement submissions from the team.',cols:[['Idea','title'],['Category','pill'],['By','person']],rows:[['Communicate delays early',['Client comms','purple'],'Zsolt'],['Prepare an agenda for meetings',['Delivery','amber'],'Dipro']]},
  questions:{ic:'❓',nm:'Open Questions',sp:'team',desc:'Unklarheiten — unresolved questions, oldest-open first.',cols:[['Question','title'],['Status','pill']],rows:[['Wie Duplikataufwand vermeiden?',['Offen','amber']],['Excel Schicht — approach?',['Offen','amber']]]},
  risks:{ic:'⚠️',nm:'Risk Tracker',sp:'team',desc:'Escalated risks with owner + project. Feeds the admin Needs-You view.',cols:[['Risk','title'],['Owner','person'],['Status','pill']],rows:[['anyRM — pending source access',['Dipro'],['Unresolved','rose']],['No DPA/AVV in place (GDPR)',['Austin'],['Unresolved','rose']],['Client access not revoked at offboarding',['Saju'],['Unresolved','rose']]]},
  advisors:{ic:'🤝',nm:'Advisors & Agents',sp:'admin',desc:'External advisors of record.',cols:[['Party','title'],['Function','pill'],['Status','pill']],rows:[['BMK Steuerberater (via DATEV)',['Steuerberater','teal'],['Current','green']],['GSK Stockmann',['Notar','purple'],['Current','green']],['Berliner Sparkasse',['Hausbank','grey'],['Current','green']],['Steuerberatung Dubynska',['Steuerberater','teal'],['Former','grey']]]},
- candidates:{ic:'🧑‍💼',nm:'Candidates (Hiring)',sp:'admin',desc:'Recruiting pipeline.',cols:[['Candidate','title'],['Role','text'],['Stage','pill']],rows:[['(sample) BI Analyst','Consultant',['Interview','amber']],['(sample) Data Engineer','Data Engineer',['New','grey']]]},
- freelancers:{ic:'🧰',nm:'Freelancer Pool',sp:'admin',desc:'Sourcing bench — distinct from active freelancers.',cols:[['Name','title'],['Skills','pill'],['Rate','text']],rows:[['Thiago Fraletti Peixoto',['Power BI Dev','teal'],'$100/h'],['Joshua Stevenson',['Power BI PM','purple'],'$67/h']]},
+ candidates:{ic:'🧑‍💼',nm:'Candidates (Hiring)',sp:'admin',desc:'Recruiting pipeline — real candidates from the Notion Candidates DB + the Krisp candidate calls.',cols:[['Candidate','title'],['Stage','pill']],rows:[['Mahmoud Diab',['Interview','amber']],['Ismail',['Screen','amber']],['Grahame Chisholm',['New','grey']],['Begüm Has',['New','grey']],['Habeeb Abdulrasaq',['New','grey']],['Sarin Ravishanker',['New','grey']]]},
+ freelancers:{ic:'🧰',nm:'Freelancer Pool',sp:'admin',desc:'Sourcing bench (real) — distinct from active freelancers.',cols:[['Name','title'],['Skills','pill'],['Rate','text']],rows:[['Thiago Fraletti Peixoto',['Power BI Dev','teal'],'$100/h'],['Joshua Stevenson (Lookthru)',['Power BI PM','purple'],'$67/h'],['Jim Boyer',['Fabric Dev','teal'],'—'],['Scott Ackerl',['Azure','teal'],'—'],['Benjamin Abdipour',['Power BI Dev','teal'],'—']]},
  handbookadopt:{ic:'📈',nm:'Handbook Adoption',sp:'admin',desc:'Who is actively applying the handbook.',cols:[['Person','person'],['Status','pill'],['Working on','text']],rows:[['Saju',['Actively applying','green'],'Power BI Dev phase'],['Austin',['Exploring','amber'],'Salesforce migration updates']]},
  intake:{ic:'🚪',nm:'Client Intake',sp:'admin',desc:'Kick-off flow — intake form + secure credential request (secret stored in 1Password, never in the record).',cols:[['Prospect','title'],['Stage','pill'],['Owner','person']],rows:[['Pandata',['Form sent','amber'],'Saju'],['(new client)',['Intake kicked off','grey'],'Austin']]},
  finance:{ic:'🧾',nm:'Finance',sp:'admin',desc:'NOT in Notion — runs in lexoffice. Documents linked from the admin Drive folder only. Shown to mark the boundary.',cols:[['Item','title'],['Where','text']],rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']]]},
