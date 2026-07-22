@@ -773,6 +773,7 @@ function sensitivePage(){
   ['Enterprise encryption protects it from staff','Customer-managed keys change who controls the keys relative to <b>Notion</b>. They do not stop a workspace member reading a value. Audit logs tell you who looked; they do not stop anyone looking.']
  ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';});
  h+='</tbody></table>';
+ h+='<div class="callout"><span>👀</span><span><b>“But I have seen Notion put dots over a value.”</b> Worth settling, because it is the exact trap. You can absolutely <b>display</b> dots — store the literal characters, or use a formula, or hide the real value behind a toggle. <b>The dots on the Personnel page in this very mockup are literally the stored text.</b> What no version of that does is stop someone seeing the real value: if it is stored in Notion at all, one click, Ctrl-F, the API or an export returns it. So dots are worth keeping as <b>screen-share courtesy</b> — they stop a number being read over your shoulder on a call. They are decoration on top of permissions, never a substitute for them.</span></div>';
  h+='<div class="h3">📍 So where does each thing actually live?</div><table><thead><tr><th>Data</th><th>Lives in</th><th>What Notion holds</th></tr></thead><tbody>';
  [['<b>IBAN / bank details</b>','lexoffice + the Finance drive','<b>Nothing.</b> Not even masked — a link at most.'],
   ['<b>Tax ID · SV number · passport</b>','The admin Drive, in the person’s folder','A link only. The Drive ACL is the gate.'],
@@ -835,18 +836,75 @@ function meetingDetail(id){var m=MTG[id];
 }
 // -------- Client Intake (the new process — mirrored for everyone; money/legal admin-only) --------
 function intakePage(){
- var flow=['Kickoff','Choose modules','Invite · magic link','Fill','Complete'];
- var team=[['Company & contacts','who we work with, org, stakeholders'],['Data sources & systems','where the data lives'],['Access & security provisioning','tool access & credentials (secure)'],['Current reporting, KPIs & pain','what they measure, what hurts'],['Governance & stakeholders','sign-off & cadence'],['Project logistics','timeline, comms, ways of working']];
- var admin=[['Billing & tax','invoicing details, VAT — invite finance contact'],['Legal & compliance (NDA / DPA / GDPR)','contracts — invite legal contact'],['Pricing & SOW','what we charge — internal only']];
- var h='<p class="pdesc">The new client-intake process we build out. A branded, modular form — each module is assigned to a person, sent via a <b>single-use magic link (no password)</b>, fills into the right place, then locks. It’s here for everyone; the <b>money &amp; legal modules stay admin-only</b>.</p>';
- h+='<div class="board" style="padding-top:8px">'+flow.map(function(s,i){return '<div class="bcol" style="min-width:150px;flex:0 0 auto"><div class="card" style="cursor:default"><div class="ct">'+(i+1)+' · '+s+'</div></div></div>';}).join('')+'</div>';
- h+='<div class="h3">🟢 Everyone · client-fillable modules <span class="mut" style="font-weight:400;font-size:12px">→ the client’s Notion project + team folders</span></div><ul class="chk">'+team.map(function(m){return '<li><span class="box"></span><span>'+m[0]+' <span class="mut">· '+m[1]+'</span></span></li>';}).join('')+'</ul>';
- h+='<div class="h3">🔒 Admin only · money &amp; legal <span class="mut" style="font-weight:400;font-size:12px">→ handled privately by the founders</span></div><div class="callout a"><span>🔒</span><span>Billing &amp; tax, legal (NDA / DPA / GDPR) and pricing / SOW are collected in <b>founder-only</b> modules routed straight to the admin area — never filled or seen by the team, and never posted to a team channel.</span></div>';
- h+='<div class="h3">🖥️ The intake app — already built <span class="mut" style="font-weight:400;font-size:12px">· <span class="lnk">jayleafclark.github.io/casewhen-intake-prototype ↗</span></span></div>';
- h+='<p class="bodytext">A working prototype of this already exists, and it is what we wire in rather than rebuild. Staff sign in, kick a client off from a dashboard, and the client gets a private link — no account, no password.</p>';
- h+='<div class="board" style="padding-top:6px">'+[['1 · Staff sign-in','Google Workspace. Founders land on the admin cockpit, everyone else on the team dashboard.'],['2 · Employee dashboard','Active clients, which sections are still waiting on the client, discovery sessions this week, and what needs chasing.'],['3 · ＋ New client','Company, contact, engagement, internal owner, discovery date, and which sections to send. One button provisions and invites.'],['4 · Client portal','Kickoff → Project discovery → Your data. Saves as you go, link expires in 7 days, and any section can be passed to a colleague.'],['5 · The emails','Invite → a reminder on day 2 if unopened → thank-you on completion, all from onboarding@casewhen.co.']].map(function(s2){return '<div class="bcol" style="min-width:190px;flex:0 0 auto"><div class="card" style="cursor:default"><div class="ct">'+s2[0]+'</div><div class="mut" style="font-size:12px;line-height:1.5">'+s2[1]+'</div></div></div>';}).join('')+'</div>';
- h+='<div class="callout a"><span>🔧</span><span><b>What changes when it goes live.</b> The employee dashboard is <b>replaced by Notion</b> — no second place to check. The client portal stays its own app, because clients should never need a Notion seat. Four things that are currently mocked become real: the sign-in, saving answers, actually sending the emails and reminders, and the provisioning — one click creating the Notion project, the GitHub repo, the Drive folders and the Slack channel. Credentials go through the secure-access page into the secrets manager, never into email.</span></div>';
- h+='<div class="callout g"><span>🔗</span><span>On completion the intake links to the CRM contact and spins up the client’s <b>Notion project, GitHub repo, Drive folders and Slack channel</b> — the New-Client-Project button. Sensitive answers never touch a team channel.</span></div>';
+ var h='<p class="pdesc">Where every client is in setup, and exactly what we have got back from them. Each intake is a <b>mini project</b> — it writes straight into the client’s Notion record as answers arrive, and the work it generates lands in the same <b>Tasks</b> database as everything else.</p>';
+ h+='<div class="rollups">'+[['4','in intake now'],['5','sections awaiting the client'],['1','stalled &gt; 5 days'],['2','completed this month']].map(function(r){return '<div class="roll"><div class="rv">'+r[0]+'</div><div class="rl">'+r[1]+'</div></div>';}).join('')+'</div>';
+
+ // ---- stage board ----
+ var stages=[['Invited','grey'],['Client filling','blue'],['Stalled','rose'],['Internal review','amber'],['Complete','green']];
+ var IN={
+  isar:{n:'Isar Aerospace — Finance Dashboard',stage:'Client filling',own:'Austin',disc:'Thu 24 Jul',sent:6,done:2,note:'Data sources opened, not submitted'},
+  lin:{n:'Linstol — Inventory Forecast',stage:'Stalled',own:'Saju',disc:'29 Jul',sent:6,done:2,note:'Reminder 1 sent day 2, not opened'},
+  sch:{n:'Schindler — SAP → Salesforce',stage:'Invited',own:'Austin',disc:'TBC',sent:6,done:0,note:'Invites went out this morning'},
+  zbi:{n:'ZBI — Fondsmanagement reporting',stage:'Internal review',own:'Saju',disc:'21 Jul',sent:6,done:6,note:'All in — Saju reviewing before provisioning'},
+  smb:{n:'Samba TV — Phase B',stage:'Complete',own:'Austin',disc:'done',sent:6,done:6,note:'Provisioned 18 Jul'}
+ };
+ h+='<div class="tabs" style="margin-top:14px"><span class="tab on">▥ Board · by stage</span><span class="rowcount">5 clients</span></div><div class="board">';
+ h+=stages.map(function(st){
+  var ks=Object.keys(IN).filter(function(k){return IN[k].stage==st[0];});
+  return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[st[1]]+'"></span>'+st[0]+'<span class="bc">'+ks.length+'</span></div>'+
+   (ks.length?ks.map(function(k){var c=IN[k];return '<div class="card" style="cursor:default"><div class="ct">'+c.n+'</div><div class="cm">'+pill(c.done+'/'+c.sent+' sections','grey')+av(c.own)+'</div></div>';}).join(''):'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';
+ }).join('')+'</div>';
+
+ // ---- per-client table ----
+ h+='<div class="h3">📋 Every client in setup</div><table><thead><tr><th>Client</th><th>Owner</th><th>Discovery</th><th>Progress</th><th>Stage</th><th>What is holding it up</th></tr></thead><tbody>';
+ h+=Object.keys(IN).map(function(k){var c=IN[k];var pct=Math.round(c.done/c.sent*100);
+  var bar='<div style="display:flex;align-items:center;gap:8px"><div style="flex:1;max-width:90px;height:6px;background:var(--line2);border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:var(--green)"></div></div><span class="mut" style="font-size:12px">'+pct+'%</span></div>';
+  var sc={'Invited':'grey','Client filling':'blue','Stalled':'rose','Internal review':'amber','Complete':'green'}[c.stage];
+  return '<tr><td>'+c.n+'</td><td>'+av(c.own)+'</td><td>'+c.disc+'</td><td>'+bar+'</td><td>'+pill(c.stage,sc)+'</td><td class="mut">'+c.note+'</td></tr>';
+ }).join('')+'</tbody></table>';
+
+ // ---- module-level detail for one client ----
+ h+='<div class="h3">🔍 Linstol — section by section <span class="mut" style="font-weight:400;font-size:12px">· click any client above to see this for them</span></div>';
+ h+='<table><thead><tr><th>Section</th><th>Sent to</th><th>Status</th><th>What came back</th></tr></thead><tbody>';
+ [['Company &amp; contacts','bill.cowan@linstol.com',['Submitted','green'],'Legal entity, 4 stakeholders, sign-off = Bill Cowan'],
+  ['Reporting, KPIs &amp; pain','bill.cowan@linstol.com',['Submitted','green'],'3 KPIs; current pain = manual Excel consolidation each month'],
+  ['Governance &amp; stakeholders','jenny@linstol.com',['In progress','blue'],'Fortnightly review cadence agreed; sign-off still blank'],
+  ['Data sources &amp; systems','matthew@linstol.com',['Opened, not submitted','amber'],'—'],
+  ['Access &amp; security provisioning','chris.mejias@linstol.com',['Not opened','rose'],'—'],
+  ['Project logistics','—',['Not sent yet','grey'],'—']
+ ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td class="mut">'+r[1]+'</td><td>'+pill(r[2][0],r[2][1])+'</td><td>'+r[3]+'</td></tr>';});
+ h+='</tbody></table>';
+ h+='<div class="callout"><span>🔒</span><span>Three further sections — billing &amp; tax, legal, and pricing — are <b>founder-only</b> and are tracked separately in the admin area. They never appear on this board.</span></div>';
+
+ // ---- what it captures and where it lands ----
+ h+='<div class="h3">🎯 What intake is actually grabbing — and where it lands</div>';
+ h+='<table><thead><tr><th>Section</th><th>What it captures</th><th>Where it writes</th></tr></thead><tbody>';
+ [['Company &amp; contacts','Legal name, billing entity, stakeholders, who signs off, who uses the reports day to day','the <b>Client</b> record + its contacts'],
+  ['Data sources &amp; systems','Where the data lives, which systems, rough volumes, refresh expectations','the <b>Project</b> brief + <span class="mono">00-brief</span> in Drive'],
+  ['Access &amp; security','Which tools we need access to and who grants it — credentials go through the secure page, never the form','the access checklist <b>tasks</b> + 1Password'],
+  ['Reporting, KPIs &amp; pain','What they measure now, what hurts, what a good dashboard would change','the <b>Project</b> brief'],
+  ['Governance &amp; stakeholders','Sign-off owner and review cadence','the <b>Client</b> record'],
+  ['Project logistics','Timeline, comms preferences, ways of working','the <b>Project</b> dates + the Slack channel topic']
+ ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';});
+ h+='</tbody></table>';
+ h+='<div class="callout g"><span>✍️</span><span><b>It writes as it goes.</b> Answers land in Notion the moment a section is submitted — we are not waiting for the client to finish everything before the record starts filling in. A half-finished intake is still a useful client page.</span></div>';
+
+ // ---- the tasks it generates ----
+ h+='<div class="h3">✅ The tasks it creates <span class="mut" style="font-weight:400;font-size:12px">· these are real rows in the one Tasks database, not a separate list</span></div>';
+ h+='<table><thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Project</th><th>Status</th></tr></thead><tbody>';
+ [['Chase Linstol — data sources section','Saju','23 Jul','Linstol — Inventory Forecast',['In Progress','amber']],
+  ['Azure AD guest invite — Isar Aerospace','Ana','25 Jul','Isar — Finance Dashboard',['Not started','grey']],
+  ['Power BI workspace access — Isar','Ana','25 Jul','Isar — Finance Dashboard',['Not started','grey']],
+  ['Review ZBI intake answers before provisioning','Saju','22 Jul','ZBI — Fondsmanagement',['In Progress','amber']],
+  ['Book Schindler discovery session','Austin','24 Jul','Schindler — SAP → Salesforce',['Not started','grey']]
+ ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+av(r[1])+'</td><td>'+r[2]+'</td><td><span class="rel">'+r[3]+'</span></td><td>'+pill(r[4][0],r[4][1])+'</td></tr>';});
+ h+='</tbody></table>';
+ h+='<div class="callout g"><span>🔗</span><span><b>Everything syncs one way — into the main board.</b> Each section that comes back fires its standard tasks into the <b>same Tasks database</b> the whole team works from, tagged to that client’s project. They appear on the team Kanban and in the owner’s My&nbsp;Tasks automatically. <b>Nothing lives only inside the intake.</b></span></div>';
+
+ // ---- the flow, compressed ----
+ h+='<div class="h3">🖥️ How a client gets here</div>';
+ h+='<div class="board" style="padding-top:6px">'+[['1 · Kick off','A staff member adds the client, picks which sections to send and sets the discovery date.'],['2 · Invite','Each section goes to a named person at the client on a single-use link — no account, no password, expires in 7 days.'],['3 · They fill','Saves as you go. Any section can be passed to a colleague, who only sees that one.'],['4 · Chase','A reminder fires on day 2 if unopened; the owner is nudged on day 6.'],['5 · Provision','On completion we create the Notion project, GitHub repo, Drive folders and Slack channel.']].map(function(x){return '<div class="bcol" style="min-width:180px;flex:0 0 auto"><div class="card" style="cursor:default"><div class="ct">'+x[0]+'</div><div class="mut" style="font-size:12px;line-height:1.5">'+x[1]+'</div></div></div>';}).join('')+'</div>';
+ h+='<div class="callout a"><span>🔧</span><span>The form itself already exists as a working app (<span class="lnk">jayleafclark.github.io/casewhen-intake-prototype ↗</span>). Four things in it are still mocked and have to become real: the sign-in, saving answers, actually sending the emails and reminders, and the provisioning step. This board is the Notion side, which is what everyone will actually live in.</span></div>';
  return pageShell('🚪','Client Intake',null,h);
 }
 // -------- Client Delivery Handbook (built out) --------
