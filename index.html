@@ -269,7 +269,7 @@ var MTG={
 };
 function meetingRows(pred){var ids=Object.keys(MTG).filter(pred).sort(function(a,b){return MTG[a].d<MTG[b].d?1:-1;});return ids.length?ids.map(function(k){var m=MTG[k];return '<div class="drow" style="border-top:1px solid var(--line);cursor:pointer" data-open="meeting/'+k+'">'+pill(m.ty[0],m.ty[1])+' &nbsp;'+m.t+'<span class="dl">'+m.d+' · '+m.act+' actions</span></div>';}).join(''):'<div class="mut" style="font-size:13px">No meetings logged yet.</div>';}
 // entity / company & legal
-var ENTITY={legal:'CaseWhen Consulting GmbH',former:'caseWhen Consulting UG (haftungsbeschränkt)',hrb:'HRB 233345 B',court:'Amtsgericht Charlottenburg (Berlin)',sitz:'Wattstrasse 11, 13355 Berlin',biz:'Bismarckstr. 10-12, 10625 Berlin',inc:'2021-09-01',capital:'EUR 25,000 (300 shares)',ust:'DE347404148',steuer:'—',betriebs:'82291588',bank:'Berliner Sparkasse · IBAN DE96 1005 0000 0191 0768 80',notar:'GSK Stockmann, Berlin'};
+var ENTITY={legal:'CaseWhen Consulting GmbH',former:'caseWhen Consulting UG (haftungsbeschränkt)',hrb:'HRB 233345 B',court:'Amtsgericht Charlottenburg (Berlin)',sitz:'Wattstrasse 11, 13355 Berlin',biz:'Bismarckstr. 10-12, 10625 Berlin',inc:'2021-09-01',capital:'EUR 25,000 (300 shares)',ust:'DE347404148',steuer:'—',betriebs:'82291588',bank:'Berliner Sparkasse · IBAN ••• •••• •••• •••• •• (not stored here — lexoffice)',notar:'GSK Stockmann, Berlin'};
 var CAPTABLE=[['Thiru Ventures UG','HRB 165896 B','Saju','150 / 300','50%'],['Shloom Ventures UG','HRB 232346 B','Austin','150 / 300','50%']];
 var OFFICERS=[['Sajagan Thirugnanam','Geschäftsführer','2021-09-07','sole · §181 exempt'],['Austin Levine','Geschäftsführer','2023-08-30','sole · §181 exempt']];
 var IDS=[['Handelsregister','HRB 233345 B',['Active','green']],['USt-IdNr','DE347404148',['Active','green']],['Betriebsnummer','82291588',['Active','green']],['Steuernummer','— not on file',['Pending','amber']],['Offenlegung Jahresabschluss FY2025','due 2026-12-31',['Upcoming','amber']]];
@@ -390,13 +390,13 @@ var PARENTS={
 };
 var PDESC={personnel:'Profiles: role · responsibilities · certs · 1:1s · HR/payroll',onboarding:'New-hire flow + curriculum',talent:'Hiring pipeline + freelancer bench',entity:'Entity, cap table, officers, tax IDs, advisors',contracts:'61-contract register + renewal watchdog',sales:'Attio-synced pipeline + positioning',intake:'Client intake + secure credentials',compliance:'Tax filings & deadlines',calendar:'Date-spine · needs-you',finance:'lexoffice — out of scope',adminboard:'Admin Tasks (founders-only DB)',decisions:'Decision log',okrs:'Objectives (needs restart)'};
 var NAV=[
- {items:['home','dataflow','alerts','folders']},
+ {items:['home','folders']},
  {g:['🚀','DELIVERY','everyone'],items:['startteam','tasks','clients','intake','projects','meetings']},
  {g:['📘','HOW WE DELIVER','everyone'],items:['handbook','resources','deliverables']},
- {g:['🔒','ADMIN','Austin · Saju',1],items:['startadmin','dash',{p:'ppl'},{p:'legal'},'sales',{p:'compfin'},{p:'backoffice'},'alertsadmin','driveadmin','sensitive']},
+ {g:['🔒','ADMIN','Austin · Saju',1],items:['startadmin','dash',{p:'ppl'},{p:'legal'},'sales',{p:'compfin'},{p:'backoffice'}]},
  {g:['👤','MY SPACE','private'],items:['mytasks','my1on1','mymeetings']}
 ];
-var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],dataflow:['🔀','Data flow'],folders:['📁','Files & Drive'],alerts:['🔔','Alerts & reminders'],alertsadmin:['🔔','Admin alerts'],driveadmin:['🗄️','Drive & backup'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],leadership:['🧭','Leadership Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings'],sensitive:['🔐','Sensitive data']};
+var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],folders:['📁','Files & Drive'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],leadership:['🧭','Leadership Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings'],sensitive:['🔐','Sensitive data']};
 function lbl(id){return LABELS[id]||(PARENTS[id]?[PARENTS[id].ic,PARENTS[id].nm]:(TBL[id]?[TBL[id].ic,TBL[id].nm]:['·',id]));}
 var CHILDPAR={};Object.keys(PARENTS).forEach(function(k){PARENTS[k].children.forEach(function(c){CHILDPAR[c]=k;});});
 var COLLAPSED={};
@@ -626,177 +626,7 @@ function foldersPage(){
  return pageShell('📁','Files & Drive',null,h);
 }
 
-// -------- Slack card helper --------
-function slk(o){
- var b=o.btns?'<div class="btns">'+o.btns.map(function(x,i){return '<span class="sbtn'+(i===0?' pri':'')+'">'+x+'</span>';}).join('')+'</div>':'';
- return '<div class="slk"><div class="slkh"><span>'+o.ic+'</span><b>'+o.ch+'</b><span>'+(o.sub?'· '+o.sub:'')+'</span></div><div class="slkb"><div class="slkav">C</div><div class="slkm"><span class="who">Cerebro</span><span class="ts">'+(o.ts||'09:02')+'</span><div style="margin-top:4px"><span class="tag '+o.tc+'">'+o.tg+'</span>'+o.m+'</div>'+b+'</div></div></div>';
-}
-// -------- Drive architecture · founders (full) --------
-function driveAdminPage(){
- var h='<div class="callout a"><span>⚠️</span><span><b>Where we actually are.</b> Nothing is company-owned yet. The corporate tree lives in <b>Austin’s and Saju’s personal My Drives</b> (262 files owned by austin@, 234 by sajagan@, only 68 inside any shared drive) — one offboarding away from losing it. There is no GitHub backup running today; it is designed below, not built. Everything on this page is the fix.</span></div>';
- h+='<div class="h3">🔍 What the scan actually found</div><table class="probs"><thead><tr><th>Problem</th><th>Evidence from the real Drive</th></tr></thead><tbody>';
- [['Personal ownership','The company tree sits in two founders’ My Drives — and <span class="mono">04 People</span> is split: Saju owns Sajagan + Zsolt’s folders, Austin owns the other six. Same folder, two owners.'],
-  ['Outsiders own our files','18 client call recordings owned by <span class="mono">lukas@parlant.co</span>; our own offer-letter template owned by <span class="mono">matt@sedulo.io</span>; marketing assets owned by an ex-agency. They can revoke at will.'],
-  ['PII sits in the open tree','187 identity/HR documents — passports, Sozialversicherungsausweis, every Lohnauswertung — in the same tree as everything else, with no per-file audit of who can see them.'],
-  ['Parallel + duplicate trees','VRChat exists twice (<span class="mono">00 Leads/07 VRChat</span> and <span class="mono">08 VRChat</span>) — the lead folder was never retired. 248 duplicate filenames, 46 “(1)” conflict copies.'],
-  ['No standard client subfolders','Signed offers dumped at folder root (Samba TV Phase B, WellBeauty). The few clients with structure each invented their own.'],
-  ['Cross-boundary misfiling','The Handelsregister extract filed under a <b>car lease</b>. Saju’s freelance contract filed under the <b>client</b> ZBI. A Vodafone contract five levels deep inside a person’s HR folder.'],
-  ['67% of the drive is dead weight','The 2,351-file <span class="mono">Invoices and Bank Statements [Discontinued]</span> pile is still inline, drowning search — and hiding live documents inside itself.'],
-  ['Meeting notes are a flat pile','44 Gemini docs in one folder with no client field — and <b>1:1s mixed in with client calls</b>, which our own privacy rule forbids.']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';});
- h+='</tbody></table>';
 
- h+='<div class="h3">🗄️ The target — five shared drives</div><p class="bodytext">Membership is granted through <b>Google Groups only</b> (<span class="mono">delivery@</span>, <span class="mono">founders@</span>, <span class="mono">finance-ext@</span>), so a joiner or leaver is a one-line change. A shared drive is the only Google boundary a non-member <b>cannot traverse at all</b> — which is why Finance is its own drive, not a folder.</p>';
- h+='<table><thead><tr><th>Drive</th><th>Holds</th><th>Who is in it</th></tr></thead><tbody>';
- [['🟢 CW-Clients','All client delivery work. No money, no contracts, no HR.','founders (Manager) · delivery team (Content manager)'],
-  ['🟢 CW-Team','Runbooks, handbook, templates, brand, knowledge base, team meetings.','founders (Manager) · delivery team (Content manager)'],
-  ['🔒 CW-Admin','Legal · personnel &amp; HR · commercial/pricing · tax.','<b>Austin &amp; Saju only</b>'],
-  ['🔒 CW-Finance','Bank, invoices in/out, payroll runs, leasing, loans, lexoffice.','Austin &amp; Saju + the tax advisor (Contributor)'],
-  ['📦 CW-Archive','Cold storage — the discontinued pile, duplicates, superseded trees.','founders (Manager) · team (Viewer on the safe branch)']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="callout"><span>💡</span><span><b>Why the tax advisor gets his own drive and not a folder.</b> He has to be inside the money, and must never be one mis-share away from the passports and the cap table. A folder ACL inside CW-Admin would leave exactly that risk; a separate drive removes it structurally.</span></div>';
-
- h+='<div class="fcols">';
- h+='<div class="fcard admin"><div class="fh">🔒 CW-Admin · founders only</div><div class="tree"><div>legal/ <span class="cm"># entity · resolutions · shareholder · leases · NDAs</span></div><div>personnel/</div><div> └─ &lt;Full Name&gt;/</div><div>     ├─ 00-contract/</div><div>     ├─ 01-payroll/ <span class="cm"># Lohnauswertungen, annual certs</span></div><div>     ├─ 02-official-identity/</div><div>     ├─ 03-1on1-and-reviews/</div><div>     └─ 04-equipment/</div><div>commercial/ <span class="cm"># offers · signed contracts · pricing · leads · vendors</span></div><div>tax/ <span class="cm"># filings · Finanzamt · registrations · advisor</span></div></div></div>';
- h+='<div class="fcard admin"><div class="fh">🔒 CW-Finance · + tax advisor</div><div class="tree"><div>bank/&lt;YYYY&gt;/</div><div>invoices-out/&lt;YYYY&gt;/</div><div>invoices-in/&lt;YYYY&gt;/</div><div>payroll-runs/&lt;YYYY&gt;/</div><div>leasing/ · loans/ · dividends/</div><div>lexoffice-exports/</div></div></div></div>';
- h+='<div class="callout"><span>🧑‍💼</span><span><b>Employees and freelancers share one personnel folder shape.</b> Today Dipro sits in the employee number sequence while five other freelancers sit under a separate <span class="mono">Freelancers/</span> branch — employment type was encoded in the folder path, inconsistently. It becomes a field in Notion instead.</span></div>';
-
- h+='<div class="h3">🔐 Access matrix</div><table><thead><tr><th>Drive</th><th>Austin &amp; Saju</th><th>Zsolt · Dipro · Ana</th><th>Tax advisor</th><th>Client</th></tr></thead><tbody>';
- [['CW-Clients','Manager','Content manager','—','Contributor on <span class="mono">05-client-exchange</span> only'],
-  ['CW-Team','Manager','Content manager','—','—'],
-  ['CW-Admin','Manager','<b>no access</b>','Viewer on <span class="mono">tax/filings</span> only','—'],
-  ['CW-Finance','Manager','<b>no access</b>','Contributor','—'],
-  ['CW-Archive','Manager','Viewer (superseded only)','—','—']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="callout"><span>🚪</span><span><b>Clients are never drive members</b> — a member would see every client. They get one folder shared: <span class="mono">05-client-exchange</span>, to named addresses, with expiry. Everything else is invisible to them.</span></div>';
-
- h+='<div class="h3">🐙 The GitHub backup — one-way, nightly</div><p class="bodytext">Drive → git, <b>never git → Drive</b>. Runs on the always-on VPS at 02:00 CET with a read-only backup account.</p>';
- h+='<table><thead><tr><th>Repo (private)</th><th>Backs up</th><th>How it is stored</th></tr></thead><tbody>';
- [['casewhen-drive-team','CW-Clients + CW-Team','Docs/Sheets exported to markdown + CSV, full folder tree, permissions. Big binaries (.pbix, video) stored as hash + link, not bytes.'],
-  ['casewhen-drive-admin','CW-Admin','<b>Manifest in plaintext, bytes encrypted</b> — <span class="mono">admin-YYYY-MM-DD.tar.age</span>. Personnel filenames are hashed, because a filename like “…reisepass…” is itself sensitive.'],
-  ['casewhen-drive-finance','CW-Finance','Manifest only in plaintext; all bytes age-encrypted.'],
-  ['casewhen-drive-archive','CW-Archive','One cold encrypted snapshot, no incremental re-scans.'],
-  ['casewhen-notion-backup','Notion (41 DBs)','Per-database JSON + rendered markdown. The HR-PII database is encrypted only.']
- ].forEach(function(r){h+='<tr><td class="mono">'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="callout g"><span>🛡️</span><span><b>The permissions snapshot is the real product.</b> Every run writes each file’s ACL to git and diffs it against last night. Any new external share, any “anyone with the link”, any new non-member folder share gets posted to the founders’ channel. An audit control implemented as a git diff — auditable for free. <b>Nothing under personnel or finance is ever plaintext in git.</b> Encryption uses the same age key as the existing secrets vault, so there is no new tooling.</span></div>';
- h+='<div class="callout a"><span>🧪</span><span><b>Restore drill, quarterly.</b> Restore one random encrypted tarball to a scratch directory and verify ten checksums. An untested backup is not a backup.</span></div>';
-
- h+='<div class="h3">🚚 The migration, in order</div><ul class="chk">';
- ['Create the drives, the Google Groups and three separate Cerebro service accounts','<b>Snapshot today’s permissions into git first</b> — this is the only chance to capture the pre-migration state','CW-Finance and CW-Admin first, while the tree is still founders-only','CW-Archive next — that alone removes 67% of the noise','CW-Clients and CW-Team last, team read-only until the subfolder template is applied','Flip the team to Content manager; leave shortcuts in the founders’ My Drives for 60 days','Re-run the contract register and confirm all 61 file IDs still resolve — only then remove the shortcuts'
- ].forEach(function(x,i){h+='<li><span class="box"></span><span>'+(i+1)+'. '+x+'</span></li>';});
- h+='</ul>';
-
- h+='<div class="h3">⚠️ Four things that will bite</div><table><thead><tr><th>Gotcha</th><th>What to do</th></tr></thead><tbody>';
- [['Moving keeps the file ID — copying does not','A move preserves every stored link, so all 61 contract IDs and every Notion file link survive. Copy-then-delete would silently orphan all of them. Use move, never copy.'],
-  ['Externally-owned files cannot be moved in','The parlant.co recordings and the sedulo.io template can only be transferred by their owner, or copied (new ID, history lost). Ask for transfer first. Until then they are outside every backup.'],
-  ['The domain-wide service account defeats the whole design','The current key can impersonate Austin and read every drive regardless of membership. Segmentation is theatre until it is scoped read-only and replaced with three per-drive service accounts.'],
-  ['Shared Drives need Business Standard or above','Confirm the Workspace edition before scheduling. This is the one hard blocker.']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';});
- h+='</tbody></table>';
- return pageShell('🗄️','Drive architecture & backup',null,h);
-}
-// -------- Alerts · everyone --------
-function alertsPage(){
- var h='<p class="pdesc">Cerebro tells you what needs <b>you</b> — and nothing else. Every alert says <b>what it is</b> (the tag), <b>why you got it</b>, and links straight to the item. You act from the message itself; you never have to go hunting for the page.</p>';
- h+='<div class="rt">'+[
-  ['📩 A direct message · just you','Anything that needs <b>you specifically</b>: a task coming due, an action item from a call you were on, your own 1:1 recap. Nobody else sees it.'],
-  ['👥 #cerebro-team','What the <b>whole delivery team</b> should know: a client call recap, a new client starting, something shipped, someone stuck.'],
-  ['🔒 A private founders channel','Money, contracts, hiring and anything personal. <b>You will not see this channel</b> — and nothing in it is ever mirrored into a team channel.']
- ].map(function(c){return '<div class="rtc"><div class="rth">'+c[0]+'</div><div class="bodytext" style="font-size:13px">'+c[1]+'</div></div>';}).join('')+'</div>';
- h+='<div class="callout"><span>🏷️</span><span><b>Every message opens with a tag</b> so you know what it is before you read it — <span class="tag p-blue">CLIENT CALL</span><span class="tag p-purple">1:1</span><span class="tag p-amber">DUE</span><span class="tag p-rose">OVERDUE</span><span class="tag p-rose">BLOCKED</span><span class="tag p-green">NEW CLIENT</span><span class="tag p-green">SHIPPED</span><span class="tag p-grey">FYI</span><span class="tag p-amber">NEEDS YOU</span><span class="tag p-teal">ASK</span> — then the item name as a link, then the buttons.</span></div>';
-
- h+='<div class="h3">📩 What lands in your DMs</div>';
- h+=slk({ic:'📩',ch:'Cerebro',sub:'direct message',ts:'08:30',tg:'DUE',tc:'p-amber',m:'<b class="lnk">Rebuild the Mietforderungsgang data model</b> is due <b>tomorrow</b> · ZBI — All Reporting.',btns:['Mark done','Snooze 2 days','Add a note','Open in Notion']});
- h+=slk({ic:'📩',ch:'Cerebro',sub:'direct message · only you and Austin',ts:'Tue 16:05',tg:'1:1',tc:'p-purple',m:'Your 1:1 with Austin is written up. <b>2 action items are now yours</b> — <i>book the PL-300 retake</i> and <i>send the AEO pilot summary</i>. <span class="lnk">Open the recap ↗</span>',btns:['Accept both','Reassign one','Add a note','Open my 1:1s']});
- h+=slk({ic:'📩',ch:'Cerebro',sub:'direct message',ts:'11:12',tg:'CLIENT CALL',tc:'p-blue',m:'From <b class="lnk">Schindler — data-quality sync</b> you own: <i>confirm the in-scope account list with Gabriel</i>, due Fri 25 Jul.',btns:['Accept','Change the date','Reassign','Open the recap']});
- h+=slk({ic:'📩',ch:'Cerebro',sub:'direct message',ts:'09:00',tg:'OVERDUE',tc:'p-rose',m:'<b class="lnk">Send the Linstol ESG draft</b> was due 4 days ago. Is it done, moving, or stuck?',btns:['It is done','Move to Monday','Mark blocked','Add a note']});
- h+=slk({ic:'📩',ch:'Cerebro',sub:'direct message',ts:'14:40',tg:'NEEDS YOU',tc:'p-amber',m:'Zsolt marked <b class="lnk">ZBI — filter response time</b> as blocked 2 days ago and asked for a hand. You have shipped this pattern before.',btns:['I will take it','Not me','Open the task']});
-
- h+='<div class="h3">👥 What lands in #cerebro-team</div>';
- h+=slk({ic:'👥',ch:'#cerebro-team',ts:'10:24',tg:'CLIENT CALL',tc:'p-blue',m:'<b class="lnk">Schindler — data-quality sync</b> · 24 min · Gabriel Werner, Austin.<br><b>Decisions:</b> in-scope accounts cut to ~118k · production cutover moves to 8 Jun.<br>3 action items created and assigned.',btns:['Open the recap','Open the project']});
- h+=slk({ic:'👥',ch:'#cerebro-team',ts:'09:15',tg:'NEW CLIENT',tc:'p-green',m:'<b class="lnk">Isar Aerospace — Finance Dashboard</b> is kicked off. Created automatically: Notion project · GitHub repo · Drive folders · #client-isar. Discovery session is Thu 14:00.',btns:['Open the project','Open the kickoff checklist']});
- h+=slk({ic:'👥',ch:'#cerebro-team',ts:'17:02',tg:'SHIPPED',tc:'p-green',m:'<b class="lnk">Samba TV — Phase B dashboard</b> moved to <b>Live</b>. QA checklist complete. Handover doc is due 30 Jul.',btns:['Open the deliverable','Open handover']});
- h+=slk({ic:'👥',ch:'#cerebro-team',ts:'08:45',tg:'BLOCKED',tc:'p-rose',m:'<b class="lnk">ZBI — filter response time</b> has been <b>External Block</b> for 3 days, waiting on ZBI’s DBA. Austin is the escalation on day 5.',btns:['Open the task','Nudge the client','I can help']});
- h+=slk({ic:'👥',ch:'#cerebro-team',sub:'quiet digest · once a day',ts:'18:00',tg:'FYI',tc:'p-grey',m:'Today: 4 files landed in client folders · 2 tasks moved to Done · 1 meeting logged · nothing overdue on the team board.',btns:['Open today’s digest']});
- h+=slk({ic:'💬',ch:'#cerebro',sub:'open channel',ts:'13:20',tg:'ASK',tc:'p-teal',m:'A file just landed in <span class="mono">06 Clients / Linstol</span> that looks like a <b>signed offer</b>. That is founders-only — should I file it to admin instead of the client folder?',btns:['Yes, admin','No, it is a deliverable','Ask Austin']});
- h+='<div class="callout g"><span>🧠</span><span><b>Cerebro asks when it is not sure — and remembers the answer.</b> The same question is never asked twice for the same kind of file.</span></div>';
-
- h+='<div class="h3">🔀 Where each thing goes</div>';
- h+='<table><thead><tr><th>What comes in</th><th>Who hears about it</th><th>Where</th><th>Creates a task?</th></tr></thead><tbody>';
- [['Client call recap','the project team','#cerebro-team','yes — one per action item, assigned'],
-  ['<b>Your</b> action item from any call','you alone','direct message','yes — assigned to you'],
-  ['Task due tomorrow / overdue','you alone','direct message','no — nudges the existing task'],
-  ['Someone marks a task blocked','the project team','#cerebro-team','no — flags the existing task'],
-  ['New client kicked off','everyone','#cerebro-team','yes — the kickoff checklist'],
-  ['Deliverable shipped / QA due','the project team','#cerebro-team','yes — the handover doc'],
-  ['A file lands in a client folder','the project team','#cerebro-team (daily digest)','no'],
-  ['<b>Your 1:1 recap</b>','you and that founder only','direct message','yes — your action items'],
-  ['A 2-person internal meeting','each attendee separately','direct message — <b>not</b> the team','yes — per attendee'],
-  ['A team meeting','everyone','DM attendees + #cerebro-team','yes'],
-  ['Anything money · legal · hiring · personal','founders only','a private channel you will not see','yes — in the admin space'],
-  ['Cerebro is not sure','whoever is around','#cerebro','holds until answered']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="callout"><span>🔒</span><span><b>The one rule that never bends:</b> sensitive items never appear in a team channel — not even as a title. If a call covers both delivery and money, the recap is <b>split</b>: the delivery half goes to the team, the rest goes to the founders. It is never summarised into one message.</span></div>';
- return pageShell('🔔','Alerts & reminders',null,h);
-}
-// -------- Alerts · founders --------
-function alertsAdminPage(){
- var h='<p class="pdesc">The alerts only Austin and Saju receive. Same shape as the team’s — a tag, the item as a link, buttons to act — but for the things that carry money, legal exposure or a person’s name.</p>';
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'08:00',tg:'RENEWAL',tc:'p-amber',m:'<b class="lnk">Schindler Rahmenvertrag</b> auto-renews in <b>60 days</b> (21 Sep). Notice is 3 months, so the window to change terms closes in 30 days.',btns:['Start the renewal','Mark reviewed','Snooze 30 days']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'08:00',tg:'DEADLINE',tc:'p-rose',m:'<b class="lnk">Lohnsteuer-Anmeldung</b> for July is due <b>10 Aug</b> (19 days). Last month’s was filed 2 days late.',btns:['Mark filed','Assign to the advisor','Open compliance']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'11:30',tg:'GAP',tc:'p-amber',m:'<b class="lnk">Isar Aerospace</b> has a signed NDA but <b>no DPA/AVV</b> on file, and we are touching their data.',btns:['Not needed for this client','Request it','Snooze 30 days']});
- h+='<div class="callout g"><span>🎛️</span><span><b>Rules are suggestions with an off-switch.</b> Cerebro flags a missing NDA or DPA as a gap, but Austin or Saju can hit <b>Not needed for this client</b> right in Slack — it stops asking for that client, records who decided and when, and keeps the reason on the client record. No rule ever nags past a founder’s answer.</span></div>';
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'09:45',tg:'NEW LEAD',tc:'p-blue',m:'Inbound from <span class="mono">ipsen.de</span> — “Power BI Schulung”. Matches the warm pipeline; there is no CRM record yet.',btns:['Create the deal','Ignore','Open the thread']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'07:10',tg:'SECURITY',tc:'p-rose',m:'Nightly Drive audit: <b>1 new external share</b> — <span class="mono">2025-07-31 Offer - Samba TV [SIGNED].pdf</span> is now shared to craig.maas@samba.tv.',btns:['Revoke','It is intended','Open the file']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'08:00',tg:'OVERDUE',tc:'p-rose',m:'<b class="lnk">ZBI invoice RE20260612</b> is 21 days overdue.',btns:['Send the reminder','Mark paid','Open in lexoffice']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'Mon 09:00',tg:'PEOPLE',tc:'p-purple',m:'You have not logged a 1:1 with <b class="lnk">Zsolt</b> in 5 weeks — the cadence on his record is fortnightly.',btns:['Schedule it','We did it offline','Snooze a week']});
- h+=slk({ic:'🔒',ch:'#cerebro-admin',ts:'10:00',tg:'HIRING',tc:'p-teal',m:'<b class="lnk">Data engineer</b> — 2 candidates have been waiting on your feedback for 6 days.',btns:['Open the pipeline','Snooze 2 days']});
- h+='<div class="h3">📈 Escalation &amp; noise control</div><table><thead><tr><th>Rule</th><th>Behaviour</th></tr></thead><tbody>';
- [['Nudge, then escalate','A personal reminder goes to the owner first. Only after it is ignored twice does it surface to the founders — nobody is escalated on day one.'],
-  ['One daily digest, not a stream','Everything that is not time-critical is collected into a single digest per channel per day. Only overdue, blocked, security and deadline items interrupt.'],
-  ['Quiet hours','Nothing fires outside working hours or on a person’s non-working days — Dipro’s Friday, Zsolt’s four-day week — it queues to the next working morning.'],
-  ['Every alert is dismissible and it sticks','“Not needed”, “snooze” and “we did it offline” are recorded against the item with who decided, so the same alert does not come back.']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';});
- h+='</tbody></table>';
- return pageShell('🔔','Admin alerts',null,h);
-}
-
-// -------- Sensitive data · what Notion can and cannot hide (admin) --------
-function sensitivePage(){
- var h='<div class="callout a"><span>⛔</span><span><b>Notion cannot redact anything. There is no masking, no click-to-reveal, and no per-column permission.</b> Notion has exactly one access axis: <b>which pages you can open</b>. There is no second axis for which parts of a page you can see. So the rule we build on is: <b>if a person can open the page, treat every value on it as disclosed to them.</b></span></div>';
- h+='<div class="h3">🎭 What looks like protection but is not</div><table><thead><tr><th>People assume…</th><th>What it actually is</th></tr></thead><tbody>';
- [['A toggle hides the value','<b>Cosmetic only.</b> The content is already on the reader’s device. One click, Ctrl-F (Notion auto-expands to the match), the API, and HTML/markdown export all return it. It is the security equivalent of white text on a white background. <i>PDF export happens to omit it — that is a rendering quirk, not a control.</i>'],
-  ['“Hide property” in a view hides the column','A <b>view setting</b>, not a permission. Open the row and every property is there; anyone who can edit the view can unhide it.'],
-  ['Row-level access rules can hide the salary column','They restrict <b>rows, never columns</b> — and <b>broadest access wins</b>: if someone also has teamspace access, the row rule does not claw it back. Fine for reducing incidental visibility; not a control you can attest to.'],
-  ['The integration only reads what we show it','<b>Every connected integration reads every property</b>, collapsed or not. There is no permissions endpoint in the Notion API — it cannot be constrained after the fact. Each integration on an HR page is a full-fidelity export path.'],
-  ['Enterprise encryption protects it from staff','Customer-managed keys change who controls the keys relative to <b>Notion</b>. They do not stop a workspace member reading a value. Audit logs tell you who looked; they do not stop anyone looking.']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="callout"><span>👀</span><span><b>“But I have seen Notion put dots over a value.”</b> Worth settling, because it is the exact trap. You can absolutely <b>display</b> dots — store the literal characters, or use a formula, or hide the real value behind a toggle. <b>The dots on the Personnel page in this very mockup are literally the stored text.</b> What no version of that does is stop someone seeing the real value: if it is stored in Notion at all, one click, Ctrl-F, the API or an export returns it. So dots are worth keeping as <b>screen-share courtesy</b> — they stop a number being read over your shoulder on a call. They are decoration on top of permissions, never a substitute for them.</span></div>';
- h+='<div class="h3">📍 So where does each thing actually live?</div><table><thead><tr><th>Data</th><th>Lives in</th><th>What Notion holds</th></tr></thead><tbody>';
- [['<b>IBAN / bank details</b>','lexoffice + the Finance drive','<b>Nothing.</b> Not even masked — a link at most.'],
-  ['<b>Tax ID · SV number · passport</b>','The admin Drive, in the person’s folder','A link only. The Drive ACL is the gate.'],
-  ['<b>Salary &amp; comp history</b>','A <b>private teamspace</b> — “People · Confidential”, Austin &amp; Saju only','The value, but <b>only inside that teamspace</b>. Never a column on any shared People database.'],
-  ['<b>Freelancer day rates</b>','The same private teamspace','Never on the shared Freelancer or Client pages.'],
-  ['<b>Client pricing / SOW value</b>','Admin → Commercial','Never on the client page the team can open.'],
-  ['Employment dates · role · manager','The shared People record','Fine in the open — not sensitive.']
- ].forEach(function(r){h+='<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';});
- h+='</tbody></table>';
- h+='<div class="h3">🚧 Four rules that keep it true</div><ul class="chk">';
- ['<b>Never put a sensitive value in a page title.</b> Relation properties render the related page’s <i>title</i> to people who cannot open it — the title is the leak.',
-  '<b>No rollups of sensitive numbers into a shared database.</b> A rollup pulls the value across the wall and defeats the whole design.',
-  '<b>A toggle is screen-share courtesy, nothing more.</b> If we use one, it is labelled as such — never described to anyone as a permission.',
-  '<b>Inventory every integration</b> connected to a page holding sensitive values, and review it on the same cadence as the membership list.'
- ].forEach(function(x){h+='<li><span class="box"></span><span>'+x+'</span></li>';});
- h+='</ul>';
- h+='<div class="callout"><span>⚖️</span><span><b>Why this matters beyond tidiness.</b> Salary, IBAN and tax IDs are financial and identification data about employees. Under GDPR the technical measure has to be real: “access is restricted to two named people in a private teamspace, reviewed quarterly” is defensible. <b>“It is inside a toggle” is not</b> — and it is arguably worse than nothing, because it creates a record of a control that was never enforced.</span></div>';
- h+='<div class="callout a"><span>❓</span><span><b>Two things to confirm with Notion before go-live:</b> whether <b>EU data residency</b> applies to this workspace (German company, EU employee data), and the exact scope of customer-managed encryption if it is ever used in a compliance claim.</span></div>';
- return pageShell('🔐','Sensitive data',null,h);
-}
 // -------- My meetings (private per person) --------
 function myMeetings(){
  var h='<p class="pdesc">Every internal meeting you were in, written up automatically. <b>This page is yours alone</b> — it lives in your private space, so nobody else on the team can open it, including the people you met with. They get their own copy.</p>';
@@ -939,60 +769,6 @@ function crumbFor(id,seg){var sp=SPACE[id]||(id=='client'||id=='project'||id=='t
  var par=CHILDPAR[id]?'<a data-go="'+CHILDPAR[id]+'">'+PARENTS[CHILDPAR[id]].nm+'</a><span class="sep">/</span>':'';
  return root+par+'<b>'+lbl(id)[1]+'</b>';
 }
-// -------- Data-flow matrix + Slack alert / task rules (how work flows in, forever) --------
-function dataFlowPage(){
- var S={team:pill('Team','teal'),admin:pill('Admin 🔒','amber'),split:pill('Split','purple')};
- var rows=[
-  ['📧 Email · group inbox','poll · Gmail history','sender email / domain → client','Client → thread note; invoice → lexoffice marker','if it asks for something / has a due date','team — or admin if money · legal · tax',S.team],
-  ['📧 Email · Austin & Saju','poll · allowlisted mailboxes only','sender → client / topic','Client · Deal · the admin DB for the topic','if a human action is needed','admin by default; team if clearly delivery',S.admin],
-  ['🎙️ Client call · Fathom','webhook · attendee email','attendee email → client + project','Meeting on Client + Project; action items → Tasks','one task per action item','team — price / contract talk → admin',S.team],
-  ['🎙️ 1:1 · Fathom','webhook','organizer / attendee → person','Personnel 1:1 history + that person’s My Space','action items → Tasks (watcher = manager)','admin + a DM to the person',S.admin],
-  ['🎙️ Internal team meeting','webhook','no client attendee → internal','Meetings (internal) + Decision Log','if a decision / owner lands','team',S.team],
-  ['🎙️ Candidate call','webhook / manual','role + email → candidate','Candidates','next-step task','admin',S.admin],
-  ['📄 Drive file · client path','changes.watch','path <code>06 Clients/NN</code> → client','Deliverables + Drive-Files → Client + Project','only if it’s a handover / QA trigger','team — new deliverable',S.team],
-  ['📄 Drive file · admin path','changes.watch','path finance · legal · tax · people','Contract Register · Personnel · Compliance','if it’s a renewal / action','admin — Drive ACL is the gate',S.admin],
-  ['📝 Intake form','webhook','by module','team modules → Client project; admin modules → admin area','kickoff tasks','team modules → team; billing · legal · SOW → admin',S.split],
-  ['🏆 Attio “Won”','webhook','deal → client','creates Client Project + Onboarding rows','the kickoff task set','team — new project — + admin for SOW / billing',S.split],
-  ['💬 Slack · /task · @Cerebro','slash / mention','free text → owner','Tasks (Inbox)','yes','reply in the channel it came from',S.team],
-  ['⏰ Renewal / deadline','scheduled date-spine scan','already on file','Contract Register · Compliance (exists)','a reminder task','admin — Needs-You',S.admin]
- ];
- var h='<p class="pdesc">One picture of how every piece of work enters the company and where Cerebro puts it — today and for every future email, transcript, or file. Cerebro runs the same four steps on each item: <b>1 Check</b> (did anything change) → <b>2 Read</b> (what · whose · who’s allowed to see it) → <b>3 File</b> (to the right Notion home + Drive) → <b>4 Alert</b> (the right Slack channel, or none). When it isn’t sure, it asks in #cerebro-team and remembers the answer.</p>';
- h+='<div class="h3">🔀 The flow matrix <span class="mut" style="font-weight:400;font-size:12px">· input → classify → land → alert</span></div>';
- h+='<div style="overflow-x:auto"><table style="min-width:1080px"><thead><tr>'+['Incoming','Detected by','Cerebro classifies →','Lands in Notion','Creates a task?','Slack alert','Sees it'].map(function(c){return '<th>'+c+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(v,i){return '<td'+(i==0?' style="font-weight:500;white-space:nowrap"':'')+'>'+v+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';
- // Slack alert logic
- h+='<div class="h3" style="margin-top:26px">🔔 When Cerebro alerts, creates a task, or does both</div>';
- h+='<div class="dgrid">';
- h+='<div class="dcard"><div class="dch">📣 Alert only</div><div class="mut" style="font-size:13px">An FYI — a file got filed, a meeting was logged, a summary is ready. Nothing to do, so no task. Posts to the relevant channel.</div></div>';
- h+='<div class="dcard"><div class="dch">✅ Task only</div><div class="mut" style="font-size:13px">A clear capture with an obvious owner and no urgency. Lands in the right Tasks DB silently — no ping.</div></div>';
- h+='<div class="dcard"><div class="dch">📣 + ✅ Alert &amp; task</div><div class="mut" style="font-size:13px">Something needs a human: a due date, a decision, a renewal, a blocker, or an unmatched item. Task + a ping to the owner.</div></div>';
- h+='<div class="dcard"><div class="dch">🤔 Ask first</div><div class="mut" style="font-size:13px">Unsure who should see it? Cerebro asks in #cerebro-team (“file this to admin for Northwind?”) and learns the answer for next time.</div></div>';
- h+='</div>';
- // Channel gate
- h+='<div class="h3" style="margin-top:22px">🔒 Which channel — the sensitivity gate</div>';
- h+='<table><thead><tr><th>Channel</th><th>Who’s in it</th><th>What Cerebro puts there</th></tr></thead><tbody>'
-  +'<tr><td>'+pill('#cerebro','grey')+'</td><td class="mut">everyone (open)</td><td>Only what people invoke — @Cerebro answers, /task confirmations. Never auto-pushed content.</td></tr>'
-  +'<tr><td>'+pill('#cerebro-team','teal')+'</td><td class="mut">all staff + contractors</td><td>Client work, deliverables, delivery meetings, non-sensitive tasks, deadlines that affect delivery.</td></tr>'
-  +'<tr><td>'+pill('#cerebro-admin 🔒','amber')+'</td><td class="mut"><b>Austin &amp; Saju only</b></td><td>Money · offers / pricing / SOW · legal / NDA / DPA · tax · HR, comp &amp; performance · 1:1s · hiring · contracts · personnel payroll.</td></tr>'
-  +'</tbody></table>';
- h+='<div class="callout a"><span>🔒</span><span><b>The gate, in one line:</b> the alert goes to the <b>most private</b> channel any part of the item touches. A client meeting that mentions a price change <b>splits</b> — the client note posts to #cerebro-team, the price detail to #cerebro-admin. Split, never leak. And the <b>task lands in the same-sensitivity DB</b> (admin task → admin Personnel / Contract / Tasks DB, Drive-gated) — the teamspace it lives in is the enforcement, not a filtered view. Ana is not in #cerebro-admin.</span></div>';
- // The task contract
- h+='<div class="h3" style="margin-top:26px">✅ Every task Cerebro creates carries — no exceptions</div>';
- h+='<ul class="chk">'+[
-  'Assignee — a resolved person (email → Notion user). Never a guess; unresolved → parked + asked.',
-  'Due date — required. Inferred from the content / SLA, or flagged. Never blank.',
-  'Context — the source link (email · transcript · file) + why + relations to Client / Project / Person.',
-  'Attached files — Drive links, placed in the logical sub-folder first.',
-  'Home — the right database + teamspace (admin task → admin DB, Drive-gated).',
-  'Client task → the file sits in 06 Clients/NN <Client>/ (00-brief · 01-deliverables · 02-data-models · 03-reports · 04-handover), and the sub-folder is created if missing.',
-  'Backed up to GitHub — one-way, versioned, like everything else.'
- ].map(function(x){return '<li><span class="box"></span><span>'+x+'</span></li>';}).join('')+'</ul>';
- // Reading + API discipline
- h+='<div class="dgrid" style="margin-top:14px">';
- h+='<div class="dcard"><div class="dch">📎 Reading the attachment</div><div class="mut" style="font-size:13px">The file lands in Drive first (its home), gets OCR/text-extracted so it can be classified, then is <b>linked</b> into Notion — bytes never live in Notion. A signed contract → Contract Register; an invoice → lexoffice marker; a deliverable → the client’s 01-deliverables.</div></div>';
- h+='<div class="dcard"><div class="dch">⚡ Not killing the API</div><div class="mut" style="font-size:13px">Push (webhooks) over poll; upsert + diff so re-reading the same item costs <b>zero</b> writes; cache the email→user map hourly; Notion held at ~2.5 req/s with backoff on 429; a daily write ceiling + circuit breaker that queues and alerts rather than getting throttled out. Backfills run off-peak.</div></div>';
- h+='</div>';
- return pageShell('🔀','Data flow',null,h);
-}
 // ===================== orientation layer (for people who know nothing) =====================
 // A plain "what is this / how does it work" note shown at the top of every section.
 var GUIDE={
@@ -1004,14 +780,9 @@ var GUIDE={
  handbook:'<span class="gk">WHAT</span>The step-by-step for delivering a client project, kickoff → handover. When we start a client, this is the checklist the system sets up for you.',
  resources:'<span class="gk">WHAT</span>The shelf of reusable stuff — playbooks, runbooks, templates, brand assets. Filter by <b>Type</b> to find what you need; if you make something reusable, it goes here.',
  deliverables:'<span class="gk">WHAT</span>The library of finished client work (dashboards, models, reports), pulled straight from Drive so past work is easy to find and reuse.',
- dataflow:'<span class="gk">WHAT</span>The one-page picture of how work flows in and where it lands. If you read one thing to understand the whole system, read this.',
  folders:'<span class="gk">WHAT</span>Where every file lives in Google Drive, and the one rule for naming things. <span class="gk">USE</span>When you have made something and are not sure where it goes — check the “Where does this go?” table.',
- alerts:'<span class="gk">WHAT</span>Everything Cerebro will send you, where it sends it, and what you can press. <span class="gk">USE</span>Read this once so no alert is ever a surprise. Nothing sensitive is ever posted to a team channel.',
  leadership:'<span class="gk">WHAT</span>Manager, strategy, commercial and hiring material — the things that are useful to whoever runs people or the business. <span class="gk">WHY HERE</span>It was sitting in the team Resources Library where everyone could read it; a management playbook and a resourcing handover plan are not team reading.',
- alertsadmin:'<span class="gk">WHAT</span>The alerts only Austin and Saju get — renewals, filings, money, hiring, security. <span class="gk">USE</span>Every one has an off-switch: “not needed” sticks, and records who decided.',
- sensitive:'<span class="gk">WHAT</span>What Notion can and cannot hide — and therefore where salaries, rates, IBANs and tax IDs are actually allowed to live. <span class="gk">USE</span>Read before putting any number on any page. Notion has no redaction; page access is the only real control.',
  mymeetings:'<span class="gk">WHAT</span>Your own write-up of every internal meeting you were in. <span class="gk">USE</span>Private to you — the people you met get their own copy, and the team never sees it.',
- driveadmin:'<span class="gk">WHAT</span>The full Drive design — five shared drives, who is in each, the migration, and the nightly GitHub backup. <span class="gk">USE</span>The build plan for moving off personal My Drives.',
  mytasks:'<span class="gk">WHAT</span>Just your tasks — a private view of everything assigned to you across the company.',
  my1on1:'<span class="gk">WHAT</span>Your own 1:1 notes and action items — the same records your manager sees, updated automatically after each 1:1.',
  personnel:'<span class="gk">WHAT</span>Everyone’s full record — role, responsibilities, certifications, 1:1 history and HR/payroll. <b>Founders only.</b> 1:1s update themselves from Fathom.',
@@ -1087,7 +858,7 @@ function startAdminPage(){
  return pageShell('🔒','Start here — Admin','The founders’ standing guide to the private space.',h);
 }
 function render(route){var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
- var R={home:homePage,startteam:startTeamPage,startadmin:startAdminPage,dataflow:dataFlowPage,folders:foldersPage,alerts:alertsPage,alertsadmin:alertsAdminPage,driveadmin:driveAdminPage,sensitive:sensitivePage,mymeetings:myMeetings,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,sales:salesPage,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,handbook:handbookPage,intake:intakePage};
+ var R={home:homePage,startteam:startTeamPage,startadmin:startAdminPage,folders:foldersPage,mymeetings:myMeetings,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,sales:salesPage,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,handbook:handbookPage,intake:intakePage};
  if(id=='tasks')el.innerHTML=pageShell('📥','Tasks',null,tasksView(curView));
  else if(id=='client')el.innerHTML=clientDetail(seg[1]);
  else if(id=='project')el.innerHTML=projectDetail(seg[1]);
