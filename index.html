@@ -1,6 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>CaseWhen — Notion workspace (mockup v3)</title>
-<style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>CaseWhen — Notion workspace</title><style>
 :root{--bg:#fff;--side:#f7f7f5;--ink:#37352f;--muted:#9b9a97;--faint:#c7c6c2;--line:#ededec;--line2:#e9e9e7;--hover:#efefee;--sel:#e8f2ef;--green:#1d967c;--green-d:#177e68}
 *{box-sizing:border-box}
 .app{font-family:ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);margin:0;display:grid;grid-template-columns:262px 1fr;height:100vh;font-size:14px;-webkit-font-smoothing:antialiased}
@@ -96,7 +94,7 @@ tr.click{cursor:pointer}tr.click:hover td{background:#f6faf9}
 .subset .fchip{background:#fff;border:1px solid var(--line2);border-radius:6px;padding:4px 10px;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
 </style>
 
-</head><body><div class="app">
+<div class="app">
   <div class="side">
     <div class="ws"><span class="wsico">C</span><span class="wsname">CaseWhen</span></div>
     <div id="sidebar"></div>
@@ -174,6 +172,22 @@ var PEO={
  carina:{n:'Carina König',fn:'Carina',role:'Verwaltungsassistentin',type:['Mini-job','grey'],status:['On leave','amber'],email:'—',start:'2022',mgr:'Saju',loc:'Berlin'}
 };
 var PEO_ORDER=['austin','saju','zsolt','dipro','ana','anastasia','prachi','carina'];
+// Per-person HR + PAST PAYROLL — the OS People-tab treatment carried into admin Personnel.
+// Live payroll stays in lexoffice; historical payslips are Drive-linked on the person record. Employees get a Payroll group; freelancers get a Freelance group instead.
+var HRDOCS={
+ austin:{comp:'€80,000 / yr',win:'2021–2025',g:[['Employment & offer',['Geschäftsführer-Anstellungsvertrag','Änderungsvereinbarung 2022','Änderungsvereinbarung 2023']],['Payroll · Lohnauswertungen',['Monthly payslips 2021–2025 (~48)','Lohnsteuerbescheinigung 2023','Lohnsteuerbescheinigung 2024']],['Official & identity',['Meldebescheinigung Sozialversicherung','Steuer-ID · SV-Nr on file']]]},
+ saju:{comp:'€80,000 / yr',win:'2022–2025',g:[['Employment & offer',['Geschäftsführer-Anstellungsvertrag','Änderungsvereinbarung 2022','Änderungsvereinbarung 2023']],['Payroll · Lohnauswertungen',['Monthly payslips 2022–2025 (~42)','Lohnsteuerbescheinigung 2023','Lohnsteuerbescheinigung 2024']],['Official & identity',['Meldebescheinigung Sozialversicherung','Steuer-ID · SV-Nr on file']]]},
+ zsolt:{comp:'€58,000 base',win:'from 2026',g:[['Employment & offer',['Arbeitsvertrag (2026)','Contract redlines / amendments']],['Payroll · Lohnauswertungen',['Monthly payslips from 2026']],['Official & identity',['Meldebescheinigung Sozialversicherung','Blue-Card / work authorization']]]},
+ dipro:{comp:'Freelance',win:'from 2023',g:[['Freelance',['Freelance framework agreement','Monthly invoices (Dhaka)','Scheinselbständigkeit check']]]},
+ ana:{comp:'Freelance',win:'from 2024',g:[['Freelance',['Freelance framework agreement','Monthly invoices','Scheinselbständigkeit check']]]},
+ anastasia:{comp:'€55,000 / yr',win:'2023–2024',g:[['Employment & offer',['Arbeitsvertrag','Aufhebungsvertrag (exit)']],['Payroll · Lohnauswertungen',['Monthly payslips 2023–2024','Lohnsteuerbescheinigung 2023 · 2024']],['Official & identity',['Meldebescheinigung Sozialversicherung']]]},
+ prachi:{comp:'up to €83,500 (65k + 18.5k var)',win:'2023',g:[['Employment & offer',['Arbeitsvertrag','Termination memo (role hired too early)']],['Payroll · Lohnauswertungen',['Monthly payslips 2023','Lohnsteuerbescheinigung 2023']],['Official & identity',['Meldebescheinigung Sozialversicherung']]]},
+ carina:{comp:'€556 / mo (mini-job)',win:'2022–2025',g:[['Employment & offer',['Minijob-Vertrag','Änderungsvereinbarung 2022']],['Payroll · Lohnauswertungen',['Monthly payslips 2022–2025','Lohnsteuerbescheinigung (annual)']],['Official & identity',['Meldebescheinigung Sozialversicherung']]]}
+};
+function hrDocsHTML(id){var d=HRDOCS[id];if(!d)return '<div class="mut" style="font-size:13px">No HR file.</div>';
+ var h='<div class="callout a"><span>🔐</span><span><b>Compensation</b> · <span class="mask">•••••••</span> <span class="mut">('+d.comp+' — masked in mockup)</span> · payroll window <b>'+d.win+'</b>. Live payroll runs in lexoffice; these historical payslips are Drive-linked here, admin-only.</span></div>';
+ h+=d.g.map(function(grp){return '<div style="margin:8px 0"><div class="mut" style="font-size:12px;font-weight:600;letter-spacing:.02em;margin:6px 0 2px">'+grp[0]+'</div>'+grp[1].map(function(f){return '<div class="dfile"><span>📄</span><span>'+f+'</span><span class="dt">'+pill('Admin 🔒','amber')+'<span class="lnk">Drive ↗</span></span></div>';}).join('')+'</div>';}).join('');
+ return h;}
 // REAL 1:1s — read from the Krisp/Gemini meeting corpus (one-off pull), not invented
 var O1={
  dipro:[
@@ -320,14 +334,14 @@ var PARENTS={
 };
 var PDESC={personnel:'Profiles, 1:1 history, HR docs',onboarding:'New-hire flow + curriculum',candidates:'Hiring pipeline',freelancers:'Sourcing bench',roles:'Roles & responsibilities',entity:'Entity, cap table, officers, tax IDs',contracts:'61-contract register + renewal watchdog',advisors:'External advisors',deals:'Commercial pipeline (Attio)',sales:'Sales playbook, ICP, positioning, scripts',intake:'Client intake + secure credentials',compliance:'Tax filings & deadlines',calendar:'Date-spine · needs-you',finance:'lexoffice — out of scope',adminboard:'Back-office Kanban',decisions:'Decision log',okrs:'Objectives (needs restart)',risks:'Risk register'};
 var NAV=[
- {items:['home','folders']},
+ {items:['home','dataflow','folders']},
  {g:['🚀','DELIVERY','everyone'],items:['tasks','clients','intake','projects','meetings']},
  {g:['📘','HOW WE DELIVER','everyone'],items:['handbook','runbooks','templates','deliverables']},
  {g:['🎓','GROW','everyone'],items:['learning']},
- {g:['🔒','ADMIN','Austin · Saju · Ana',1],items:['dash',{p:'ppl'},{p:'legal'},{p:'commercial'},{p:'compfin'},{p:'backoffice'}]},
+ {g:['🔒','ADMIN','Austin · Saju',1],items:['dash',{p:'ppl'},{p:'legal'},{p:'commercial'},{p:'compfin'},{p:'backoffice'}]},
  {g:['👤','MY SPACE','private'],items:['mytasks','my1on1']}
 ];
-var LABELS={home:['🏠','Home'],folders:['📁','Folder structure'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Board'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],deals:['💼','CRM · Deals'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s']};
+var LABELS={home:['🏠','Home'],dataflow:['🔀','Data flow'],folders:['📁','Folder structure'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Board'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],deals:['💼','CRM · Deals'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s']};
 function lbl(id){return LABELS[id]||(PARENTS[id]?[PARENTS[id].ic,PARENTS[id].nm]:(TBL[id]?[TBL[id].ic,TBL[id].nm]:['·',id]));}
 var CHILDPAR={};Object.keys(PARENTS).forEach(function(k){PARENTS[k].children.forEach(function(c){CHILDPAR[c]=k;});});
 var COLLAPSED={};
@@ -434,7 +448,7 @@ function renderPersonnel(){
 }
 function personDetail(id){var p=PEO[id];var o=O1[id]||[];var mine=Object.keys(TK).filter(function(k){return TK[k].a==p.fn&&TK[k].s!='Done';});
  var props='<div class="props">'+prow('◉','Type',pill(p.type[0],p.type[1]))+prow('◉','Status',pill(p.status[0],p.status[1]))+prow('≡','Role',p.role)+prow('@','Work email',p.email=='—'?'<span class="mut">none</span>':'<span class="mut">'+p.email+'</span>')+prow('🙂','Manager',av(p.mgr))+prow('📅','Start',p.start)+prow('📍','Location',p.loc)+prow('🔐','HR (address · DOB · tax ID · salary)','<span class="mask">•••••</span> <span class="mut" style="font-size:11px">admin-only, masked</span>')+'</div>';
- return '<div class="detail"><div class="dtitle">👤 '+p.n+'</div>'+rollBar(personRoll(id))+props+'<div class="h3">🔒 1:1 history <span class="mut" style="font-weight:400;font-size:12px">· mirrors to '+p.fn+'’s My Space · auto-updates from Fathom</span></div>'+(o.length?o.map(one1Card).join(''):'<div class="mut" style="font-size:13px">No 1:1s on file.</div>')+'<div class="h3">✅ Open tasks</div>'+(mine.length?'<div style="max-width:560px">'+mine.map(taskRow).join('')+'</div>':'<div class="mut" style="font-size:13px">None open.</div>')+'<div class="h3">📄 HR documents <span class="mut" style="font-weight:400;font-size:12px">· segmented: Employment · Payroll · Official/identity · Freelance</span></div><div class="mut" style="font-size:13px">Stored in Drive (admin), linked here. Masked in mockup.</div></div>';
+ return '<div class="detail"><div class="dtitle">👤 '+p.n+'</div>'+rollBar(personRoll(id))+props+'<div class="h3">🔒 1:1 history <span class="mut" style="font-weight:400;font-size:12px">· mirrors to '+p.fn+'’s My Space · auto-updates from Fathom</span></div>'+(o.length?o.map(one1Card).join(''):'<div class="mut" style="font-size:13px">No 1:1s on file.</div>')+'<div class="h3">✅ Open tasks</div>'+(mine.length?'<div style="max-width:560px">'+mine.map(taskRow).join('')+'</div>':'<div class="mut" style="font-size:13px">None open.</div>')+'<div class="h3">📄 HR documents &amp; payroll history <span class="mut" style="font-weight:400;font-size:12px">· segmented: Employment · Payroll · Official/identity · Freelance · admin-only, Drive-gated</span></div>'+hrDocsHTML(id)+'</div>';
 }
 function my1on1(){var p=PEO[ME];var o=O1[ME]||[];return pageShell('🔒','My 1:1s ('+p.fn+')',null,'<div class="callout g"><span>🔗</span><span>Your own 1:1 records — the same entries your manager sees in <b>Admin → Personnel → '+p.fn+'</b>. One source, two views; updates automatically after each 1:1.</span></div>'+(o.length?o.map(one1Card).join(''):'<div class="mut">No 1:1s yet.</div>'));}
 function myTasks(){var mine=Object.keys(TK).filter(function(k){return TK[k].a=='Dipro'&&TK[k].s!='Done';});return pageShell('✅','My Tasks (Dipro)','Your private view — a filter of the shared Tasks DB where Assignee = you.','<div style="max-width:640px">'+mine.map(taskRow).join('')+'</div>');}
@@ -568,8 +582,46 @@ function crumbFor(id,seg){var sp=SPACE[id]||(id=='client'||id=='project'||id=='t
  var par=CHILDPAR[id]?'<a data-go="'+CHILDPAR[id]+'">'+PARENTS[CHILDPAR[id]].nm+'</a><span class="sep">/</span>':'';
  return root+par+'<b>'+lbl(id)[1]+'</b>';
 }
+// -------- Data-flow matrix + Slack alert / task rules (how work flows in, forever) --------
+function dataFlowPage(){
+ var S={team:pill('Team','teal'),admin:pill('Admin 🔒','amber'),split:pill('Split','purple')};
+ var rows=[
+  ['📧 Email · group inbox','poll · Gmail history','sender email / domain → client','Client → thread note; invoice → lexoffice marker','if it asks for something / has a due date','team — or admin if money · legal · tax',S.team],
+  ['📧 Email · Austin & Saju','poll · allowlisted mailboxes only','sender → client / topic','Client · Deal · the admin DB for the topic','if a human action is needed','admin by default; team if clearly delivery',S.admin],
+  ['🎙️ Client call · Fathom','webhook · attendee email','attendee email → client + project','Meeting on Client + Project; action items → Tasks','one task per action item','team — price / contract talk → admin',S.team],
+  ['🎙️ 1:1 · Fathom','webhook','organizer / attendee → person','Personnel 1:1 history + that person’s My Space','action items → Tasks (watcher = manager)','admin + a DM to the person',S.admin],
+  ['🎙️ Internal team meeting','webhook','no client attendee → internal','Meetings (internal) + Decision Log','if a decision / owner lands','team',S.team],
+  ['🎙️ Candidate call','webhook / manual','role + email → candidate','Candidates','next-step task','admin',S.admin],
+  ['📄 Drive file · client path','changes.watch','path <code>06 Clients/NN</code> → client','Deliverables + Drive-Files → Client + Project','only if it’s a handover / QA trigger','team — new deliverable',S.team],
+  ['📄 Drive file · admin path','changes.watch','path finance · legal · tax · people','Contract Register · Personnel · Compliance','if it’s a renewal / action','admin — Drive ACL is the gate',S.admin],
+  ['📝 Intake form','webhook','by module','team modules → Client project; admin modules → admin area','kickoff tasks','team modules → team; billing · legal · SOW → admin',S.split],
+  ['🏆 Attio “Won”','webhook','deal → client','creates Client Project + Onboarding rows','the kickoff task set','team — new project — + admin for SOW / billing',S.split],
+  ['💬 Slack · /task · @Cerebro','slash / mention','free text → owner','Tasks (Inbox)','yes','reply in the channel it came from',S.team],
+  ['⏰ Renewal / deadline','scheduled date-spine scan','already on file','Contract Register · Compliance (exists)','a reminder task','admin — Needs-You',S.admin]
+ ];
+ var h='<p class="pdesc">One picture of how every piece of work enters the company and where Cerebro puts it — today and for every future email, transcript, or file. Cerebro runs the same four steps on each item: <b>1 Check</b> (did anything change) → <b>2 Read</b> (what · whose · who’s allowed to see it) → <b>3 File</b> (to the right Notion home + Drive) → <b>4 Alert</b> (the right Slack channel, or none). When it isn’t sure, it asks in #cerebro-team and remembers the answer.</p>';
+ h+='<div class="h3">🔀 The flow matrix <span class="mut" style="font-weight:400;font-size:12px">· input → classify → land → alert</span></div>';
+ h+='<div style="overflow-x:auto"><table style="min-width:1080px"><thead><tr>'+['Incoming','Detected by','Cerebro classifies →','Lands in Notion','Creates a task?','Slack alert','Sees it'].map(function(c){return '<th>'+c+'</th>';}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(v,i){return '<td'+(i==0?' style="font-weight:500;white-space:nowrap"':'')+'>'+v+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div>';
+ // Slack alert logic
+ h+='<div class="h3" style="margin-top:26px">🔔 When Cerebro alerts, creates a task, or does both</div>';
+ h+='<div class="dgrid">';
+ h+='<div class="dcard"><div class="dch">📣 Alert only</div><div class="mut" style="font-size:13px">An FYI — a file got filed, a meeting was logged, a summary is ready. Nothing to do, so no task. Posts to the relevant channel.</div></div>';
+ h+='<div class="dcard"><div class="dch">✅ Task only</div><div class="mut" style="font-size:13px">A clear capture with an obvious owner and no urgency. Lands in the right Tasks DB silently — no ping.</div></div>';
+ h+='<div class="dcard"><div class="dch">📣 + ✅ Alert &amp; task</div><div class="mut" style="font-size:13px">Something needs a human: a due date, a decision, a renewal, a blocker, or an unmatched item. Task + a ping to the owner.</div></div>';
+ h+='<div class="dcard"><div class="dch">🤔 Ask first</div><div class="mut" style="font-size:13px">Unsure who should see it? Cerebro asks in #cerebro-team (“file this to admin for Northwind?”) and learns the answer for next time.</div></div>';
+ h+='</div>';
+ // Channel gate
+ h+='<div class="h3" style="margin-top:22px">🔒 Which channel — the sensitivity gate</div>';
+ h+='<table><thead><tr><th>Channel</th><th>Who’s in it</th><th>What Cerebro puts there</th></tr></thead><tbody>'
+  +'<tr><td>'+pill('#cerebro','grey')+'</td><td class="mut">everyone (open)</td><td>Only what people invoke — @Cerebro answers, /task confirmations. Never auto-pushed content.</td></tr>'
+  +'<tr><td>'+pill('#cerebro-team','teal')+'</td><td class="mut">all staff + contractors</td><td>Client work, deliverables, delivery meetings, non-sensitive tasks, deadlines that affect delivery.</td></tr>'
+  +'<tr><td>'+pill('#cerebro-admin 🔒','amber')+'</td><td class="mut"><b>Austin &amp; Saju only</b></td><td>Money · offers / pricing / SOW · legal / NDA / DPA · tax · HR, comp &amp; performance · 1:1s · hiring · contracts · personnel payroll.</td></tr>'
+  +'</tbody></table>';
+ h+='<div class="callout a"><span>🔒</span><span><b>The gate, in one line:</b> the alert goes to the <b>most private</b> channel any part of the item touches. A client meeting that mentions a price change <b>splits</b> — the client note posts to #cerebro-team, the price detail to #cerebro-admin. Split, never leak. And the <b>task lands in the same-sensitivity DB</b> (admin task → admin Personnel / Contract / Tasks DB, Drive-gated) — the teamspace it lives in is the enforcement, not a filtered view. Ana is not in #cerebro-admin.</span></div>';
+ return pageShell('🔀','Data flow',null,h);
+}
 function render(route){var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
- var R={home:homePage,folders:foldersPage,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,deals:dealsBoard,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,handbook:handbookPage,intake:intakePage};
+ var R={home:homePage,dataflow:dataFlowPage,folders:foldersPage,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,deals:dealsBoard,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,handbook:handbookPage,intake:intakePage};
  if(id=='tasks')el.innerHTML=pageShell('📥','Tasks',null,tasksView(curView));
  else if(id=='client')el.innerHTML=clientDetail(seg[1]);
  else if(id=='project')el.innerHTML=projectDetail(seg[1]);
@@ -583,7 +635,7 @@ function render(route){var seg=route.split('/');var id=seg[0];var el=document.ge
  document.getElementById('crumb').innerHTML=crumbFor(id,seg[1]);
  var sp=SPACE[id]||(id=='client'||id=='project'||id=='task'||id=='meeting'?'team':(id=='person'?'admin':''));
  var lb=document.getElementById('lockb');
- if(sp=='admin'){lb.style.display='inline';lb.textContent='🔒 Private · Austin · Saju · Ana';}
+ if(sp=='admin'){lb.style.display='inline';lb.textContent='🔒 Private · Austin · Saju';}
  else if(sp=='my'){lb.style.display='inline';lb.textContent='👤 Private to you';}
  else lb.style.display='none';
  curId=id;highlight(id);
