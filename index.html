@@ -359,15 +359,7 @@ var TBL={
   ['Data Engineer Interview Guide',['Hiring','teal'],'Austin'],
   ['Getting Saju Off ZBI — Handover Plan',['Resourcing','rose'],'Saju'],
   ['Leveraging Mindset — Stop Doing, Start Delegating',['Leadership','purple'],'Austin']]},
- resources:{ic:'📘',nm:'Resources Library',sp:'team',desc:'The delivery library — handbook, playbooks, runbooks, templates and brand.',cols:[['Resource','title'],['Type','pill'],['Owner','person']],rows:[
-  ['Internal Meeting Playbook',['Playbook','purple'],'Austin'],
-  ['Access & credential provisioning',['Runbook','amber'],'Ana'],
-  ['Data-source discovery + “PoC then automate” method',['Method','purple'],'Austin'],
-  ['QA walkthrough & go-live checklist',['Runbook','amber'],'Zsolt'],
-  ['Client project skeleton (00-brief…04-handover)',['Template','grey'],'Austin'],
-  ['PoC dashboard template',['Template','teal'],'Dipro'],
-  ['DAX / SQL snippet library',['Template','teal'],'Zsolt'],
-  ['CaseWhen logo pack + proposal deck',['Brand','teal'],'Ana']]}
+ resources:{ic:'📘',nm:'Resources Library',sp:'team',desc:'The delivery library — real pages from the Notion Knowledge Base.',cols:[['Resource','title'],['Type','pill']],rows:[]},
 };
 // Per-person role · responsibilities · certifications · handbook adoption · area ownership (folded off standalone DBs onto the Person, per the audit)
 var PROF={
@@ -642,33 +634,44 @@ function myMeetings(){
 
 // -------- Resources Library (absorbs the Client Delivery Handbook) --------
 function resourcesPage(){
- var H=[
-  ['🧭','1. Overall Structure','How do we deliver projects from start to finish?',''],
-  ['🚀','2. Project Kickoff','How do we kick off new projects and align stakeholders?',''],
-  ['🧩','3. Requirements &amp; Scoping','How do we define what’s in scope and what the timeline looks like?',''],
-  ['🔄','4. Development &amp; Iteration','How do we keep clients informed and aligned during dev phase?',''],
-  ['💬','5. Client Communication','How do we manage updates and difficult conversations with client?',''],
-  ['✅','6. QA &amp; Validation','How do we test and validate before sign-off?',''],
-  ['📦','7. Deployment &amp; Handover','How do we handle go-live, documentation, and training?',''],
-  ['🧨','8. Risk &amp; Escalation','How do we flag risks &amp; escalate issues?','🎯 Risk Tracker'],
-  ['🏁','9. Project Closure &amp; Improvement','How do we run retros, wrap up projects, and improve our processes?',''],
-  ['📚','10. Learning Path','How do we level up delivery skills over time?','💡 Brainstorming Pad · 📈 Adoption Tracker']
+ // The 10 real sections of the Client Delivery Handbook (Notion), nested under it as sub-items.
+ var SEC=[
+  ['1. Overall Structure','How do we deliver projects from start to finish?'],
+  ['2. Project Kickoff','How do we kick off new projects and align stakeholders?'],
+  ['3. Requirements &amp; Scoping','How do we define what’s in scope and what the timeline looks like?'],
+  ['4. Development &amp; Iteration','How do we keep clients informed and aligned during dev phase?'],
+  ['5. Client Communication','How do we manage updates and difficult conversations with client?'],
+  ['6. QA &amp; Validation','How do we test and validate before sign-off?'],
+  ['7. Deployment &amp; Handover','How do we handle go-live, documentation, and training?'],
+  ['8. Risk &amp; Escalation','How do we flag risks &amp; escalate issues? &nbsp;<span class="rel">🎯 Risk Tracker</span>'],
+  ['9. Project Closure &amp; Improvement','How do we run retros, wrap up projects, and improve our processes?'],
+  ['10. Learning Path','How do we level up delivery skills over time? &nbsp;<span class="rel">💡 Brainstorming Pad</span> <span class="rel">📈 Adoption Tracker</span>']
  ];
- var h='<p class="pdesc">Everything you need to deliver, in one place: the Client Delivery Handbook, plus playbooks, runbooks, methods, templates and brand assets. Manager, commercial, hiring and strategy material is not here — it sits in the admin area with the founders.</p>';
- h+='<div class="h3">📘 Client Delivery Handbook <span class="mut" style="font-weight:400;font-size:12px">· 10 sections · the real doc, lifted from Notion</span></div>';
- h+='<div class="dgrid">'+H.map(function(x){
-   return '<div class="dcard"><div class="dch">'+x[0]+' <span class="lnk">'+x[1]+'</span></div>'+
-     '<div class="bodytext" style="font-size:13px;margin:0">'+x[2]+'</div>'+
-     (x[3]?'<div class="mut" style="font-size:12px;margin-top:8px">'+x[3]+'</div>':'')+'</div>';
- }).join('')+'</div>';
- h+='<div class="callout"><span>📈</span><span><b>The Adoption Tracker is the live half of this.</b> One row per <b>team member × project</b>, recording which handbook sections are actually in use, what is working, where it fell short, and what is next. That is how we find out whether the handbook is real or decorative — and section 8 has its own <b>Risk Tracker</b>.</span></div>';
- h+='<div class="callout a"><span>📥</span><span><b>Still to import.</b> The handbook above is document <b>5</b> in the team set — Austin has the others, and they belong here too rather than in a separate section. Send them over and they slot straight into this library.</span></div>';
- h+='<div class="h3">📗 Playbooks, runbooks, methods &amp; templates</div>';
- var T=TBL.resources;
- h+='<table><thead><tr>'+T.cols.map(function(c){return '<th>'+c[0]+'</th>';}).join('')+'</tr></thead><tbody>';
- h+=T.rows.map(function(r){
-   return '<tr><td>'+r[0]+'</td><td>'+pill(r[1][0],r[1][1])+'</td><td>'+av(r[2])+'</td></tr>';
- }).join('')+'</tbody></table>';
+ // Every row below is a real page in their Notion Knowledge Base.
+ var ROWS=[
+  ['Internal Meeting Playbook',['Playbook','purple']],
+  ['End-State Meeting Cadence (Post-Transition)',['Playbook','purple']],
+  ['Onboarding Process Improvements',['Runbook','amber']],
+  ['Partner / Freelancer Onboarding',['Runbook','amber']],
+  ['Template Library: Prompts',['Template','grey']],
+  ['AZ-305 Study Plan — 12 Weeks (Azure Solutions Architect)',['Learning','teal']],
+  ['Schindler AI Initiative — First Use Case (Gabriel Call)',['Client research','blue']],
+  ['Schindler FQE — First AI Use Case: Research &amp; Options',['Client research','blue']]
+ ];
+ var h='<p class="pdesc">The delivery library — every row here is a real page from the Notion Knowledge Base. Manager, commercial, hiring and strategy material is not here; it sits in the admin area with the founders.</p>';
+ h+='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+(ROWS.length+1)+' resources</span></div>';
+ h+='<table><thead><tr><th>Resource</th><th>Type</th></tr></thead><tbody>';
+ // the handbook, in the list like everything else, with its sections as sub-items
+ h+='<tr><td><span class="title-cell"><span class="di">📘</span><b>Client Delivery Handbook</b></span></td><td>'+pill('Handbook','green')+'</td></tr>';
+ h+=SEC.map(function(x){
+   return '<tr><td style="padding-left:34px"><span class="mut" style="margin-right:6px">└</span><span class="lnk">'+x[0]+'</span>'+
+     '<div class="mut" style="font-size:12px;margin:2px 0 0 20px">'+x[1]+'</div></td><td>'+pill('Section','grey')+'</td></tr>';
+ }).join('');
+ h+=ROWS.map(function(r){
+   return '<tr><td><span class="title-cell"><span class="di">📄</span>'+r[0]+'</span></td><td>'+pill(r[1][0],r[1][1])+'</td></tr>';
+ }).join('');
+ h+='</tbody></table>';
+ h+='<div class="callout"><span>📈</span><span><b>The Adoption Tracker is the live half of the handbook.</b> One row per <b>team member × project</b>, recording which sections are actually in use, what is working, where it fell short and what is next — that is how we find out whether the handbook is real or decorative. Section 8 has its own <b>Risk Tracker</b>.</span></div>';
  return pageShell('📘','Resources Library',null,h);
 }
 // -------- Meetings (master log) --------
