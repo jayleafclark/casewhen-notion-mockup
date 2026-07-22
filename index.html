@@ -377,17 +377,17 @@ var PARENTS={
  ppl:{ic:'👥',nm:'People',desc:'Everyone-related: each profile now carries role, responsibilities, certifications, 1:1s and HR/payroll. Plus onboarding and one hiring + bench Talent Pipeline.',children:['personnel','onboarding','talent']},
  legal:{ic:'⚖️',nm:'Company & Legal',desc:'The legal system of record: entity, cap table, officers, tax IDs and advisors (on the Entity page) + the contract register.',children:['entity','contracts']},
  compfin:{ic:'📋',nm:'Compliance & Finance',desc:'Tax filings & deadlines, the date-spine, and the finance boundary (lexoffice).',children:['compliance','calendar','finance']},
- backoffice:{ic:'🧭',nm:'Back office',desc:'Founder ops: the Admin Tasks board, decision log and OKRs. (A risk is a flag on a Task, not a separate list.)',children:['adminboard','decisions','okrs','leadership']}
+ backoffice:{ic:'🧭',nm:'Back office',desc:'Founder ops: the Admin Tasks board, decision log and OKRs. (A risk is a flag on a Task, not a separate list.)',children:['adminboard','adminbacklog','decisions','okrs','leadership']}
 };
 var PDESC={personnel:'Profiles: role · responsibilities · certs · 1:1s · HR/payroll',onboarding:'New-hire flow + curriculum',talent:'Hiring pipeline + freelancer bench',entity:'Entity, cap table, officers, tax IDs, advisors',contracts:'61-contract register + renewal watchdog',sales:'Attio-synced pipeline + positioning',intake:'Client intake + secure credentials',compliance:'Tax filings & deadlines',calendar:'Date-spine · needs-you',finance:'lexoffice — out of scope',adminboard:'Admin Tasks (founders-only DB)',decisions:'Decision log',okrs:'Objectives (needs restart)'};
 var NAV=[
  {items:['home','folders']},
- {g:['🚀','DELIVERY','everyone'],items:['startteam','tasks','clients','intake','projects','meetings']},
+ {g:['🚀','DELIVERY','everyone'],items:['startteam','tasks','backlog','clients','intake','projects','meetings']},
  {g:['📘','HOW WE DELIVER','everyone'],items:['resources','deliverables']},
  {g:['🔒','ADMIN','Austin · Saju',1],items:['startadmin','dash',{p:'ppl'},{p:'legal'},'sales',{p:'compfin'},{p:'backoffice'}]},
  {g:['👤','MY SPACE','private'],items:['mytasks','my1on1','mymeetings']}
 ];
-var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],folders:['📁','Files & Drive'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],leadership:['🧭','Leadership Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings']};
+var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],folders:['📁','Files & Drive'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],backlog:['🗂','Backlog'],adminbacklog:['🗂','Admin Backlog'],leadership:['🧭','Leadership Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings']};
 function lbl(id){return LABELS[id]||(PARENTS[id]?[PARENTS[id].ic,PARENTS[id].nm]:(TBL[id]?[TBL[id].ic,TBL[id].nm]:['·',id]));}
 var CHILDPAR={};Object.keys(PARENTS).forEach(function(k){PARENTS[k].children.forEach(function(c){CHILDPAR[c]=k;});});
 var COLLAPSED={};
@@ -674,6 +674,92 @@ function resourcesPage(){
  h+='<div class="callout"><span>📈</span><span><b>The Adoption Tracker is the live half of the handbook.</b> One row per <b>team member × project</b>, recording which sections are actually in use, what is working, where it fell short and what is next — that is how we find out whether the handbook is real or decorative. Section 8 has its own <b>Risk Tracker</b>.</span></div>';
  return pageShell('📘','Resources Library',null,h);
 }
+
+// -------- Backlog (team) + Admin backlog + quick capture --------
+function captureBlock(where){
+ var rows = where==='admin'
+  ? [['💬','<b>/task</b> in <b>#cerebro-admin</b>','the private founders channel — lands in the <b>admin</b> backlog, never touches a team surface'],
+     ['📩','<b>DM Cerebro</b>','say it in a sentence or a voice note; it files itself and asks you one question if it cannot tell'],
+     ['🤖','<b>Claude (MCP)</b>','“add to the admin backlog: chase the D&amp;O quote” — same destination'],
+     ['✉️','<b>Forward an email</b>','forward to notes@ and it becomes an item with the thread attached']]
+  : [['💬','<b>/task</b> in <b>#cerebro</b>','lands in the team backlog with no due date'],
+     ['📩','<b>DM Cerebro</b>','a sentence or a voice note; it files itself'],
+     ['🤖','<b>Claude (MCP)</b>','“add to the backlog: kickoff templates”'],
+     ['✉️','<b>Forward an email</b>','forward to notes@ and it becomes an item']];
+ var h='<div class="h3">⚡ Quick add <span class="mut" style="font-weight:400;font-size:12px">· capture in four seconds, sort it out later</span></div>';
+ h+='<button class="btn">＋ Add to backlog</button> <span class="mut" style="font-size:12px">no due date required — that is the point</span>';
+ h+='<div class="rt">'+rows.map(function(r){
+   return '<div class="rtc"><div class="rth">'+r[0]+' '+r[1]+'</div><div class="bodytext" style="font-size:12.5px">'+r[2]+'</div></div>';
+ }).join('')+'</div>';
+ h+='<div class="callout'+(where==='admin'?' a':'')+'"><span>'+(where==='admin'?'🔒':'🧭')+'</span><span><b>Where you capture decides where it lands.</b> '+
+   (where==='admin'
+     ? 'Anything captured in <b>#cerebro-admin</b> or by DM from Austin or Saju goes to the <b>admin</b> backlog. It is never mirrored to a team channel and never appears on the team board.'
+     : 'Anything captured in <b>#cerebro</b> goes to the <b>team</b> backlog. If Cerebro spots something sensitive — money, legal, hiring, a person — it does not file it here; it asks the founders instead.')+
+   '</span></div>';
+ return h;
+}
+function backlogTable(rows){
+ var h='<table><thead><tr><th>Item</th><th>Effort</th><th>What would trigger it</th><th>Added by</th></tr></thead><tbody>';
+ var cur=null;
+ rows.forEach(function(r){
+  if(r.grp!==cur){cur=r.grp;h+='<tr><td colspan="4" style="background:var(--side);font-weight:600;font-size:12.5px;color:var(--muted)">'+cur+'</td></tr>';}
+  h+='<tr><td>'+r.t+'</td><td>'+pill(r.e,r.e==='S'?'green':(r.e==='M'?'amber':'rose'))+'</td><td class="mut">'+(r.trig||'—')+'</td><td>'+(r.by?av(r.by):'<span class="mut">—</span>')+'</td></tr>';
+ });
+ return h+'</tbody></table>';
+}
+function backlogPage(){
+ var R=[
+  {grp:'Delivery framework',t:'QA (testing &amp; validation)',e:'M',by:'Zsolt'},
+  {grp:'Delivery framework',t:'Dev best practices',e:'M',by:'Zsolt'},
+  {grp:'Delivery framework',t:'Requirement gathering as its own step',e:'S',by:'Zsolt'},
+  {grp:'Delivery framework',t:'Every “best practice” needs to be expanded on',e:'L',by:'Austin'},
+  {grp:'Project kickoff',t:'Kickoff templates',e:'M',by:'Zsolt'},
+  {grp:'Project kickoff',t:'Agreed scope &amp; timeline',e:'S',by:'Zsolt'},
+  {grp:'Project kickoff',t:'Stakeholders',e:'S',by:'Zsolt'},
+  {grp:'Project kickoff',t:'Confirming KPI definitions',e:'S',by:'Zsolt'},
+  {grp:'Requirements &amp; scoping',t:'Requirements &amp; scoping — client questions',e:'M',by:'Zsolt'},
+  {grp:'Client communication',t:'Communicate delays early',e:'S',by:'Zsolt'},
+  {grp:'Client communication',t:'Prepare an agenda for meetings',e:'S',by:'Zsolt'},
+  {grp:'Client communication',t:'When to set / cancel meetings',e:'S',by:'Zsolt'},
+  {grp:'Client communication',t:'Client comms — when asking questions',e:'S',by:'Zsolt'},
+  {grp:'Waiting on something',t:'Decide the weekly cadence split once Dipro is on Schindler',e:'S',trig:'Once Schindler starts',by:'Saju'},
+  {grp:'Waiting on something',t:'Handbook v2 — consolidate team-review feedback',e:'L',trig:'2 weeks after the team review',by:'Dipro'},
+  {grp:'Waiting on something',t:'Revisit the role structure with Dipro',e:'S',trig:'1 month after Schindler kickoff',by:'Saju'},
+  {grp:'Waiting on something',t:'Learning-initiative slot',e:'S',trig:'Dipro raises it when Austin is back',by:'Dipro'},
+  {grp:'Waiting on something',t:'English-speaking outbound campaign — test sequence',e:'L',trig:'Open — no trigger set',by:'Saju'},
+  {grp:'Unsorted',t:'Long-term solutions vs quick wins',e:'M',by:'Zsolt'},
+  {grp:'Unsorted',t:'Thursday meeting reschedule',e:'S'}
+ ];
+ var h='<p class="pdesc">Everything we want to do but have not committed to yet. <b>Nothing in here has a due date, and nothing in here shows on the task board</b> — that is what keeps the board honest. Come here when you have time and pull something out.</p>';
+ h+='<div class="rollups">'+[[String(R.length),'in the pool'],['5','waiting on a trigger'],['9','small — under an hour'],['0','reviewed this month']].map(function(x){
+   return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
+ h+=captureBlock('team');
+ h+='<div class="h3">🗂 The pool <span class="mut" style="font-weight:400;font-size:12px">· grouped by area · Horizon = Pool · hidden from every other view</span></div>';
+ h+=backlogTable(R);
+ h+='<div class="callout"><span>🎚️</span><span><b>How an item leaves.</b> Flip <b>Horizon</b> from <span class="pill p-grey">Pool</span> to <span class="pill p-green">Active</span> and give it a date. It appears on the board with its comments, history and project link intact — it is the same row, not a copy.</span></div>';
+ h+='<div class="callout a"><span>⏳</span><span><b>A pool nobody reviews is a graveyard.</b> Your OKRs have sat untouched since 2023 and 14 of your 27 ideas have never been given a status. So this gets a <b>monthly review</b>, and Cerebro posts “<i>20 items in the pool, none reviewed in 6 weeks</i>” until someone does.</span></div>';
+ return pageShell('🗂','Backlog',null,h);
+}
+function adminBacklogPage(){
+ var R=[
+  {grp:'Legal — real gaps found in Drive',t:'Get DPA / AVV templates in place',e:'L',trig:'Before the next client that touches data',by:'Saju'},
+  {grp:'Legal — real gaps found in Drive',t:'D&amp;O insurance — get quotes',e:'M',trig:'None on file at all',by:'Austin'},
+  {grp:'Legal — real gaps found in Drive',t:'Berufshaftpflicht — get quotes',e:'M',trig:'None on file at all',by:'Austin'},
+  {grp:'Legal — real gaps found in Drive',t:'Find or re-sign the DATEV / accounting-software contract',e:'S',trig:'Not found anywhere in Drive',by:'Saju'},
+  {grp:'Entity &amp; register',t:'Reconcile HRB 165895 vs 165896 in the shareholder register',e:'S',trig:'Before the next notary filing',by:'Saju'},
+  {grp:'Tax',t:'Capture the Steuernummer',e:'S',trig:'Blocked — the Finanzamt scan is image-only; ask BMK for a PDF',by:'Saju'},
+  {grp:'Tax',t:'BMK Steuerberater handover — final items',e:'M',by:'Saju'},
+  {grp:'Back office',t:'Restart the OKR cycle',e:'M',trig:'Frozen since 2023',by:'Austin'}
+ ];
+ var h='<p class="pdesc">The founders’ half of the pool. Same rules — no due dates, nothing on any board — but it holds the things only Austin and Saju should see: money, legal, tax, hiring and people.</p>';
+ h+='<div class="rollups">'+[[String(R.length),'in the admin pool'],['4','real gaps found in Drive'],['3','blocked on someone else'],['0','reviewed this month']].map(function(x){
+   return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
+ h+=captureBlock('admin');
+ h+='<div class="h3">🗂 The admin pool</div>';
+ h+=backlogTable(R);
+ h+='<div class="callout g"><span>🔎</span><span><b>Everything in this list came out of the Drive scan, not out of thin air.</b> The four legal gaps are each backed by a search across all 3,532 files that returned nothing — no DPA for any client, no D&amp;O, no Berufshaftpflicht, no accounting-software contract.</span></div>';
+ return pageShell('🗂','Admin Backlog',null,h);
+}
 // -------- Meetings (master log) --------
 function meetingsPage(){
  var ids=Object.keys(MTG).filter(function(k){var t=MTG[k].ty[0];return t!=='1:1'&&t!=='Candidate';}).sort(function(a,b){return MTG[a].d<MTG[b].d?1:-1;});
@@ -798,6 +884,8 @@ var GUIDE={
  resources:'<span class="gk">WHAT</span>The shelf of reusable stuff — playbooks, runbooks, templates, brand assets. Filter by <b>Type</b> to find what you need; if you make something reusable, it goes here.',
  deliverables:'<span class="gk">WHAT</span>The library of finished client work (dashboards, models, reports), pulled straight from Drive so past work is easy to find and reuse.',
  folders:'<span class="gk">WHAT</span>Where every file lives in Google Drive, and the one rule for naming things. <span class="gk">USE</span>When you have made something and are not sure where it goes — check the “Where does this go?” table.',
+ backlog:'<span class="gk">WHAT</span>Everything we want to do but have not committed to. No due dates, and none of it shows on the task board. <span class="gk">USE</span>Come here when you have time and pull something out — filter by effort if you only have half an hour.',
+ adminbacklog:'<span class="gk">WHAT</span>The founders-only pool — money, legal, tax, hiring. Same rules as the team backlog. <span class="gk">USE</span>Capture in #cerebro-admin and it lands here, never on a team surface.',
  leadership:'<span class="gk">WHAT</span>Manager, strategy, commercial and hiring material — the things that are useful to whoever runs people or the business. <span class="gk">WHY HERE</span>It was sitting in the team Resources Library where everyone could read it; a management playbook and a resourcing handover plan are not team reading.',
  mymeetings:'<span class="gk">WHAT</span>Your own write-up of every internal meeting you were in. <span class="gk">USE</span>Private to you — the people you met get their own copy, and the team never sees it.',
  mytasks:'<span class="gk">WHAT</span>Just your tasks — a private view of everything assigned to you across the company.',
@@ -875,7 +963,7 @@ function startAdminPage(){
  return pageShell('🔒','Start here — Admin','The founders’ standing guide to the private space.',h);
 }
 function render(route){var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
- var R={home:homePage,startteam:startTeamPage,startadmin:startAdminPage,folders:foldersPage,mymeetings:myMeetings,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,sales:salesPage,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,intake:intakePage,resources:resourcesPage};
+ var R={home:homePage,startteam:startTeamPage,startadmin:startAdminPage,folders:foldersPage,mymeetings:myMeetings,dash:dashPage,adminboard:adminBoard,personnel:renderPersonnel,mytasks:myTasks,my1on1:my1on1,clients:clientsTable,projects:projectsBoard,entity:entityPage,contracts:contractsPage,compliance:compliancePage,sales:salesPage,onboarding:onboardingPage,calendar:calendarPage,meetings:meetingsPage,intake:intakePage,resources:resourcesPage,backlog:backlogPage,adminbacklog:adminBacklogPage};
  if(id=='tasks')el.innerHTML=pageShell('📥','Tasks',null,tasksView(curView));
  else if(id=='client')el.innerHTML=clientDetail(seg[1]);
  else if(id=='project')el.innerHTML=projectDetail(seg[1]);
