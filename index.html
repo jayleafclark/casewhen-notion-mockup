@@ -321,37 +321,13 @@ var ADMIN_TASKS=[
 ];
 // simple tables (real OS data)
 var TBL={
- areas:{ic:'🗂️',nm:'Areas',sp:'team',desc:'PARA Areas — the never-ending parts of the business (the ownership backbone that Roles, OKRs, Decisions and KB link to). Unassigned areas flag amber.',cols:[['Area','title'],['Owner','person'],['Status','pill']],rows:[['Delivery','Austin',['Owned','green']],['Sales','Austin',['Owned','green']],['People','Saju',['Owned','green']],['Systems','Saju',['Owned','green']],['Finance','—',['Unassigned','amber']]]},
- brand:{ic:'🎨',nm:'Brand & Marketing',sp:'team',desc:'Logos, templates, marketing materials — team-accessible (not commercial-sensitive).',cols:[['Asset','title'],['Type','pill']],rows:[['CaseWhen logo pack',['Brand','teal']],['Proposal deck template',['Template','grey']],['Case-study templates',['Marketing','purple']]]},
- kb:{ic:'📚',nm:'Knowledge Base',sp:'team',desc:'PARA Resources — curated, current company knowledge. Internal only (client material excluded). Staleness tracked.',cols:[['Article','title'],['Category','pill'],['Owner','person']],rows:[['Sales Playbook — Saju’s Learnings',['Playbooks','purple'],'Saju'],['2-Year Plan: Decisions (30 June)',['Strategy','blue'],'Austin'],['Data Engineer Interview Guide',['Hiring','amber'],'Austin'],['AZ-305 Study Plan — 12 weeks',['Personnel','grey'],'Dipro']]},
  handbook:{ic:'📕',nm:'Client Delivery Handbook',sp:'team',desc:'The engagement runbook — the “IKEA instructions.” This is what the New Client Project button automates.',cols:[['Stage','title'],['What happens','text'],['Owner','person']],rows:[['1 · Kickoff',['Scope, lead, shared drive'],'Austin'],['2 · Contract & NDA',['Rahmenvertrag / NDA'],'Saju'],['3 · Access provisioning',['Grant tool access'],'Ana'],['4 · Discovery',['Data sources'],'Dipro'],['5 · Build',['Pipeline / model'],'Zsolt'],['6 · PoC v1',['First dashboard'],'Dipro'],['7 · QA → Live',['Go-live, recurring'],'Zsolt'],['8 · Handover',['Revoke access, final report'],'Austin']]},
- roles:{ic:'🧩',nm:'Roles & Responsibilities',sp:'team',desc:'Who owns what — role expectations linked to Areas and People.',cols:[['Role','title'],['Person','person'],['Status','pill']],rows:[['Client Project Delivery Lead','Dipro',['Active','green']],['Data Engineering Quality & Standards Lead','—',['Draft','amber']]]},
  okrs:{ic:'🎯',nm:'OKRs',sp:'team',desc:'Real OKRs from Notion — last cycle frozen in 2023; flagged stale, needs a restart.',cols:[['Objective / KR','title'],['Period','text'],['Status','pill']],rows:[['Build strong network and reputation',['2023 Q1'],['Stale','amber']],['Build our foundational team',['2023 Q1'],['Stale','amber']],['3 LinkedIn posts each per week',['2023 Q2'],['Stale','amber']],['3 blog posts per week',['2023 Q2'],['Stale','amber']],['2 networking slots each per week',['2023 Q2'],['Stale','amber']]]},
  decisions:{ic:'🧭',nm:'Decision Log',sp:'team',desc:'Real decision log from Notion — what was decided and why.',cols:[['Decision','title'],['Category','pill'],['Status','pill']],rows:[['Juniors work 5 days a week',['People','teal'],['Active','green']],['Build skills in Claude based on best practices',['Systems','purple'],['Active','green']],['Zsolt: document Power BI best practices',['Systems','purple'],['Active','green']],['Create first 5 high-quality YouTube videos',['Marketing','amber'],['Active','green']],['Don’t take on projects unless a perfect fit',['Sales','amber'],['Active','green']]]},
- ideas:{ic:'💡',nm:'Ideas',sp:'team',desc:'Delivery-framework improvement submissions from the team.',cols:[['Idea','title'],['Category','pill'],['By','person']],rows:[['Communicate delays early',['Client comms','purple'],'Zsolt'],['Prepare an agenda for meetings',['Delivery','amber'],'Dipro']]},
- questions:{ic:'❓',nm:'Open Questions',sp:'team',desc:'Unklarheiten — unresolved questions, oldest-open first.',cols:[['Question','title'],['Status','pill']],rows:[['Wie Duplikataufwand vermeiden?',['Offen','amber']],['Excel Schicht — approach?',['Offen','amber']]]},
- risks:{ic:'⚠️',nm:'Risk Tracker',sp:'team',desc:'Escalated risks with owner + project. Feeds the admin Needs-You view.',cols:[['Risk','title'],['Owner','person'],['Status','pill']],rows:[['anyRM — pending source access',['Dipro'],['Unresolved','rose']],['No DPA/AVV in place (GDPR)',['Austin'],['Unresolved','rose']],['Client access not revoked at offboarding',['Saju'],['Unresolved','rose']]]},
  advisors:{ic:'🤝',nm:'Advisors & Agents',sp:'admin',desc:'External advisors of record.',cols:[['Party','title'],['Function','pill'],['Status','pill']],rows:[['BMK Steuerberater (via DATEV)',['Steuerberater','teal'],['Current','green']],['GSK Stockmann',['Notar','purple'],['Current','green']],['Berliner Sparkasse',['Hausbank','grey'],['Current','green']],['Steuerberatung Dubynska',['Steuerberater','teal'],['Former','grey']]]},
- candidates:{ic:'🧑‍💼',nm:'Candidates (Hiring)',sp:'admin',desc:'Recruiting pipeline — real candidates from the Notion Candidates DB + the Krisp candidate calls.',cols:[['Candidate','title'],['Stage','pill']],rows:[['Mahmoud Diab',['Interview','amber']],['Ismail',['Screen','amber']],['Grahame Chisholm',['New','grey']],['Begüm Has',['New','grey']],['Habeeb Abdulrasaq',['New','grey']],['Sarin Ravishanker',['New','grey']]]},
- freelancers:{ic:'🧰',nm:'Freelancer Pool',sp:'admin',desc:'Sourcing bench (real) — distinct from active freelancers.',cols:[['Name','title'],['Skills','pill'],['Rate','text']],rows:[['Thiago Fraletti Peixoto',['Power BI Dev','teal'],'$100/h'],['Joshua Stevenson (Lookthru)',['Power BI PM','purple'],'$67/h'],['Jim Boyer',['Fabric Dev','teal'],'—'],['Scott Ackerl',['Azure','teal'],'—'],['Benjamin Abdipour',['Power BI Dev','teal'],'—']]},
- handbookadopt:{ic:'📈',nm:'Handbook Adoption',sp:'admin',desc:'Who is actively applying the handbook.',cols:[['Person','person'],['Status','pill'],['Working on','text']],rows:[['Saju',['Actively applying','green'],'Power BI Dev phase'],['Austin',['Exploring','amber'],'Salesforce migration updates']]},
  intake:{ic:'🚪',nm:'Client Intake',sp:'admin',desc:'Kick-off flow — intake form + secure credential request (secret stored in 1Password, never in the record).',cols:[['Prospect','title'],['Stage','pill'],['Owner','person']],rows:[['Pandata',['Form sent','amber'],'Saju'],['(new client)',['Intake kicked off','grey'],'Austin']]},
  finance:{ic:'🧾',nm:'Finance',sp:'admin',desc:'NOT in Notion — runs in lexoffice. Documents linked from the admin Drive folder only. Shown to mark the boundary.',cols:[['Item','title'],['Where','text']],rows:[['Invoicing & AP/AR',['lexoffice']],['Bank statements',['Drive · 01 Finance']]]},
  // ---- NEW useful team sections (from real Drive/Krisp/Notion content) ----
- runbooks:{ic:'📘',nm:'Playbooks & Runbooks',sp:'team',desc:'The living “how we deliver” — REAL delivery playbooks from the Notion KB + Drive (sales content lives in Admin → Commercial → Sales).',cols:[['Playbook / Runbook','title'],['Category','pill'],['Owner','person']],rows:[
-  ['Management Playbook',['Ops','amber'],'Austin'],
-  ['Internal Meeting Playbook',['Ops','amber'],'Austin'],
-  ['Access & credential provisioning',['Setup','amber'],'Ana'],
-  ['Onboarding Process Improvements',['Setup','amber'],'Ana'],
-  ['Data-source discovery + “PoC then automate” method',['Method','purple'],'Austin'],
-  ['QA walkthrough & go-live checklist',['Delivery','teal'],'Zsolt'],
-  ['Getting Saju Off ZBI — Handover Plan',['Delivery','teal'],'Saju']]},
- templates:{ic:'🗂️',nm:'Templates & Assets',sp:'team',desc:'Reusable delivery assets from the Drive templates + Notion Template Library (sales scripts/messages moved to Admin → Sales).',cols:[['Asset','title'],['Type','pill']],rows:[
-  ['Template Library: Prompts',['Prompts','purple']],
-  ['Client project skeleton (00-brief…04-handover)',['Structure','grey']],
-  ['PoC dashboard template',['Power BI','teal']],
-  ['Handover pack template',['Delivery','amber']],
-  ['DAX / SQL snippet library',['Code','teal']]]},
  sales:{ic:'📣',nm:'Sales & Positioning',sp:'admin',desc:'The commercial playbook — admin only. Real KB content.',cols:[['Asset','title'],['Type','pill']],rows:[
   ['Sales Playbook — Saju’s Learnings',['Playbook','purple']],
   ['Ideal Customer Profile (ICP)',['Strategy','blue']],
@@ -366,13 +342,6 @@ var TBL={
   ['Power BI Training','Isar Aerospace',['Enablement','grey'],'Drive ↗'],
   ['CaseWhen Financial Model','Internal',['Data model','purple'],'Drive ↗'],
   ['lido_weekly.sql','Linstol',['SQL','teal'],'Drive ↗']]},
- learning:{ic:'🎓',nm:'Learning & Certifications',sp:'team',desc:'Real study plans & enablement docs from the KB — the “learn from the best” culture.',cols:[['Track','title'],['Owner','person'],['Status','pill']],rows:[
-  ['PL-300 (Power BI Data Analyst) — exam prep','Dipro',['In progress','amber']],
-  ['AZ-305 Study Plan — 12 Weeks (Azure Solutions Architect)','Dipro',['On hold','grey']],
-  ['Data Engineer Interview Guide','Austin',['Reference','grey']],
-  ['2-Year Growth Pillar: Power BI + Fabric Content Engine','Saju',['Strategy','purple']],
-  ['Leveraging Mindset — Stop Doing, Start Delegating','Austin',['Culture','teal']]]},
- // ---- MERGED per the IA audit ----
  talent:{ic:'🧑‍💼',nm:'Talent Pipeline',sp:'admin',desc:'One pipeline for external people we might engage — merges hiring candidates + the freelancer bench (was two DBs). Distinguished by Type. Active freelancers (Dipro, Ana) live in Personnel, not here.',cols:[['Person','title'],['Type','pill'],['Skills / role','pill'],['Stage / rate','text']],rows:[
   ['Mahmoud Diab',['Candidate','amber'],['Data Engineer','teal'],'Interview'],
   ['Ismail',['Candidate','amber'],['Data Engineer','teal'],'Screen'],
@@ -383,8 +352,15 @@ var TBL={
   ['Joshua Stevenson (Lookthru)',['Freelancer','purple'],['Power BI PM','purple'],'$67/h'],
   ['Jim Boyer',['Freelancer','purple'],['Fabric Dev','teal'],'bench'],
   ['Scott Ackerl',['Freelancer','purple'],['Azure','teal'],'bench']]},
- resources:{ic:'📘',nm:'Resources Library',sp:'team',desc:'One PARA-Resources DB — merges Playbooks & Runbooks + Templates & Assets + Brand + Knowledge Base (was four DBs). Filtered by Type. (Sales/commercial content lives in Admin → Sales; per-person study plans moved to each Personnel profile.)',cols:[['Resource','title'],['Type','pill'],['Owner','person']],rows:[
+ leadership:{ic:'🧭',nm:'Leadership Library',sp:'admin',desc:'Manager, strategy, commercial and hiring material — founders only. This is what was pulled out of the team Resources Library: useful to whoever is running people or the business, not to everyone.',cols:[['Resource','title'],['Type','pill'],['Owner','person']],rows:[
   ['Management Playbook',['Playbook','purple'],'Austin'],
+  ['Sales Playbook — Saju’s Learnings',['Commercial','amber'],'Saju'],
+  ['2-Year Plan: Decisions (30 June)',['Strategy','blue'],'Austin'],
+  ['2-Year Growth Pillar: Power BI + Fabric Content Engine',['Strategy','blue'],'Saju'],
+  ['Data Engineer Interview Guide',['Hiring','teal'],'Austin'],
+  ['Getting Saju Off ZBI — Handover Plan',['Resourcing','rose'],'Saju'],
+  ['Leveraging Mindset — Stop Doing, Start Delegating',['Leadership','purple'],'Austin']]},
+ resources:{ic:'📘',nm:'Resources Library',sp:'team',desc:'Everything you need to deliver: playbooks, runbooks, methods, templates and brand assets, filtered by Type. Manager, commercial, hiring and strategy material is not here — it sits in the admin area with the founders.',cols:[['Resource','title'],['Type','pill'],['Owner','person']],rows:[
   ['Internal Meeting Playbook',['Playbook','purple'],'Austin'],
   ['Access & credential provisioning',['Runbook','amber'],'Ana'],
   ['Data-source discovery + “PoC then automate” method',['Method','purple'],'Austin'],
@@ -392,8 +368,7 @@ var TBL={
   ['Client project skeleton (00-brief…04-handover)',['Template','grey'],'Austin'],
   ['PoC dashboard template',['Template','teal'],'Dipro'],
   ['DAX / SQL snippet library',['Template','teal'],'Zsolt'],
-  ['CaseWhen logo pack + proposal deck',['Brand','teal'],'Ana'],
-  ['Data Engineer Interview Guide',['Reference','grey'],'Austin']]}
+  ['CaseWhen logo pack + proposal deck',['Brand','teal'],'Ana']]}
 };
 // Per-person role · responsibilities · certifications · handbook adoption · area ownership (folded off standalone DBs onto the Person, per the audit)
 var PROF={
@@ -411,7 +386,7 @@ var PARENTS={
  ppl:{ic:'👥',nm:'People',desc:'Everyone-related: each profile now carries role, responsibilities, certifications, 1:1s and HR/payroll. Plus onboarding and one hiring + bench Talent Pipeline.',children:['personnel','onboarding','talent']},
  legal:{ic:'⚖️',nm:'Company & Legal',desc:'The legal system of record: entity, cap table, officers, tax IDs and advisors (on the Entity page) + the contract register.',children:['entity','contracts']},
  compfin:{ic:'📋',nm:'Compliance & Finance',desc:'Tax filings & deadlines, the date-spine, and the finance boundary (lexoffice).',children:['compliance','calendar','finance']},
- backoffice:{ic:'🧭',nm:'Back office',desc:'Founder ops: the Admin Tasks board, decision log and OKRs. (A risk is a flag on a Task, not a separate list.)',children:['adminboard','decisions','okrs']}
+ backoffice:{ic:'🧭',nm:'Back office',desc:'Founder ops: the Admin Tasks board, decision log and OKRs. (A risk is a flag on a Task, not a separate list.)',children:['adminboard','decisions','okrs','leadership']}
 };
 var PDESC={personnel:'Profiles: role · responsibilities · certs · 1:1s · HR/payroll',onboarding:'New-hire flow + curriculum',talent:'Hiring pipeline + freelancer bench',entity:'Entity, cap table, officers, tax IDs, advisors',contracts:'61-contract register + renewal watchdog',sales:'Attio-synced pipeline + positioning',intake:'Client intake + secure credentials',compliance:'Tax filings & deadlines',calendar:'Date-spine · needs-you',finance:'lexoffice — out of scope',adminboard:'Admin Tasks (founders-only DB)',decisions:'Decision log',okrs:'Objectives (needs restart)'};
 var NAV=[
@@ -421,7 +396,7 @@ var NAV=[
  {g:['🔒','ADMIN','Austin · Saju',1],items:['startadmin','dash',{p:'ppl'},{p:'legal'},'sales',{p:'compfin'},{p:'backoffice'},'alertsadmin','driveadmin','sensitive']},
  {g:['👤','MY SPACE','private'],items:['mytasks','my1on1','mymeetings']}
 ];
-var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],dataflow:['🔀','Data flow'],folders:['📁','Files & Drive'],alerts:['🔔','Alerts & reminders'],alertsadmin:['🔔','Admin alerts'],driveadmin:['🗄️','Drive & backup'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings'],sensitive:['🔐','Sensitive data']};
+var LABELS={home:['🏠','Home'],startteam:['🚀','Start here'],startadmin:['🔒','Start here'],dataflow:['🔀','Data flow'],folders:['📁','Files & Drive'],alerts:['🔔','Alerts & reminders'],alertsadmin:['🔔','Admin alerts'],driveadmin:['🗄️','Drive & backup'],tasks:['📥','Tasks'],clients:['🏢','Clients'],projects:['📊','Client Projects'],meetings:['🗓️','Meetings'],dash:['🏠','Admin Dashboard'],adminboard:['▥','Admin Tasks'],personnel:['👥','Personnel'],onboarding:['🚀','Onboarding'],talent:['🧑‍💼','Talent Pipeline'],sales:['📣','Sales'],entity:['⚖️','Company & Entity'],contracts:['📄','Contract Register'],compliance:['📋','Compliance & Tax'],calendar:['🗓️','Calendar / Deadlines'],resources:['📘','Resources Library'],leadership:['🧭','Leadership Library'],mytasks:['✅','My Tasks'],my1on1:['🔒','My 1:1s'],mymeetings:['🗓️','My meetings'],sensitive:['🔐','Sensitive data']};
 function lbl(id){return LABELS[id]||(PARENTS[id]?[PARENTS[id].ic,PARENTS[id].nm]:(TBL[id]?[TBL[id].ic,TBL[id].nm]:['·',id]));}
 var CHILDPAR={};Object.keys(PARENTS).forEach(function(k){PARENTS[k].children.forEach(function(c){CHILDPAR[c]=k;});});
 var COLLAPSED={};
@@ -1032,6 +1007,7 @@ var GUIDE={
  dataflow:'<span class="gk">WHAT</span>The one-page picture of how work flows in and where it lands. If you read one thing to understand the whole system, read this.',
  folders:'<span class="gk">WHAT</span>Where every file lives in Google Drive, and the one rule for naming things. <span class="gk">USE</span>When you have made something and are not sure where it goes — check the “Where does this go?” table.',
  alerts:'<span class="gk">WHAT</span>Everything Cerebro will send you, where it sends it, and what you can press. <span class="gk">USE</span>Read this once so no alert is ever a surprise. Nothing sensitive is ever posted to a team channel.',
+ leadership:'<span class="gk">WHAT</span>Manager, strategy, commercial and hiring material — the things that are useful to whoever runs people or the business. <span class="gk">WHY HERE</span>It was sitting in the team Resources Library where everyone could read it; a management playbook and a resourcing handover plan are not team reading.',
  alertsadmin:'<span class="gk">WHAT</span>The alerts only Austin and Saju get — renewals, filings, money, hiring, security. <span class="gk">USE</span>Every one has an off-switch: “not needed” sticks, and records who decided.',
  sensitive:'<span class="gk">WHAT</span>What Notion can and cannot hide — and therefore where salaries, rates, IBANs and tax IDs are actually allowed to live. <span class="gk">USE</span>Read before putting any number on any page. Notion has no redaction; page access is the only real control.',
  mymeetings:'<span class="gk">WHAT</span>Your own write-up of every internal meeting you were in. <span class="gk">USE</span>Private to you — the people you met get their own copy, and the team never sees it.',
