@@ -632,6 +632,16 @@ function myMeetings(){
  return pageShell('🗓️','My meetings',null,h);
 }
 
+
+// Client Delivery Handbook — collapsed by default so Resources reads as a clean list
+var HB_OPEN=false;
+function toggleHB(){
+ HB_OPEN=!HB_OPEN;
+ var rows=document.querySelectorAll('.hbsec');
+ for(var i=0;i<rows.length;i++){rows[i].style.display=HB_OPEN?'':'none';}
+ var c=document.getElementById('hbchev'); if(c)c.textContent=HB_OPEN?'▾':'▸';
+}
+window.toggleHB=toggleHB;
 // -------- Resources Library (absorbs the Client Delivery Handbook) --------
 function resourcesPage(){
  // The 10 real sections of the Client Delivery Handbook (Notion), nested under it as sub-items.
@@ -662,9 +672,9 @@ function resourcesPage(){
  h+='<div class="tabs"><span class="tab on">▦ Table</span><span class="rowcount">'+(ROWS.length+1)+' resources</span></div>';
  h+='<table><thead><tr><th>Resource</th><th>Type</th></tr></thead><tbody>';
  // the handbook, in the list like everything else, with its sections as sub-items
- h+='<tr><td><span class="title-cell"><span class="di">📘</span><b>Client Delivery Handbook</b></span></td><td>'+pill('Handbook','green')+'</td></tr>';
+ h+='<tr class="click" onclick="toggleHB()"><td><span class="title-cell"><span id="hbchev" class="mut" style="width:12px;display:inline-block">'+(HB_OPEN?'▾':'▸')+'</span><span class="di">📘</span><b>Client Delivery Handbook</b><span class="mut" style="font-size:12px;margin-left:8px">'+SEC.length+' sections</span></span></td><td>'+pill('Handbook','green')+'</td></tr>';
  h+=SEC.map(function(x){
-   return '<tr><td style="padding-left:34px"><span class="mut" style="margin-right:6px">└</span><span class="lnk">'+x[0]+'</span>'+
+   return '<tr class="hbsec"'+(HB_OPEN?'':' style="display:none"')+'><td style="padding-left:34px"><span class="mut" style="margin-right:6px">└</span><span class="lnk">'+x[0]+'</span>'+
      '<div class="mut" style="font-size:12px;margin:2px 0 0 20px">'+x[1]+'</div></td><td>'+pill('Section','grey')+'</td></tr>';
  }).join('');
  h+=ROWS.map(function(r){
@@ -722,17 +732,13 @@ function backlogPage(){
   {grp:'Client communication',t:'Prepare an agenda for meetings',e:'S',by:'Zsolt'},
   {grp:'Client communication',t:'When to set / cancel meetings',e:'S',by:'Zsolt'},
   {grp:'Client communication',t:'Client comms — when asking questions',e:'S',by:'Zsolt'},
-  {grp:'Waiting on something',t:'Decide the weekly cadence split once Dipro is on Schindler',e:'S',trig:'Once Schindler starts',by:'Saju'},
   {grp:'Waiting on something',t:'Handbook v2 — consolidate team-review feedback',e:'L',trig:'2 weeks after the team review',by:'Dipro'},
-  {grp:'Waiting on something',t:'Revisit the role structure with Dipro',e:'S',trig:'1 month after Schindler kickoff',by:'Saju'},
   {grp:'Waiting on something',t:'Learning-initiative slot',e:'S',trig:'Dipro raises it when Austin is back',by:'Dipro'},
-  {grp:'Waiting on something',t:'English-speaking outbound campaign — test sequence',e:'L',trig:'Open — no trigger set',by:'Saju'},
   {grp:'Unsorted',t:'Long-term solutions vs quick wins',e:'M',by:'Zsolt'},
   {grp:'Unsorted',t:'Thursday meeting reschedule',e:'S'}
  ];
  var h='<p class="pdesc">Everything we want to do but have not committed to yet. <b>Nothing in here has a due date, and nothing in here shows on the task board</b> — that is what keeps the board honest. Come here when you have time and pull something out.</p>';
- h+='<div class="rollups">'+[[String(R.length),'in the pool'],['5','waiting on a trigger'],['9','small — under an hour'],['0','reviewed this month']].map(function(x){
-   return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
+ var st=[[String(R.length),'in the pool'],[String(R.filter(function(x){return x.trig;}).length),'waiting on a trigger'],[String(R.filter(function(x){return x.e==='S';}).length),'small — under an hour'],['0','reviewed this month']]; h+='<div class="rollups">'+st.map(function(x){return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
  h+=captureBlock('team');
  h+='<div class="h3">🗂 The pool <span class="mut" style="font-weight:400;font-size:12px">· grouped by area · Horizon = Pool · hidden from every other view</span></div>';
  h+=backlogTable(R);
@@ -749,11 +755,13 @@ function adminBacklogPage(){
   {grp:'Entity &amp; register',t:'Reconcile HRB 165895 vs 165896 in the shareholder register',e:'S',trig:'Before the next notary filing',by:'Saju'},
   {grp:'Tax',t:'Capture the Steuernummer',e:'S',trig:'Blocked — the Finanzamt scan is image-only; ask BMK for a PDF',by:'Saju'},
   {grp:'Tax',t:'BMK Steuerberater handover — final items',e:'M',by:'Saju'},
+  {grp:'People &amp; resourcing',t:'Decide the weekly cadence split once Dipro is on Schindler',e:'S',trig:'Once Schindler starts',by:'Saju'},
+  {grp:'People &amp; resourcing',t:'Revisit the role structure with Dipro',e:'S',trig:'1 month after Schindler kickoff',by:'Saju'},
+  {grp:'Commercial',t:'English-speaking outbound campaign — test sequence',e:'L',trig:'Open — no trigger set',by:'Saju'},
   {grp:'Back office',t:'Restart the OKR cycle',e:'M',trig:'Frozen since 2023',by:'Austin'}
  ];
- var h='<p class="pdesc">The founders’ half of the pool. Same rules — no due dates, nothing on any board — but it holds the things only Austin and Saju should see: money, legal, tax, hiring and people.</p>';
- h+='<div class="rollups">'+[[String(R.length),'in the admin pool'],['4','real gaps found in Drive'],['3','blocked on someone else'],['0','reviewed this month']].map(function(x){
-   return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
+ var h='<p class="pdesc">The founders’ half of the pool. Same rules — no due dates, nothing on any board — but it holds what only Austin and Saju should see: money, legal, tax, hiring, people and anything commercial.</p>';
+ var st=[[String(R.length),'in the pool'],[String(R.filter(function(x){return x.trig;}).length),'waiting on a trigger'],[String(R.filter(function(x){return x.e==='S';}).length),'small — under an hour'],['0','reviewed this month']]; h+='<div class="rollups">'+st.map(function(x){return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
  h+=captureBlock('admin');
  h+='<div class="h3">🗂 The admin pool</div>';
  h+=backlogTable(R);
