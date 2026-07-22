@@ -618,6 +618,22 @@ function dataFlowPage(){
   +'<tr><td>'+pill('#cerebro-admin 🔒','amber')+'</td><td class="mut"><b>Austin &amp; Saju only</b></td><td>Money · offers / pricing / SOW · legal / NDA / DPA · tax · HR, comp &amp; performance · 1:1s · hiring · contracts · personnel payroll.</td></tr>'
   +'</tbody></table>';
  h+='<div class="callout a"><span>🔒</span><span><b>The gate, in one line:</b> the alert goes to the <b>most private</b> channel any part of the item touches. A client meeting that mentions a price change <b>splits</b> — the client note posts to #cerebro-team, the price detail to #cerebro-admin. Split, never leak. And the <b>task lands in the same-sensitivity DB</b> (admin task → admin Personnel / Contract / Tasks DB, Drive-gated) — the teamspace it lives in is the enforcement, not a filtered view. Ana is not in #cerebro-admin.</span></div>';
+ // The task contract
+ h+='<div class="h3" style="margin-top:26px">✅ Every task Cerebro creates carries — no exceptions</div>';
+ h+='<ul class="chk">'+[
+  'Assignee — a resolved person (email → Notion user). Never a guess; unresolved → parked + asked.',
+  'Due date — required. Inferred from the content / SLA, or flagged. Never blank.',
+  'Context — the source link (email · transcript · file) + why + relations to Client / Project / Person.',
+  'Attached files — Drive links, placed in the logical sub-folder first.',
+  'Home — the right database + teamspace (admin task → admin DB, Drive-gated).',
+  'Client task → the file sits in 06 Clients/NN <Client>/ (00-brief · 01-deliverables · 02-data-models · 03-reports · 04-handover), and the sub-folder is created if missing.',
+  'Backed up to GitHub — one-way, versioned, like everything else.'
+ ].map(function(x){return '<li><span class="box"></span><span>'+x+'</span></li>';}).join('')+'</ul>';
+ // Reading + API discipline
+ h+='<div class="dgrid" style="margin-top:14px">';
+ h+='<div class="dcard"><div class="dch">📎 Reading the attachment</div><div class="mut" style="font-size:13px">The file lands in Drive first (its home), gets OCR/text-extracted so it can be classified, then is <b>linked</b> into Notion — bytes never live in Notion. A signed contract → Contract Register; an invoice → lexoffice marker; a deliverable → the client’s 01-deliverables.</div></div>';
+ h+='<div class="dcard"><div class="dch">⚡ Not killing the API</div><div class="mut" style="font-size:13px">Push (webhooks) over poll; upsert + diff so re-reading the same item costs <b>zero</b> writes; cache the email→user map hourly; Notion held at ~2.5 req/s with backoff on 429; a daily write ceiling + circuit breaker that queues and alerts rather than getting throttled out. Backfills run off-peak.</div></div>';
+ h+='</div>';
  return pageShell('🔀','Data flow',null,h);
 }
 function render(route){var seg=route.split('/');var id=seg[0];var el=document.getElementById('page');
