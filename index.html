@@ -113,8 +113,36 @@ tr.click{cursor:pointer}tr.click:hover td{background:#f6faf9}
 .rtc .rth{font-weight:600;font-size:13px;margin-bottom:5px}
 .probs td:first-child{font-weight:600;white-space:nowrap}
 .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:#5b5852}
+
+.gate{position:fixed;inset:0;background:#f7f7f5;display:grid;place-items:center;z-index:9999;font-family:ui-sans-serif,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.gate.hide{display:none}
+.gbox{background:#fff;border:1px solid #e9e9e7;border-radius:14px;padding:30px 32px;width:342px;box-shadow:0 8px 34px rgba(0,0,0,.08)}
+.glogo{width:34px;height:34px;border-radius:8px;background:#1d967c;color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;margin-bottom:15px}
+.gh{font-size:19px;font-weight:700;margin-bottom:4px;color:#37352f}
+.gs{font-size:13px;color:#9b9a97;margin-bottom:18px;line-height:1.5}
+.gl{display:block;font-size:12px;font-weight:600;color:#37352f;margin:12px 0 5px}
+.gi{width:100%;border:1px solid #e9e9e7;border-radius:7px;padding:9px 11px;font-size:13.5px;font-family:inherit;color:#37352f;background:#fff}
+.gi:focus{outline:2px solid #1d967c;outline-offset:-1px;border-color:#1d967c}
+.gbtn{width:100%;margin-top:18px;background:#1d967c;color:#fff;border:0;border-radius:7px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.gbtn:hover{background:#177e68}
+.gerr{color:#9a4b34;font-size:12.5px;margin-top:10px;display:none}
+.gfoot{font-size:11px;color:#c7c6c2;margin-top:15px;line-height:1.5}
 </style>
 
+<div class="gate" id="gate">
+ <div class="gbox">
+  <div class="glogo">cw</div>
+  <div class="gh">CaseWhen</div>
+  <div class="gs">Internal preview of the new Notion workspace. Sign in to continue.</div>
+  <label class="gl" for="ge">Work email</label>
+  <input class="gi" id="ge" type="email" autocomplete="off" placeholder="you@casewhen.co">
+  <label class="gl" for="gp">Password</label>
+  <input class="gi" id="gp" type="password" autocomplete="off">
+  <button class="gbtn" id="gb" type="button">Sign in</button>
+  <div class="gerr" id="gerr">That email or password is not right.</div>
+  <div class="gfoot">CaseWhen staff only. A design preview, not the live system.</div>
+ </div>
+</div>
 <div class="app">
   <div class="side">
     <div class="ws"><span class="wsico">C</span><span class="wsname">CaseWhen</span></div>
@@ -1113,4 +1141,23 @@ document.getElementById('crumb').addEventListener('click',function(ev){var a=ev.
 document.getElementById('page').addEventListener('click',function(ev){var a=ev.target.closest('[data-go]');if(a){ev.stopPropagation();go(a.dataset.go);}});
 go('home');
 </script>
-</body></html>
+<script>
+(function(){
+ var G=document.getElementById('gate');if(!G)return;
+ try{if(sessionStorage.getItem('cw_ok')==='1')G.classList.add('hide');}catch(e){}
+ function go(){
+  var em=(document.getElementById('ge').value||'').trim().toLowerCase();
+  var pw=document.getElementById('gp').value||'';
+  if(/@casewhen\.co$/.test(em)&&pw==='password123'){
+   try{sessionStorage.setItem('cw_ok','1');}catch(x){}
+   G.classList.add('hide');
+  }else{document.getElementById('gerr').style.display='block';}
+ }
+ document.getElementById('gb').addEventListener('click',go);
+ ['ge','gp'].forEach(function(id){
+  document.getElementById(id).addEventListener('keydown',function(ev){if(ev.key==='Enter')go();});
+ });
+ try{document.getElementById('ge').focus();}catch(e){}
+})();
+</script>
+</html>
