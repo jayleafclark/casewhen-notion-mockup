@@ -206,7 +206,7 @@ var HRDOCS={
  carina:{comp:'€556 / mo (mini-job)',win:'2022–2025',g:[['Employment & offer',['Minijob-Vertrag','Änderungsvereinbarung 2022']],['Payroll · Lohnauswertungen',['Monthly payslips 2022–2025','Lohnsteuerbescheinigung (annual)']],['Official & identity',['Meldebescheinigung Sozialversicherung']]]}
 };
 function hrDocsHTML(id){var d=HRDOCS[id];if(!d)return '<div class="mut" style="font-size:13px">No HR file.</div>';
- var h='<div class="callout a"><span>🔐</span><span><b>Compensation</b> · <span class="mask">•••••••</span> <span class="mut">('+d.comp+' — masked in mockup)</span> · payroll window <b>'+d.win+'</b>. Live payroll runs in lexoffice; these historical payslips are Drive-linked here, admin-only.</span></div>';
+ var h='<div class="callout a"><span>🔐</span><span><b>Compensation</b> · <span class="mask">•••••••</span> <span class="mut">('+d.comp+' — click to reveal)</span> · payroll window <b>'+d.win+'</b>. Salary <b>does</b> live in Notion, here in the private admin teamspace. The dots are screen-share courtesy so a number is not read over your shoulder on a call — <b>the access control is the teamspace, not the dots</b>. Live payroll runs in lexoffice; these historical payslips are Drive-linked here, admin-only.</span></div>';
  h+=d.g.map(function(grp){return '<div style="margin:8px 0"><div class="mut" style="font-size:12px;font-weight:600;letter-spacing:.02em;margin:6px 0 2px">'+grp[0]+'</div>'+grp[1].map(function(f){return '<div class="dfile"><span>📄</span><span>'+f+'</span><span class="dt">'+pill('Admin 🔒','amber')+'<span class="lnk">Drive ↗</span></span></div>';}).join('')+'</div>';}).join('');
  return h;}
 // REAL 1:1s — read from the Krisp/Gemini meeting corpus (one-off pull), not invented
