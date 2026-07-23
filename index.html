@@ -424,7 +424,8 @@ function taskRow(id){var t=TK[id];var tag=t.proj?pill((PR[t.proj].n.split(' — 
 function statusBoard(ids,cols){return '<div class="board">'+cols.map(function(st){var items=ids.filter(function(k){return TK[k].s==st;});return '<div class="bcol"><div class="bch"><span class="dot" style="background:'+TSDOT[TS[st]]+'"></span>'+st+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';}
 // -------- Home: master board of all project items --------
 function homePage(){
- var h='<button class="btn">＋ Quick capture</button> <span class="mut" style="font-size:12px">Home <b>is</b> the team board — one Tasks database. This drops a row into the Inbox; no details needed.</span>';
+ var h='<button class="btn">＋ Quick capture</button> <span class="mut" style="font-size:12px">drops a row into the Inbox — no details needed.</span>';
+ h+='<div class="guide"><span class="gk">WHAT</span>The team board — one Tasks database. Columns are our real statuses: Not started → In Progress → External Block → Done. <span class="gk">USE</span>Work your cards here; check <b>This Week</b> to bring one in. Undated ideas live in the <span class="lnk" onclick="go(\'backlog\')">Backlog</span> (off the board); <span class="lnk" onclick="go(\'mytasks\')">My Tasks</span> shows only yours; nothing sensitive lands here.</div>';
  h+=tasksView(curView);
  h+='<div class="dgrid" style="margin-top:22px">';
  h+='<div class="dcard"><div class="dch">📊 Active client projects<span class="cnt">7</span></div>'+['zbi_fonds','sch_ai','isar_fin','lin_inv'].map(function(k){return '<div class="drow" style="cursor:pointer" onclick="go(\'project/'+k+'\')">'+PR[k].n+'<span class="dl">'+pill(PR[k].stage[0],PR[k].stage[1])+'</span></div>';}).join('')+'</div>';
@@ -436,15 +437,13 @@ function homePage(){
 var TASK_VIEWS=[['board','▥ Board'],['inbox','📥 Inbox'],['assignee','👥 By Assignee'],['project','📊 By Project'],['all','▦ All']];
 function tasksView(view){
  var ids=Object.keys(TK);
- var CO='<div class="callout g"><span>🏷️</span><span><b>One tagging system, used on every database</b> (tasks, meetings, files, deliverables) so anything is findable: '+['Sensitivity — Team / Admin','Facing — Client-facing / Internal','Category — Delivery · Sales · Growth · Ops · Systems · People/HR · Hiring · Legal · Finance · Tax · Compliance','Client · Project · Assignee · Area (relations)','Status · Priority · Due / Do'].map(function(x){return '<span class="rel" style="margin:2px 0">'+x+'</span>';}).join(' ')+'</span></div>';
- CO+='<div class="callout a"><span>👤</span><span><b>Assignment → visibility.</b> Every task links to its owner, so you see all of yours in <b>My Tasks</b> (and rolled up on your Personnel page). This shared board holds the team’s work. A few founder-only items are kept in a separate private space you won’t see here — and nothing sensitive ever lands on this board.</span></div>';
  var h='<div class="tabs">'+TASK_VIEWS.map(function(v){return '<span class="tab'+(v[0]==view?' on':'')+'" data-view="'+v[0]+'">'+v[1]+'</span>';}).join('')+'</div>';
  if(view=='inbox'){var inbox=ids.filter(function(k){return TK[k].inbox;});h+='<p class="mut" style="font-size:12.5px;margin:12px 0 4px">Unprocessed captures — assign an owner, a due date and a project/area to process each.</p><div style="max-width:640px">'+inbox.map(taskRow).join('')+'</div>';}
  else if(view=='assignee'){var people=['Zsolt','Dipro','Austin','Saju','Ana'];h+='<div class="board">'+people.map(function(pn){var items=ids.filter(function(k){return TK[k].a==pn&&TK[k].s!='Done';});return '<div class="bcol"><div class="bch">'+av(pn)+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';}
  else if(view=='project'){var projs=Object.keys(PR).filter(function(p){return Object.keys(TK).some(function(k){return TK[k].proj==p&&TK[k].s!='Done';});});h+='<div class="board">'+projs.map(function(p){var items=Object.keys(TK).filter(function(k){return TK[k].proj==p&&TK[k].s!='Done';});return '<div class="bcol"><div class="bch">'+PR[p].n.split(' — ')[0]+'<span class="bc">'+items.length+'</span></div>'+(items.map(taskRow).join('')||'<div class="mut" style="font-size:12px;padding:4px">—</div>')+'</div>';}).join('')+'</div>';}
  else if(view=='all'){h+='<table style="margin-top:12px"><thead><tr><th>Task</th><th>Status</th><th>Assignee</th><th>Due</th><th>Project / Area</th></tr></thead><tbody>'+ids.map(function(k){var t=TK[k];return '<tr class="click" data-open="task/'+k+'"><td><span class="title-cell"><span class="di">▦</span>'+t.n+'</span></td><td>'+pill(t.s,TS[t.s])+'</td><td>'+(t.a?av(t.a):'<span class="mut">—</span>')+'</td><td>'+(t.dd||'<span class="mut">—</span>')+'</td><td>'+(t.proj?'<span class="rel">'+PR[t.proj].n+'</span>':(t.area?pill(t.area,'purple'):'—'))+'</td></tr>';}).join('')+'</tbody></table>';}
  else {h+=statusBoard(ids.filter(function(k){return TK[k].s!='Done';}).concat(ids.filter(function(k){return TK[k].s=='Done';})),TASK_COLS);}
- h+=CO;
+
  return h;
 }
 // -------- Clients / detail --------
@@ -572,7 +571,7 @@ function adminBoard(){
 }
 // -------- Admin dashboard --------
 function dashPage(){
- var h='<div class="h3" style="margin-top:2px">▥ Admin Tasks <span class="mut" style="font-weight:400;font-size:12px">· founders-only DB · same statuses as the team board</span></div>'+adminBoard()+'<div class="dgrid" style="margin-top:24px">';
+ var h='<div class="guide"><span class="gk">WHAT</span>Your admin home — everything founders-only in one place: the Admin Tasks board, what needs you, and the admin backlog. <span class="gk">USE</span>Same board and statuses as the team, but these tasks and items are visible only to you and Saju.</div><div class="h3" style="margin-top:2px">▥ Admin Tasks <span class="mut" style="font-weight:400;font-size:12px">· founders-only DB · same statuses as the team board</span></div>'+adminBoard()+'<div class="dgrid" style="margin-top:24px">';
  h+='<div class="dcard full"><div class="dch">🔔 Needs you<span class="cnt">4</span></div>'+[[pill('SLA','rose')+' Pandata lead unanswered — 2 days','follow up'],[pill('Legal','rose')+' No DPA/AVV on file for any client','legal gap'],[pill('Renewal','amber')+' Schindler Rahmenvertrag — confirm terms','review'],[pill('Overdue','rose')+' anyRM / Tentamus — open invoices to chase','AR']].map(function(r){return '<div class="drow">'+r[0]+'<span class="dl">'+r[1]+'</span></div>';}).join('')+'</div>';
  h+='<div class="dcard"><div class="dch">✅ All outstanding tasks<span class="cnt">46 open</span></div>'+['t_dax','t_disc','t_wait','t_model'].map(function(k){var t=TK[k];return '<div class="drow" style="cursor:pointer" onclick="go(\'task/'+k+'\')">'+av(t.a)+' &nbsp;'+t.n+'<span class="dl">'+pill(t.s,TS[t.s])+'</span></div>';}).join('')+'</div>';
  h+='<div class="dcard"><div class="dch">💼 Pipeline<span class="cnt">Attio</span></div>'+DEALS.slice(0,3).map(function(d){return '<div class="drow">'+d.n+'<span class="dl">'+pill(d.stage,'grey')+'</span></div>';}).join('')+'</div>';
@@ -728,15 +727,12 @@ function backlogPage(){
   {grp:'Waiting on something',t:'Handbook v2 — consolidate team-review feedback',e:'L',trig:'2 weeks after the team review',by:'Dipro'},
   {grp:'Waiting on something',t:'Learning-initiative slot',e:'S',trig:'Dipro raises it when Austin is back',by:'Dipro'},
  ];
- var h='<p class="pdesc">Everything we want to do but have not committed to yet. <b>No due dates, and none of it shows on the task board</b> — that is what keeps the board honest. Capture fast with no details; when you are ready, give it an <b>area</b> to file it, then pull it out.</p>';
+ var h='';
  var st=[[String(R.length),'in the pool'],[String(R.filter(function(x){return x.trig;}).length),'waiting on a trigger'],[String(R.filter(function(x){return x.e==='S';}).length),'small — under an hour'],['0','reviewed this month']]; h+='<div class="rollups">'+st.map(function(x){return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
- h+='<div class="callout a"><span>📣</span><span><b>How we use the backlog — the one rule.</b> Got an idea or a maybe? Drop it here in seconds — <b>no due date, no owner needed</b>. It stays <b>off every board</b> so nobody drowns in a hundred maybes. When you actually have time, open it, give an item an <b>area</b>, then set a <b>date</b> or check <b>This&nbsp;Week</b> — that, and only that, pulls it onto the board. Nothing gets worked until someone pulls it in on purpose.</span></div>';
+ h+='<div class="callout a"><span>📣</span><span><b>How we use the backlog — the one rule.</b> Got an idea or a maybe? Drop it here in seconds — <b>no due date, no owner needed</b>. It stays <b>off every board</b> so nobody drowns in a hundred maybes. When you actually have time, open it, give an item an <b>area</b>, then set a <b>date</b> or check <b>This&nbsp;Week</b> — that, and only that, pulls it onto the board. Nothing gets worked until someone pulls it in on purpose. We clear the pool once a month so it never becomes a graveyard.</span></div>';
  h+=captureBlock('team');
  h+='<div class="h3">🗂 The pool <span class="mut" style="font-weight:400;font-size:12px">· grouped by area · hidden from every board</span></div>';
- h+='<div class="callout"><span>🏷️</span><span><b>The only inbox is the top group.</b> Anything captured with no area lands in <b>⚠ Unprocessed</b> — that is "to process". Giving it an <b>area</b> files it; that is all "processing" means. An assignee is optional and can change later, so nothing needs an owner just to exist here.</span></div>';
  h+=backlogTable(R);
- h+='<div class="callout"><span>🎚️</span><span><b>How an item leaves.</b> Give it a <b>due date</b> or check <b>This Week</b> and it moves onto the board — the same row, with its comments, history and links intact. Nothing is copied or recreated.</span></div>';
- h+='<div class="callout a"><span>⏳</span><span><b>A pool nobody reviews is a graveyard.</b> 14 of your 27 ideas have never been given a status, and stale items pile up fast. So this gets a <b>monthly review</b>, and Cerebro posts “<i>20 items in the pool, none reviewed in 6 weeks</i>” until someone does.</span></div>';
  return pageShell('🗂','Backlog',null,h);
 }
 function adminBacklogPage(){
