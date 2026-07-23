@@ -727,10 +727,8 @@ function backlogPage(){
   {grp:'Waiting on something',t:'Handbook v2 — consolidate team-review feedback',e:'L',trig:'2 weeks after the team review',by:'Dipro'},
   {grp:'Waiting on something',t:'Learning-initiative slot',e:'S',trig:'Dipro raises it when Austin is back',by:'Dipro'},
  ];
- var h='';
- var st=[[String(R.length),'in the pool'],[String(R.filter(function(x){return x.trig;}).length),'waiting on a trigger'],[String(R.filter(function(x){return x.e==='S';}).length),'small — under an hour'],['0','reviewed this month']]; h+='<div class="rollups">'+st.map(function(x){return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
- h+='<div class="callout a"><span>📣</span><span><b>How we use the backlog — the one rule.</b> Got an idea or a maybe? Drop it here in seconds — <b>no due date, no owner needed</b>. It stays <b>off every board</b> so nobody drowns in a hundred maybes. When you actually have time, open it, give an item an <b>area</b>, then set a <b>date</b> or check <b>This&nbsp;Week</b> — that, and only that, pulls it onto the board. Nothing gets worked until someone pulls it in on purpose. We clear the pool once a month so it never becomes a graveyard.</span></div>';
- h+=captureBlock('team');
+ var h='<div class="callout a"><span>📣</span><span><b>How the backlog works.</b> Drop any idea or maybe here in seconds — <b>no due date, no owner needed</b>. It stays <b>off every board</b> so nobody drowns in a hundred maybes. When you have time, give an item an <b>area</b>, then a <b>date</b> or <b>This&nbsp;Week</b> to pull it onto the board. We clear the pool monthly so it never rots.</span></div>';
+ h+='<button class="btn">＋ Add to backlog</button> <span class="mut" style="font-size:12px">no due date, no owner — or just say <b>/task</b> in #cerebro</span>';
  h+='<div class="h3">🗂 The pool <span class="mut" style="font-weight:400;font-size:12px">· grouped by area · hidden from every board</span></div>';
  h+=backlogTable(R);
  return pageShell('🗂','Backlog',null,h);
@@ -749,13 +747,9 @@ function adminBacklogPage(){
   {grp:'Commercial',t:'English-speaking outbound campaign — test sequence',e:'L',trig:'Open — no trigger set',by:'Saju'},
   {grp:'Back office',t:'Restart the OKR cycle',e:'M',trig:'Frozen since 2023',by:'Austin'}
  ];
- var h='<p class="pdesc">The founders’ half of the pool. Same rules — no due dates, nothing on any board — but it holds what only Austin and Saju should see: money, legal, tax, hiring, people and anything commercial.</p>';
- var st=[[String(R.length),'in the pool'],[String(R.filter(function(x){return x.trig;}).length),'waiting on a trigger'],[String(R.filter(function(x){return x.e==='S';}).length),'small — under an hour'],['0','reviewed this month']]; h+='<div class="rollups">'+st.map(function(x){return '<div class="roll"><div class="rv">'+x[0]+'</div><div class="rl">'+x[1]+'</div></div>';}).join('')+'</div>';
- h+=captureBlock('admin');
+ var h='<div class="callout"><span>🔒</span><span>The founders’ half of the pool — money, legal, tax, hiring, people, commercial. Same rule: no due dates, off every board; give an item an <b>area</b> to file it, a date to pull it in. <b>Every item here came out of the Drive scan</b> — the four legal gaps are each backed by a search across all 3,532 files that found nothing.</span></div>';
  h+='<div class="h3">🗂 The admin pool <span class="mut" style="font-weight:400;font-size:12px">· grouped by area · hidden from every board</span></div>';
- h+='<div class="callout"><span>🏷️</span><span>Same rule as the team pool: capture fast, give it an <b>area</b> to file it, no owner required. Give it a date or check This&nbsp;Week to pull it onto the admin board.</span></div>';
  h+=backlogTable(R);
- h+='<div class="callout g"><span>🔎</span><span><b>Everything in this list came out of the Drive scan, not out of thin air.</b> The four legal gaps are each backed by a search across all 3,532 files that returned nothing — no DPA for any client, no D&amp;O, no Berufshaftpflicht, no accounting-software contract.</span></div>';
  return h;
 }
 function meetingDetail(id){var m=MTG[id];
@@ -867,7 +861,6 @@ var GUIDE={
  resources:'<span class="gk">WHAT</span>The shelf of reusable stuff — playbooks, runbooks, templates, brand assets. Filter by <b>Type</b> to find what you need; if you make something reusable, it goes here.',
  deliverables:'<span class="gk">WHAT</span>The library of finished client work (dashboards, models, reports), pulled straight from Drive so past work is easy to find and reuse.',
  folders:'<span class="gk">WHAT</span>Where every file lives in Google Drive, and the one rule for naming things. <span class="gk">USE</span>When you have made something and are not sure where it goes — check the “Where does this go?” table.',
- backlog:'<span class="gk">WHAT</span>Everything we want to do but have not committed to. No due dates, and none of it shows on the task board. <span class="gk">USE</span>Come here when you have time and pull something out — filter by effort if you only have half an hour.',
  adminmeetings:'<span class="gk">WHAT</span>The founders’ private meeting log — internal decision-syncs and admin calls. <span class="gk">USE</span>Client calls live on the client page, 1:1s in the person’s file; this is only Austin &amp; Saju’s internal meetings.',
  leadership:'<span class="gk">WHAT</span>Manager, strategy, commercial and hiring material — the things that are useful to whoever runs people or the business. <span class="gk">WHY HERE</span>It was sitting in the team Resources Library where everyone could read it; a management playbook and a resourcing handover plan are not team reading.',
  mymeetings:'<span class="gk">WHAT</span>Your own write-up of every internal meeting you were in. <span class="gk">USE</span>Private to you — the people you met get their own copy, and the team never sees it.',
